@@ -38,6 +38,6 @@ public class Domino implements InterfaceDomino{
 //	}
 	
 	public String toString(){
-		return "("+Integer.toString(this.left)+","+Integer.toString(this.right)+")";
+		return Integer.toString(this.left)+":"+Integer.toString(this.right);
 	}
 }
