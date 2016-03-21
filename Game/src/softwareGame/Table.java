@@ -40,14 +40,14 @@ public class Table {
 			this.right = d.getRightValue();
 		}
 		
-		if(this.right == d.getRightValue()){
-			this.board.add(d);
-			this.right = d.getLeftValue();
-		}
-		
 		if(this.left == d.getLeftValue()){
 			this.board.add(0,d);
 			this.left = d.getRightValue();
+		}
+		
+		if(this.right == d.getRightValue()){
+			this.board.add(d);
+			this.right = d.getLeftValue();
 		}
 		
 		if(this.left == d.getRightValue()){

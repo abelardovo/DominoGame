@@ -163,13 +163,16 @@ public class Game implements InterfaceGame
     */
     public void treatAnswer(Domino d)
     {
-		 if(!this.table.canPlay(d)){
+    	if(!this.table.canPlay(d)){
 			 return;
 		 }
-		 
+    	
+		this.player1.removeDomino(d);
+		this.gGame.removeDominoFromHand(d);
+		this.table.play(d);
+		this.gGame.putDominoOnTable(d);
+		
     }
-
-
 	 
 	/**
 	* The player draw. If the stock is empty, the computer plays (state 9) 

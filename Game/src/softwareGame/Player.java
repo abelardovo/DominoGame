@@ -33,6 +33,15 @@ public class Player {
 		this.hand.remove(n);
 	}
 	
+	public void removeDomino(Domino d){
+		
+		for(int n=0; n<28; n++){
+			if(this.getDomino(n) == d){
+				this.removeDomino(n);
+			}		
+		}
+	}
+	
 	public void addDomino(Domino d){
 		this.hand.add(d);
 	}
