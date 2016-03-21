@@ -3,7 +3,7 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>413</x>
+      <x>301</x>
       <y>196</y>
       <w>154</w>
       <h>105</h>
@@ -16,13 +16,15 @@
 + getDomino(int): Domino
 + addDomino(Domino): void
 + removeDomino(int): void
++ removeDomino(Domino): void
++ searchForDouble(int): int
 + toString(): String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>658</x>
+      <x>546</x>
       <y>210</y>
       <w>147</w>
       <h>56</h>
@@ -32,6 +34,7 @@
 # right: int
 # left: int
 --
++ isThereDouble(): boolean
 + toString(): String
 </panel_attributes>
     <additional_attributes/>
@@ -39,7 +42,7 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>413</x>
+      <x>301</x>
       <y>63</y>
       <w>154</w>
       <h>84</h>
@@ -48,15 +51,16 @@
 --
 --
 + addDomino(Domino): void
-+ draw(Domino): void
-+ isEmpty(): boolean 
++ removeDomino(int): void
++ isEmpty(): boolean
++ draw(Domino): void 
 + toString(): String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>413</x>
+      <x>301</x>
       <y>343</y>
       <w>154</w>
       <h>119</h>
@@ -69,6 +73,7 @@
 + getRightValue(): int
 + getLeftValue(): int
 + canPlay(Domino): boolean
++ initialPlay(Domino): void
 + play(Domino): void
 + toString(): String</panel_attributes>
     <additional_attributes/>
@@ -76,7 +81,7 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>112</x>
+      <x>0</x>
       <y>140</y>
       <w>196</w>
       <h>154</h>
@@ -100,7 +105,7 @@
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>287</x>
+      <x>175</x>
       <y>210</y>
       <w>139</w>
       <h>49</h>
@@ -113,7 +118,7 @@ Involves</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>546</x>
+      <x>434</x>
       <y>210</y>
       <w>125</w>
       <h>49</h>
@@ -126,7 +131,7 @@ Has set of</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>546</x>
+      <x>434</x>
       <y>245</y>
       <w>226</w>
       <h>190</h>
@@ -140,7 +145,7 @@ Has set of</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>546</x>
+      <x>434</x>
       <y>70</y>
       <w>226</w>
       <h>153</h>
@@ -153,7 +158,7 @@ Has set of</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>154</x>
+      <x>42</x>
       <y>70</y>
       <w>272</w>
       <h>83</h>
@@ -166,7 +171,7 @@ m2=  1
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>203</x>
+      <x>91</x>
       <y>273</y>
       <w>223</w>
       <h>147</h>
@@ -179,7 +184,7 @@ m2=1
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>896</x>
+      <x>784</x>
       <y>210</y>
       <w>147</w>
       <h>49</h>
@@ -193,7 +198,7 @@ m2=1
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>413</x>
+      <x>301</x>
       <y>490</y>
       <w>154</w>
       <h>35</h>
@@ -206,7 +211,7 @@ m2=1
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>784</x>
+      <x>672</x>
       <y>203</y>
       <w>125</w>
       <h>49</h>
@@ -220,7 +225,7 @@ Implements</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>133</x>
+      <x>21</x>
       <y>273</y>
       <w>293</w>
       <h>245</h>

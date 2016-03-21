@@ -24,9 +24,13 @@ public class Player {
 	public String getName(){
 		return this.name;
 	}
-	
+
 	public Domino getDomino(int n){
 		return this.hand.get(n);
+	}
+	
+	public void addDomino(Domino d){
+		this.hand.add(d);
 	}
 	
 	public void removeDomino(int n){
@@ -52,10 +56,6 @@ public class Player {
 			
 		}
 		return -1;
-	}
-	
-	public void addDomino(Domino d){
-		this.hand.add(d);
 	}
 
 	public String toString(){
