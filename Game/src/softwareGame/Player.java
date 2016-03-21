@@ -17,7 +17,7 @@ public class Player {
 
 	public Player(){
 		
-		this.name = "PC";
+		this.name = "Computer";
 		this.hand = new ArrayList<Domino>();
 	}
 	
@@ -64,6 +64,8 @@ public class Player {
 			s = s + this.hand.get(i).toString() + " / ";
 		}
 		
+		s = s + "\n";
+
 		return s;
 	}
 	
