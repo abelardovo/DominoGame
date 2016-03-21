@@ -33,17 +33,28 @@ public class Player {
 		this.hand.remove(n);
 	}
 	
-	public void addDomino(Domino d){
-		this.hand.add(d);
+	public void removeDomino(Domino d){
+		
+		for(int n=0; n<28; n++){
+			if(this.getDomino(n) == d){
+				this.removeDomino(n);
+			}		
+		}
 	}
 	
-	public String toString(){
-		String s = this.name + " hand: ";
+	public int searchForDouble(int i){
 		
-		for (int i=0; i<this.hand.size();i++){
-			s = s + this.hand.get(i).toString() + " / ";
+		for(int n=0; n<28; n++){
+			if(this.getDomino(n).isThereDouble()){
+				if(this.getDomino(n).getLeftValue() == i)
+					return n;
+			}
+			
 		}
-		
-		return s;
+		return -1;
+	}
+	
+	public void addDomino(Domino d){
+		this.hand.add(d);
 	}
 }

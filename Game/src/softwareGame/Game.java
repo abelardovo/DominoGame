@@ -120,7 +120,7 @@ public class Game implements InterfaceGame
 	   this.player1 = new Player(name);
 	   this.pc = new Player();
 	   
-	   System.out.print("STATE TABLE: "+this.table.getLeftValue()+":"+this.table.getRightValue()+"\n");
+	   System.out.print("STATE TABLE: "+this.table.getLeftValue()+":"+this.table.getRightValue());
 	   
 	   
 	   //Each player takes there 6 chips
@@ -128,8 +128,6 @@ public class Game implements InterfaceGame
 		   this.player1.addDomino(this.stock.draw());
 		   this.pc.addDomino(this.stock.draw());
 	   }
-	   
-	   System.out.print(this.pc.toString());
 	   
 
 		
