@@ -36,8 +36,8 @@ public class Table {
 	public void play(Domino d){
 		
 		if(this.right == d.getLeftValue()){
-			this.board.add(0,d);
-			this.left = d.getLeftValue();
+			this.board.add(d);
+			this.right = d.getRightValue();
 		}
 		
 		if(this.right == d.getRightValue()){
@@ -51,8 +51,8 @@ public class Table {
 		}
 		
 		if(this.left == d.getRightValue()){
-			this.board.add(d);
-			this.right = d.getRightValue();
+			this.board.add(0,d);
+			this.left = d.getLeftValue();
 		}
 		
 	}

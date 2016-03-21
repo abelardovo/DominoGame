@@ -3,6 +3,10 @@ package softwareGame;
 
 import graphicInterface.GGame;
 import graphicInterface.InterfaceGame;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 
 /**
 * Run the game between a player and the computer.
@@ -59,12 +63,19 @@ public class Game implements InterfaceGame
     * Constructor for 2 players.Create a graphical interface and send it a message to enter the player's name.
     * @param name1 The name of the first player.
     * @param name2 The name of the second player.
+    * @throws IOException 
     */
-   public Game()
+   public Game() throws IOException
    {
-	//TO DO  
-       gGame.setVisible(true);          	 	 
-   }
+	//TO DO
+       gGame.setVisible(true);
+       
+       System.out.print("Name of the player?\n");
+       BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
+       String name1 = bufferRead.readLine();
+
+       this.initialize(name1);
+    }
    
    /**
     * This method is called when an event is produced in the graphical interface.
@@ -152,7 +163,10 @@ public class Game implements InterfaceGame
     */
     public void treatAnswer(Domino d)
     {
-		 //TO DO 
+		 if(!this.table.canPlay(d)){
+			 return;
+		 }
+		 
     }
 
 
