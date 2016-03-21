@@ -10,7 +10,7 @@ public class Stock {
 		this.pile = new ArrayList<Domino>();
 		
 		for (int i=6; i>=0; i--){
-			for (int j=i;i>=0;j--){
+			for (int j=i;j>=0;j--){
 				this.addDomino(new Domino(i,j));
 			}
 		}

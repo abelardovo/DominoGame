@@ -66,15 +66,10 @@ public class Game implements InterfaceGame
     * @throws IOException 
     */
    public Game() throws IOException
-   {
-	//TO DO
+   {	   
+	   this.gGame = new GGame(this);
        gGame.setVisible(true);
-       
-       System.out.print("Name of the player?\n");
-       BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
-       String name1 = bufferRead.readLine();
-
-       this.initialize(name1);
+       this.gGame.setMessage("Please enter your name(and return): ");
     }
    
    /**
@@ -87,7 +82,8 @@ public class Game implements InterfaceGame
 	   switch (val)
 	   {
 	   case GGame.DATA_NAME: //TO DO 
-	   			break;
+		   this.initialize(this.gGame.getPlayerName());
+		   break;
 	   case GGame.PLAY:
 		   //TO DO 
 		   switch (indState)
@@ -124,12 +120,15 @@ public class Game implements InterfaceGame
 	   this.player1 = new Player(name);
 	   this.pc = new Player();
 	   
+	   System.out.print("STATE TABLE: "+this.table.getLeftValue()+":"+this.table.getRightValue());
+	   
 	   
 	   //Each player takes there 6 chips
 	   for(int i=0;i<6;i++ ){
 		   this.player1.addDomino(this.stock.draw());
 		   this.pc.addDomino(this.stock.draw());
 	   }
+	   
 
 		
    }
@@ -142,6 +141,7 @@ public class Game implements InterfaceGame
    public int getEnd(int side)
    {
   	 //TO DO 
+	   return 0;
    }
    
    /**
@@ -240,6 +240,11 @@ public class Game implements InterfaceGame
    public static void main(String [] args)
    {
 	   
-   	Game game = new Game();       
+   	try {
+		Game game = new Game();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}       
    }
 }
