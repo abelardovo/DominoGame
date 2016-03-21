@@ -25,7 +25,8 @@ public class Table {
 	
 	public boolean canPlay(Domino d){
 		
-		if((this.right == d.getLeftValue()) || (this.left == d.getRightValue())){
+		if( (this.right == d.getLeftValue()) || (this.right == d.getRightValue()) ||
+			(this.left == d.getLeftValue())  || (this.left == d.getRightValue())){
 			return true;
 		}
 		
@@ -35,14 +36,24 @@ public class Table {
 	public void play(Domino d){
 		
 		if(this.right == d.getLeftValue()){
+			this.board.add(0,d);
+			this.left = d.getLeftValue();
+		}
+		
+		if(this.right == d.getRightValue()){
 			this.board.add(d);
-			this.right = d.getRightValue();
+			this.right = d.getLeftValue();
+		}
+		
+		if(this.left == d.getLeftValue()){
+			this.board.add(0,d);
+			this.left = d.getRightValue();
 		}
 		
 		if(this.left == d.getRightValue()){
-			this.board.add(0,d);
-			this.left = d.getLeftValue();
-		}		
+			this.board.add(d);
+			this.right = d.getRightValue();
+		}
 		
 	}
 	
