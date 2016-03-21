@@ -24,25 +24,26 @@ public class Table {
 	}
 	
 	public boolean canPlay(Domino d){
-		return true;
+		
+		if((this.right == d.getLeftValue()) || (this.left == d.getRightValue())){
+			return true;
+		}
+		
+		return false;	
 	}
 	
-	public boolean play(Domino d){
+	public void play(Domino d){
 		
 		if(this.right == d.getLeftValue()){
 			this.board.add(d);
 			this.right = d.getRightValue();
-			return true;
 		}
 		
 		if(this.left == d.getRightValue()){
 			this.board.add(0,d);
 			this.left = d.getLeftValue();
-			return true;
 		}		
 		
-		
-		return false;
 	}
 	
 	public String toString(){
