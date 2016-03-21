@@ -85,10 +85,12 @@ public class Game implements InterfaceGame
 		   this.initialize(this.gGame.getPlayerName());
 		   break;
 	   case GGame.PLAY:
-		   //TO DO 
+
 		   switch (indState)
 		   {
-			  //TO DO 	   
+		   case 6:
+			   
+			   break;
 		   }
 		   break;
 
@@ -115,20 +117,26 @@ public class Game implements InterfaceGame
     */
    public void initialize(String name)
    {
+	   Domino d;
 	   this.stock = new Stock();
 	   this.table = new Table();
 	   this.player1 = new Player(name);
 	   this.pc = new Player();
 	   
-	   System.out.print("STATE TABLE: "+this.table.getLeftValue()+":"+this.table.getRightValue()+"\n");	   
-	   
 	   //Each player takes there 6 chips
 	   for(int i=0;i<6;i++ ){
-		   this.player1.addDomino(this.stock.draw());
+		   d = this.stock.draw();
+		   this.player1.addDomino(d);
+		   this.gGame.addDominoInHand(d);
 		   this.pc.addDomino(this.stock.draw());
 	   }
 	   
+	   System.out.print(this.table.printState());	   
+	   System.out.print("name of the player: "+ this.player1.getName()+"\n");
 	   System.out.print(this.pc.toString());
+	   
+	   this.gGame.setEnabledJump(true);
+	   this.gGame.setMessage("Hello "+this.player1.getName()+" good luck.  Please click on double 6 or jump");
 
 		
    }
@@ -245,11 +253,13 @@ public class Game implements InterfaceGame
 	   System.out.println("State:"+indState + ". Into jump player's process"); 
   	 switch (indState)
   	 {
-  	 
-  	 //TO DO 
-		
+  	 case 6:
+  		 if (this.player1.searchForDouble(6) == -1){
+  			 
+  		 }
+  	 		
   	 }
-   }
+   }	
    
    public static void main(String [] args)
    {
