@@ -57,4 +57,14 @@ public class Player {
 	public void addDomino(Domino d){
 		this.hand.add(d);
 	}
+
+	public String toString(){
+		String s = this.name + " hand: ";
+		for (int i=0; i<this.hand.size();i++){
+			s = s + this.hand.get(i).toString() + " / ";
+		}
+		
+		return s;
+	}
+	
 }
