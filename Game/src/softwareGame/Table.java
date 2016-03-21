@@ -33,6 +33,14 @@ public class Table {
 		return false;	
 	}
 	
+	public void initialPlay(Domino d){
+		
+		this.board.add(d);
+		this.left = d.getLeftValue();
+		this.right = d.getRightValue();
+	
+	}
+	
 	public void play(Domino d){
 		
 		if(this.right == d.getLeftValue()){
