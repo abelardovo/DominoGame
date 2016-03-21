@@ -4,17 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
+	
 	String name;
 	List<Domino> hand;
 	
 	public Player(String n){
+		
 		this.name = n;
 		this.hand = new ArrayList<Domino>();
 		
 	}
 
 	public Player(){
+		
 		this.name = "PC";
+		this.hand = new ArrayList<Domino>();
 	}
 	
 	public String getName(){

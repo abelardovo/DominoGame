@@ -9,7 +9,7 @@ public class Stock {
 	public Stock(){
 		this.pile = new ArrayList<Domino>();
 		
-		for (int i=6;i>=0;i--){
+		for (int i=6; i>=0; i--){
 			for (int j=i;i>=0;j--){
 				this.addDomino(new Domino(i,j));
 			}
@@ -19,6 +19,10 @@ public class Stock {
 	
 	public void addDomino(Domino d){
 		this.pile.add(d);
+	}
+	
+	public void removeDomino(int n){
+		this.pile.remove(n);
 	}
 	
 	public boolean isEmpty(){
@@ -33,7 +37,7 @@ public class Stock {
 		int  n = rand.nextInt(this.pile.size());
 		
 		Domino d = this.pile.get(n);
-		this.pile.remove(n);
+		this.removeDomino(n);
 		
 		return d;
 	}
