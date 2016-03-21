@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="11.3">
+  <zoom_level>7</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>413</x>
+      <y>196</y>
+      <w>154</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+# name: String
+--
++ getName(): String
++ getDomino(int): Domino
++ addDomino(Domino): void
++ removeDomino(int): void
++ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>658</x>
+      <y>210</y>
+      <w>147</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Domino
+--
+# right: int
+# left: int
+--
++ toString(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>413</x>
+      <y>63</y>
+      <w>154</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Stock
+--
+--
++ addDomino(Domino): void
++ draw(Domino): void
++ isEmpty(): boolean 
++ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>413</x>
+      <y>343</y>
+      <w>154</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>Table
+--
+# right: int
+# left: int
+--
++ getRightValue(): int
++ getLeftValue(): int
++ canPlay(Domino): boolean
++ play(Domino): void
++ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>112</x>
+      <y>140</y>
+      <w>196</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>Game
+--
+- gGame: GGame
+- stateMeaning: String[]
+- indState: int
+--
++ intialize(String): void
++ getEnd(int): int
++ treatDoubleAnswer(Domino): void
++ treatAnswer(Domino): void
++ playerDraw(): void
++ computerPlay(): void
++ treatJumpAnswer(): void
++ main(String[]): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>287</x>
+      <y>210</y>
+      <w>139</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=2
+Involves</panel_attributes>
+    <additional_attributes>21;35;126;35</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>546</x>
+      <y>210</y>
+      <w>125</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=0..22
+Has set of</panel_attributes>
+    <additional_attributes>21;35;112;35</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>546</x>
+      <y>245</y>
+      <w>226</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=     0..27   
+.
+Has set of</panel_attributes>
+    <additional_attributes>21;161;189;161;189;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>546</x>
+      <y>70</y>
+      <w>226</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=     0..28
+Has set of</panel_attributes>
+    <additional_attributes>21;35;189;35;189;140</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>154</x>
+      <y>70</y>
+      <w>272</w>
+      <h>83</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=  1
+                                       Has a   </panel_attributes>
+    <additional_attributes>259;35;35;35;35;70</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>203</x>
+      <y>273</y>
+      <w>223</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>m1= 1
+m2=1
+                               Has a</panel_attributes>
+    <additional_attributes>35;21;35;133;210;133</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>896</x>
+      <y>210</y>
+      <w>147</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>InterfaceDomino
+--
++ getRightValue(): int
++ getLeftValue(): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>413</x>
+      <y>490</y>
+      <w>154</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>InterfaceGame
+--
++ receiveMessage(int): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>784</x>
+      <y>203</y>
+      <w>125</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=1
+lt=&lt;&lt;.
+Implements</panel_attributes>
+    <additional_attributes>112;35;21;35</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>133</x>
+      <y>273</y>
+      <w>293</w>
+      <h>245</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2= 1
+lt=&lt;&lt;.
+                                         Implements</panel_attributes>
+    <additional_attributes>280;231;49;231;49;21</additional_attributes>
+  </element>
+</diagram>
