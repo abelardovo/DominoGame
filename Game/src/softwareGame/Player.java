@@ -42,6 +42,18 @@ public class Player {
 		}
 	}
 	
+	public int searchForDouble(int i){
+		
+		for(int n=0; n<28; n++){
+			if(this.getDomino(n).isThereDouble()){
+				if(this.getDomino(n).getLeftValue() == i)
+					return n;
+			}
+			
+		}
+		return -1;
+	}
+	
 	public void addDomino(Domino d){
 		this.hand.add(d);
 	}

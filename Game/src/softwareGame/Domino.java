@@ -20,6 +20,12 @@ public class Domino implements InterfaceDomino{
 		return this.left;
 	}	
 	
+	public boolean isThereDouble(){
+		if(this.getLeftValue() == this.getRightValue())
+			return true;
+		return false;
+	}
+	
 	
 //	public boolean equals(Domino d){
 //		

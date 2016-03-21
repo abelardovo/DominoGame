@@ -183,11 +183,13 @@ public class Game implements InterfaceGame
 	public void playerDraw()
 	{ 
 		if(this.stock.isEmpty()){
+			this.indState = 9;
 			this.computerPlay();
 		}
 		else{
 			this.player1.addDomino(this.stock.draw());
 			this.gGame.addDominoInHand(this.stock.draw());
+			this.indState = 8;
 			this.computerPlay();
 		}
 	}
@@ -207,6 +209,8 @@ public class Game implements InterfaceGame
   	 Domino d=null;
   	 switch (indState)
   	 {
+  	 //we look for a double n in the computer's hand
+  	 //If yes, the computer plays else the player is asked to play the double domino (n-1)
   	 case 6: case 5: case 4:case 3: case 2: case 1: 
   		
   		//TO DO 
