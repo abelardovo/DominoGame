@@ -65,6 +65,9 @@ public class Table {
 		
 	}
 	
+	public String printState(){
+		return "STATE TABLE: "+this.getLeftValue()+" : "+this.getRightValue()+"\n";
+	}
 	public String toString(){
 		return this.board.toString();
 	}
