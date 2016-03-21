@@ -182,7 +182,14 @@ public class Game implements InterfaceGame
 	*/
 	public void playerDraw()
 	{ 
-		//TO DO 
+		if(this.stock.isEmpty()){
+			this.computerPlay();
+		}
+		else{
+			this.player1.addDomino(this.stock.draw());
+			this.gGame.addDominoInHand(this.stock.draw());
+			this.computerPlay();
+		}
 	}
 	 
 	/**
