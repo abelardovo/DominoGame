@@ -31,7 +31,7 @@ public class Player {
 	
 	public void addDomino(Domino d){
 		this.hand.add(d);
-	}
+	}	
 	
 	public void removeDomino(int n){
 		this.hand.remove(n);

@@ -88,8 +88,17 @@ public class Game implements InterfaceGame
 
 		   switch (indState)
 		   {
-		   case 6:
+		   case 0: case 1: case 2: case 3: case 4: case 5: case 6:
+			   this.treatDoubleAnswer((Domino) this.gGame.getDomino());
+			   break;
 			   
+		   case 7: case 8:
+			   
+			   
+			   
+			   
+		   case 12:
+			   this.treatAnswer((Domino) this.gGame.getDomino());
 			   break;
 		   }
 		   break;
@@ -97,7 +106,9 @@ public class Game implements InterfaceGame
 	   case GGame.JUMP:	
 		   switch (indState)
 		   {
-			   //TO DO 
+		   case 0: case 1: case 2: case 3: case 4: case 5: case 6:
+			   this.treatJumpAnswer();
+			   break;
 		   }
 		   break;
 		   
@@ -159,7 +170,14 @@ public class Game implements InterfaceGame
     */
    public void treatDoubleAnswer(Domino d)
    {
-  		//TO DO 	  	
+
+	   if ((d.getLeftValue() != this.indState) || (d.getRightValue() != this.indState)){
+		   this.gGame.setMessage("This it is not the double "+this.indState);
+		   return;			   
+	   }
+	   
+	   this.treatAnswer(d);
+	   
    }
  
    
@@ -171,7 +189,7 @@ public class Game implements InterfaceGame
     */
     public void treatAnswer(Domino d)
     {
-    	if(!this.table.canPlay(d)){
+    	if(!this.table.canPlay(d)&&(this.indState!=12)){
 			 return;
 		 }
     	
@@ -179,6 +197,13 @@ public class Game implements InterfaceGame
 		this.gGame.removeDominoFromHand(d);
 		this.table.play(d);
 		this.gGame.putDominoOnTable(d);
+		
+		this.gGame.setEnabledJump(false);
+		this.gGame.setEnabledDraw(false);
+		this.gGame.setHandEnable(false);
+		
+		//Computer Play
+		this.gGame.setEnabledPlayPC(true);
 		
     }
 	 
@@ -286,11 +311,19 @@ public class Game implements InterfaceGame
    public void treatJumpAnswer()
    {
 	   System.out.println("State:"+indState + ". Into jump player's process"); 
-  	 switch (indState)
+	   switch (indState)
   	 {
   	 case 6:
-  		 if (this.player1.searchForDouble(6) == -1){
+  		 if (this.player1.searchForDouble(indState) == -1){
   			 
+  			 this.gGame.setHandEnable(false);
+  			 this.gGame.setEnabledJump(false);
+  			 this.gGame.setEnabledDraw(false);
+  			 this.gGame.setEnabledPlayPC(true);
+  			 
+  		 }else{
+  			 
+  			 this.gGame.setMessage("Lier! You have the double "+ this.indState+" in your hand! You have to play it ");
   		 }
   	 		
   	 }
