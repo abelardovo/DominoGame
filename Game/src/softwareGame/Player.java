@@ -24,7 +24,7 @@ public class Player {
 	public String getName(){
 		return this.name;
 	}
-	
+
 	public Domino getDomino(int n){
 		return this.hand.get(n);
 	}

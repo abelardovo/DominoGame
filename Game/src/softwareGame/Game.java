@@ -245,11 +245,12 @@ public class Game implements InterfaceGame
   	 //we look for a double n in the computer's hand
   	 //If yes, the computer plays else the player is asked to play the double domino (n-1)
   	 case 6: case 5: case 4:case 3: case 2: case 1: 
+  		 
   		 	int i = this.pc.searchForDouble(indState); 
   		 	if(i != -1){
   		
   		 		this.table.initialPlay(this.pc.getDomino(i));
-  		 		this.gGame.addDominoInHand(this.pc.getDomino(i));
+  		 		this.gGame.putDominoOnTable(this.pc.getDomino(i));
   		 		this.pc.removeDomino(i);
   	  		 		
   		 	}
@@ -265,7 +266,7 @@ public class Game implements InterfaceGame
 	 	if(i != -1){
 	 		
 	 		this.table.initialPlay(this.pc.getDomino(i));
-	 		this.gGame.addDominoInHand(this.pc.getDomino(i));
+	 		this.gGame.putDominoOnTable(this.pc.getDomino(i));
 	 		this.pc.removeDomino(i);
   		 		
 	 	}
@@ -273,26 +274,24 @@ public class Game implements InterfaceGame
 	 		//Player plays
 	 	}
   		break;
+  		
   	 //If n=8 or 9  normal game managing the stock and the empty stock.
   	 case 8:case 9:
-  		for(i=0; i<this.pc.hand.size(); i++){
-  			
-  			if(this.table.canPlay(this.pc.getDomino(i))){
-  				this.table.play(this.pc.getDomino(i));
-  		 		this.gGame.addDominoInHand(this.pc.getDomino(i));
-  				this.pc.removeDomino(i);
-  				break;
-  			}
-  		}
-  		
-  		while(!this.table.canPlay( this.pc.getDomino(i) )){
-  			this.pc.addDomino( this.stock.draw() );
+  		i=0;
+  		while(!this.table.canPlay(this.pc.getDomino(i))){
   			i++;
+  			if(i>=this.pc.hand.size()){
+  				
+  				if(this.stock.isEmpty()){
+  					break;
+  				}
+  				this.pc.addDomino( this.stock.draw() );
+  	  		}
   		}
   		
 		this.table.play(this.pc.getDomino(i));
-		this.gGame.addDominoInHand(this.pc.getDomino(i));
-		this.pc.removeDomino(i);
+		this.gGame.putDominoOnTable(this.pc.getDomino(i));
+ 		this.pc.removeDomino(i);
 		break;
   	
   	 //If n=11 blocked game.	 
