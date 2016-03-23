@@ -3,10 +3,10 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>301</x>
-      <y>196</y>
+      <x>413</x>
+      <y>203</y>
       <w>154</w>
-      <h>105</h>
+      <h>112</h>
     </coordinates>
     <panel_attributes>Player
 --
@@ -24,10 +24,10 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>546</x>
-      <y>210</y>
+      <x>658</x>
+      <y>217</y>
       <w>147</w>
-      <h>56</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>Domino
 --
@@ -42,8 +42,8 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>301</x>
-      <y>63</y>
+      <x>413</x>
+      <y>70</y>
       <w>154</w>
       <h>84</h>
     </coordinates>
@@ -60,8 +60,8 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>301</x>
-      <y>343</y>
+      <x>413</x>
+      <y>350</y>
       <w>154</w>
       <h>119</h>
     </coordinates>
@@ -75,14 +75,15 @@
 + canPlay(Domino): boolean
 + initialPlay(Domino): void
 + play(Domino): void
++ printState(): String
 + toString(): String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>0</x>
-      <y>140</y>
+      <x>112</x>
+      <y>147</y>
       <w>196</w>
       <h>154</h>
     </coordinates>
@@ -105,8 +106,8 @@
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>175</x>
-      <y>210</y>
+      <x>287</x>
+      <y>217</y>
       <w>139</w>
       <h>49</h>
     </coordinates>
@@ -118,8 +119,8 @@ Involves</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>434</x>
-      <y>210</y>
+      <x>546</x>
+      <y>217</y>
       <w>125</w>
       <h>49</h>
     </coordinates>
@@ -131,22 +132,22 @@ Has set of</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>434</x>
-      <y>245</y>
+      <x>546</x>
+      <y>266</y>
       <w>226</w>
-      <h>190</h>
+      <h>176</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=     0..27   
 .
 Has set of</panel_attributes>
-    <additional_attributes>21;161;189;161;189;21</additional_attributes>
+    <additional_attributes>21;147;189;147;189;21</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>434</x>
-      <y>70</y>
+      <x>546</x>
+      <y>77</y>
       <w>226</w>
       <h>153</h>
     </coordinates>
@@ -158,8 +159,8 @@ Has set of</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>42</x>
-      <y>70</y>
+      <x>154</x>
+      <y>77</y>
       <w>272</w>
       <h>83</h>
     </coordinates>
@@ -171,8 +172,8 @@ m2=  1
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>91</x>
-      <y>273</y>
+      <x>203</x>
+      <y>280</y>
       <w>223</w>
       <h>147</h>
     </coordinates>
@@ -184,8 +185,8 @@ m2=1
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>784</x>
-      <y>210</y>
+      <x>896</x>
+      <y>217</y>
       <w>147</w>
       <h>49</h>
     </coordinates>
@@ -198,8 +199,8 @@ m2=1
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>301</x>
-      <y>490</y>
+      <x>413</x>
+      <y>497</y>
       <w>154</w>
       <h>35</h>
     </coordinates>
@@ -211,8 +212,8 @@ m2=1
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>672</x>
-      <y>203</y>
+      <x>784</x>
+      <y>210</y>
       <w>125</w>
       <h>49</h>
     </coordinates>
@@ -225,8 +226,8 @@ Implements</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>21</x>
-      <y>273</y>
+      <x>133</x>
+      <y>280</y>
       <w>293</w>
       <h>245</h>
     </coordinates>
