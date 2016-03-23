@@ -23,6 +23,11 @@ public class Table {
 		return this.left;
 	}
 	
+	public void setDoubleValue(int n){
+		this.right = n;
+		this.left = n;
+	}
+	
 	public boolean canPlay(Domino d){
 		
 		if( (this.right == d.getLeftValue()) || (this.right == d.getRightValue()) ||
@@ -46,21 +51,25 @@ public class Table {
 		if(this.right == d.getLeftValue()){
 			this.board.add(d);
 			this.right = d.getRightValue();
+			return;
 		}
 		
 		if(this.left == d.getLeftValue()){
 			this.board.add(0,d);
 			this.left = d.getRightValue();
+			return;
 		}
 		
 		if(this.right == d.getRightValue()){
 			this.board.add(d);
 			this.right = d.getLeftValue();
+			return;
 		}
 		
 		if(this.left == d.getRightValue()){
 			this.board.add(0,d);
 			this.left = d.getLeftValue();
+			return;
 		}
 		
 	}
@@ -68,6 +77,7 @@ public class Table {
 	public String printState(){
 		return "STATE TABLE: "+this.getLeftValue()+" : "+this.getRightValue()+"\n";
 	}
+	
 	public String toString(){
 		return this.board.toString();
 	}

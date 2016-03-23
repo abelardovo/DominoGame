@@ -81,6 +81,10 @@ public class Game implements InterfaceGame
 	   System.out.println( "\ntype received message  "+ val +" for state "+indState);
 	   switch (val)
 	   {
+	   case GGame.VALIDPCPLAY:
+		   this.computerPlay();
+		   break;
+		   
 	   case GGame.DATA_NAME: //TO DO 
 		   this.initialize(this.gGame.getPlayerName());
 		   break;
@@ -94,9 +98,9 @@ public class Game implements InterfaceGame
 			   
 		   case 7: case 8:
 			   
-			   
-			   
-			   
+			   this.treatAnswer((Domino) this.gGame.getDomino());
+			   break; 
+			  
 		   case 12:
 			   this.treatAnswer((Domino) this.gGame.getDomino());
 			   break;
@@ -106,8 +110,11 @@ public class Game implements InterfaceGame
 	   case GGame.JUMP:	
 		   switch (indState)
 		   {
+		   
 		   case 0: case 1: case 2: case 3: case 4: case 5: case 6:
+			   
 			   this.treatJumpAnswer();
+			   
 			   break;
 		   }
 		   break;
@@ -115,10 +122,18 @@ public class Game implements InterfaceGame
 	   case GGame.DRAW:
 		   switch (indState)
 		   {
-			   //TO DO 
+		   case 7: case 8: 
+			   Domino d = this.stock.draw();
+			   this.player1.addDomino(d);
+			   this.gGame.addDominoInHand(d);
 		   }
 		   break;		   
 	   }
+	   
+	   
+	   System.out.print(this.table.printState());	   
+	   System.out.print(this.pc.toString());
+	   System.out.print("TABLE: "+this.table.toString()+"\n");	   
    }
    
    /**
@@ -147,7 +162,7 @@ public class Game implements InterfaceGame
 	   System.out.print(this.pc.toString());
 	   
 	   this.gGame.setEnabledJump(true);
-	   this.gGame.setMessage("Hello "+this.player1.getName()+" good luck.  Please click on double 6 or jump");
+	   this.gGame.setMessage("Hello "+this.player1.getName()+" good luck.  Please click on double "+this.indState+" or jump");
 
 		
    }
@@ -176,6 +191,7 @@ public class Game implements InterfaceGame
 		   return;			   
 	   }
 	   
+	   this.table.setDoubleValue(this.indState);
 	   this.treatAnswer(d);
 	   
    }
@@ -190,7 +206,8 @@ public class Game implements InterfaceGame
     public void treatAnswer(Domino d)
     {
     	if(!this.table.canPlay(d)&&(this.indState!=12)){
-			 return;
+    		this.gGame.setMessage("Can not play this Domino! ");
+			return;
 		 }
     	
 		this.player1.removeDomino(d);
@@ -238,31 +255,38 @@ public class Game implements InterfaceGame
 	 */
    	public void computerPlay( )
    	{
-	   System.out.println("state:"+indState+ ". computer plays");
-  	 Domino d=null;
+   		int i;
+   		System.out.println("state:"+indState+ ". computer plays");
+  	 	Domino d=null;
   	 switch (indState)
   	 {
   	 //we look for a double n in the computer's hand
   	 //If yes, the computer plays else the player is asked to play the double domino (n-1)
-  	 case 6: case 5: case 4:case 3: case 2: case 1: 
+  	 case 6: case 5: case 4: case 3: case 2: case 1: 
   		 
-  		 	int i = this.pc.searchForDouble(indState); 
+  		 	i = this.pc.searchForDouble(indState); 
   		 	if(i != -1){
   		
   		 		this.table.initialPlay(this.pc.getDomino(i));
   		 		this.gGame.putDominoOnTable(this.pc.getDomino(i));
   		 		this.pc.removeDomino(i);
+  		 		this.indState = 8;
+  		 		this.gGame.setEnabledPlayPC(false);
+  		 		this.gGame.setHandEnable(true);
+  		 		this.gGame.setEnabledJump(false); 
+  		 		this.gGame.setEnabledDraw(true);
   	  		 		
   		 	}
   		 	else{
-  		 		
   		 		this.indState--;
+
+  		 		this.gGame.setMessage( "Please click on double "+this.indState+" or jump");
   		 		this.gGame.setEnabledPlayPC(false);
   		 		this.gGame.setHandEnable(true);
-  		 		this.gGame.setEnabledJump(false);
-  		 		this.gGame.setEnabledDraw(true);
-  		 		
+  		 		this.gGame.setEnabledJump(true);
   		 	}
+  		 		
+  		 	
   		 	break;
   	 //If n=0 we look for a double 0 in the computer's hand.
   	 //If yes, the computer plays, otherwise the player is asked to play any other domino.
@@ -273,12 +297,28 @@ public class Game implements InterfaceGame
 	 		this.table.initialPlay(this.pc.getDomino(i));
 	 		this.gGame.putDominoOnTable(this.pc.getDomino(i));
 	 		this.pc.removeDomino(i);
+		 	this.indState = 8;
+		 	this.gGame.setEnabledPlayPC(false);
+		 	this.gGame.setHandEnable(true);
+		 	this.gGame.setEnabledJump(false); 
+		 	this.gGame.setEnabledDraw(true);	 		
   		 		
-	 	}
-	 	else{
-	 		//Player plays
-	 	}
+	 	}else{
+		 	this.indState = 12;
+
+		 	this.gGame.setEnabledPlayPC(false);
+		 	this.gGame.setHandEnable(true);
+		 	this.gGame.setEnabledJump(true);	 	
+		}
   		break;
+  		
+  	 case 7:
+  		 	this.gGame.setMessage("The Computer is blocked! Play again ");
+		 	this.gGame.setEnabledPlayPC(false);
+		 	this.gGame.setHandEnable(true);
+		 	this.gGame.setEnabledJump(false); 
+		 	this.gGame.setEnabledDraw(true);	  		 
+  		 break;
   		
   	 //If n=8 or 9  normal game managing the stock and the empty stock.
   	 case 8:case 9:
@@ -297,6 +337,12 @@ public class Game implements InterfaceGame
 		this.table.play(this.pc.getDomino(i));
 		this.gGame.putDominoOnTable(this.pc.getDomino(i));
  		this.pc.removeDomino(i);
+ 		
+	 	this.gGame.setEnabledPlayPC(false);
+	 	this.gGame.setHandEnable(true);
+	 	this.gGame.setEnabledJump(false); 
+	 	this.gGame.setEnabledDraw(true);
+	 	
 		break;
   	
   	 //If n=11 blocked game.	 
@@ -306,7 +352,11 @@ public class Game implements InterfaceGame
   		 
 	default: System.out.println("state no valid");
 					
-  	 }	
+  	 }
+  	 
+  	 System.out.print(this.table.printState());	   
+	 System.out.print(this.pc.toString());
+	 System.out.print("TABLE: "+this.table.toString()+"\n");  	 
 		    	
    }
 	/**
@@ -328,7 +378,7 @@ public class Game implements InterfaceGame
   			 
   		 }else{
   			 
-  			 this.gGame.setMessage("Lier! You have the double "+ this.indState+" in your hand! You have to play it ");
+  			 this.gGame.setMessage("Liar! You have the double "+ this.indState+" in your hand! You have to play it ");
   		 
   		 }
   		 
