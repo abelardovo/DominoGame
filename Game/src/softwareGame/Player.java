@@ -39,7 +39,7 @@ public class Player {
 	
 	public void removeDomino(Domino d){
 		
-		for(int n=0; n<28; n++){
+		for(int n=0; n<this.hand.size(); n++){
 			if(this.getDomino(n) == d){
 				this.removeDomino(n);
 			}		
@@ -48,7 +48,7 @@ public class Player {
 	
 	public int searchForDouble(int i){
 		
-		for(int n=0; n<28; n++){
+		for(int n=0; n<this.hand.size(); n++){
 			if(this.getDomino(n).isThereDouble()){
 				if(this.getDomino(n).getLeftValue() == i)
 					return n;
