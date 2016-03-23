@@ -256,7 +256,12 @@ public class Game implements InterfaceGame
   		 	}
   		 	else{
   		 		
-  		 		//Player plays
+  		 		this.indState--;
+  		 		this.gGame.setEnabledPlayPC(false);
+  		 		this.gGame.setHandEnable(true);
+  		 		this.gGame.setEnabledJump(false);
+  		 		this.gGame.setEnabledDraw(true);
+  		 		
   		 	}
   		 	break;
   	 //If n=0 we look for a double 0 in the computer's hand.
@@ -313,7 +318,7 @@ public class Game implements InterfaceGame
 	   System.out.println("State:"+indState + ". Into jump player's process"); 
 	   switch (indState)
   	 {
-  	 case 6:
+	   case 0: case 1: case 2: case 3: case 4: case 5: case 6:
   		 if (this.player1.searchForDouble(indState) == -1){
   			 
   			 this.gGame.setHandEnable(false);
@@ -324,7 +329,10 @@ public class Game implements InterfaceGame
   		 }else{
   			 
   			 this.gGame.setMessage("Lier! You have the double "+ this.indState+" in your hand! You have to play it ");
+  		 
   		 }
+  		 
+  		 break;
   	 		
   	 }
    }	
