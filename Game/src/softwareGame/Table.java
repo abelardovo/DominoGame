@@ -23,9 +23,9 @@ public class Table {
 		return this.left;
 	}
 	
-	public void setDoubleValue(int n){
-		this.right = n;
-		this.left = n;
+	public void setValue(Domino d){
+		this.right = d.getRightValue();
+		this.left = d.getLeftValue();
 	}
 	
 	public boolean canPlay(Domino d){

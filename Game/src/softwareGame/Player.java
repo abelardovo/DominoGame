@@ -46,6 +46,28 @@ public class Player {
 		}
 	}
 	
+	public boolean noMoreDominos(){
+		if(this.hand.isEmpty()){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean searchDomino(int left,int right){
+		
+		for(int n=0; n<this.hand.size(); n++){
+			
+			if( (right == this.getDomino(n).getLeftValue()) || (right == this.getDomino(n).getRightValue()) ||
+				(left == this.getDomino(n).getLeftValue())  || (left == this.getDomino(n).getRightValue())){
+					
+				return true;	
+			}
+		}
+		
+		
+		return false;
+	}
+	
 	public int searchForDouble(int i){
 		
 		for(int n=0; n<this.hand.size(); n++){
