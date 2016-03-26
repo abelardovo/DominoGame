@@ -78,16 +78,13 @@ public class Game implements InterfaceGame
     */
    public void receivedMessage(int val)
    {
-	   System.out.println( "\ntype received message  "+ val +" for state "+indState);
+	   System.out.println( "\nAn event has been produced. Event: "+ val +", for state: "+indState);
 	   switch (val)
 	   {
-	   case GGame.VALIDPCPLAY:
-		   this.computerPlay();
-		   break;
-		   
 	   case GGame.DATA_NAME:
 		   this.initialize(this.gGame.getPlayerName());
 		   break;
+		   		   
 	   case GGame.PLAY:
 
 		   switch (indState)
@@ -164,6 +161,11 @@ public class Game implements InterfaceGame
 			   break;
 		   }
 		   break;		   
+
+	   case GGame.VALIDPCPLAY:
+		   this.computerPlay();
+		   break;
+
 	   }
 	   
 	   
@@ -193,9 +195,7 @@ public class Game implements InterfaceGame
 		   this.pc.addDomino(this.stock.draw());
 	   }
 	   
-	   System.out.print(this.table.printState());	   
 	   System.out.print("name of the player: "+ this.player1.getName()+"\n");
-	   System.out.print(this.pc.toString());
 	   
 	   this.gGame.setEnabledJump(true);
 	   this.gGame.setHandEnable(true);
@@ -251,10 +251,11 @@ public class Game implements InterfaceGame
 			return;
 		 }
     	
+    	System.out.println("The player played: "+d.toString());
+    	this.table.play(d);
+		this.gGame.putDominoOnTable(d);
 		this.player1.removeDomino(d);
 		this.gGame.removeDominoFromHand(d);
-		this.table.play(d);
-		this.gGame.putDominoOnTable(d);
 		
 		if((this.indState == 12)||(this.indState == 7)){
 		   this.indState = 8;
@@ -273,7 +274,8 @@ public class Game implements InterfaceGame
 
 		}else{
 			//Computer Play
-			this.gGame.setEnabledPlayPC(true);		
+			this.gGame.setEnabledPlayPC(true);
+			this.gGame.setMessage("Click on Play PC, for the PC to play.");
 		}
 		
     }
@@ -312,7 +314,7 @@ public class Game implements InterfaceGame
    	public void computerPlay( )
    	{
    		int i;
-   		System.out.println("state:"+indState+ ". computer plays");
+   		System.out.println("Computer tries to play, with state: "+indState);
   	 	Domino d=null;
   	 switch (indState)
   	 {
@@ -425,8 +427,10 @@ public class Game implements InterfaceGame
   		 	break;
   		}  		
 		
-  		this.table.play(this.pc.getDomino(i));
-		this.gGame.putDominoOnTable(this.pc.getDomino(i));
+  		d = this.pc.getDomino(i);
+  		this.table.play(d);
+  		System.out.println("The computer has played: "+ d.toString() );
+		this.gGame.putDominoOnTable(d);
 	 	this.pc.removeDomino(i);
 	 		 	
 	 	if(this.pc.noMoreDominos()){
@@ -457,7 +461,7 @@ public class Game implements InterfaceGame
 	  		}else{
 	  			this.gGame.setEnabledJump(false); 
 		  		this.gGame.setEnabledDraw(true);
-				this.gGame.setMessage(this.player1.getName()+" choose a domino or DRAW from the Stock.");
+				this.gGame.setMessage("The PC played "+d.toString()+".\n"+this.player1.getName()+" choose a domino or DRAW from the Stock.");
 
 	  		}
 	  		
@@ -472,11 +476,7 @@ public class Game implements InterfaceGame
   		 
 	default: System.out.println("state no valid");
 					
-  	 }
-  	 
-  	 System.out.print(this.table.printState());	   
-	 System.out.print(this.pc.toString());
-	 System.out.print("TABLE: "+this.table.toString()+"\n");  	 
+  	 } 
 		    	
    }
 	/**
@@ -485,7 +485,6 @@ public class Game implements InterfaceGame
 	 */
    public void treatJumpAnswer()
    {
-	   System.out.println("State:"+indState + ". Into jump player's process"); 
 	   switch (indState)
   	 {
 	   case 0: case 1: case 2: case 3: case 4: case 5: case 6:
@@ -495,6 +494,7 @@ public class Game implements InterfaceGame
   			 this.gGame.setEnabledJump(false);
   			 this.gGame.setEnabledDraw(false);
   			 this.gGame.setEnabledPlayPC(true);
+  			 this.gGame.setMessage("Click on Play PC, for the PC to play.");
   			 
   		 }else{
   			 
