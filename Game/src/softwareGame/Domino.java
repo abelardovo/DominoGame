@@ -26,17 +26,6 @@ public class Domino implements InterfaceDomino{
 		return false;
 	}
 	
-	
-//	public boolean equals(Domino d){
-//		
-//		if(this.right == d.right){
-//			if (this.left == d.left){
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-	
 	public String toString(){
 		return Integer.toString(this.left)+":"+Integer.toString(this.right);
 	}
