@@ -85,7 +85,7 @@ public class Game implements InterfaceGame
 		   this.computerPlay();
 		   break;
 		   
-	   case GGame.DATA_NAME: //TO DO 
+	   case GGame.DATA_NAME:
 		   this.initialize(this.gGame.getPlayerName());
 		   break;
 	   case GGame.PLAY:
@@ -100,12 +100,18 @@ public class Game implements InterfaceGame
 			   
 			   this.treatAnswer((Domino) this.gGame.getDomino());
 			   break; 
+			   
 			  
 		   case 12:
+			   
+			   this.table.setValue((Domino) this.gGame.getDomino());
 			   this.treatAnswer((Domino) this.gGame.getDomino());
 			   break;
 		   }
+		   
 		   break;
+		   
+		   
 
 	   case GGame.JUMP:	
 		   switch (indState)
@@ -116,16 +122,46 @@ public class Game implements InterfaceGame
 			   this.treatJumpAnswer();
 			   
 			   break;
+			   
+		   case 8:
+			   
+			   if(!this.player1.searchDomino(this.table.getLeftValue(), this.table.getRightValue())){
+				   
+				   this.indState = 9;
+			   }
+			   
+			   this.gGame.setEnabledJump(false);
+			   this.gGame.setEnabledPlayPC(true);
+			   
+			   break;
 		   }
 		   break;
 		   
 	   case GGame.DRAW:
+		   
+		   Domino d;
+		   
 		   switch (indState)
 		   {
-		   case 7: case 8: 
-			   Domino d = this.stock.draw();
+
+		   case 8: 
+			   
+			   if (this.stock.isEmpty()){
+				   
+				   this.gGame.setMessage("The Stock is empty. Please choose a domino or jump. ");
+				   
+				   this.gGame.setEnabledJump(true);
+				   this.gGame.setHandEnable(true);
+				   this.gGame.setEnabledDraw(false);
+				   this.gGame.setEnabledPlayPC(false);
+				   break;
+			   }
+			   
+			   d = this.stock.draw();
 			   this.player1.addDomino(d);
 			   this.gGame.addDominoInHand(d);
+			   
+			   break;
 		   }
 		   break;		   
 	   }
@@ -143,12 +179,12 @@ public class Game implements InterfaceGame
     */
    public void initialize(String name)
    {
-	   Domino d;
 	   this.stock = new Stock();
 	   this.table = new Table();
 	   this.player1 = new Player(name);
 	   this.pc = new Player();
-	   
+	   Domino d;
+
 	   //Each player takes there 6 chips
 	   for(int i=0;i<6;i++ ){
 		   d = this.stock.draw();
@@ -162,9 +198,12 @@ public class Game implements InterfaceGame
 	   System.out.print(this.pc.toString());
 	   
 	   this.gGame.setEnabledJump(true);
+	   this.gGame.setHandEnable(true);
+	   this.gGame.setEnabledDraw(false);
+	   this.gGame.setEnabledPlayPC(false);
+	   
 	   this.gGame.setMessage("Hello "+this.player1.getName()+" good luck.  Please click on double "+this.indState+" or jump");
-
-		
+	
    }
    
    /**
@@ -191,7 +230,9 @@ public class Game implements InterfaceGame
 		   return;			   
 	   }
 	   
-	   this.table.setDoubleValue(this.indState);
+	   this.indState = 8;
+	   
+	   this.table.setValue(d);
 	   this.treatAnswer(d);
 	   
    }
@@ -205,7 +246,7 @@ public class Game implements InterfaceGame
     */
     public void treatAnswer(Domino d)
     {
-    	if(!this.table.canPlay(d)&&(this.indState!=12)){
+    	if(!this.table.canPlay(d)){
     		this.gGame.setMessage("Can not play this Domino! ");
 			return;
 		 }
@@ -215,12 +256,25 @@ public class Game implements InterfaceGame
 		this.table.play(d);
 		this.gGame.putDominoOnTable(d);
 		
+		if((this.indState == 12)||(this.indState == 7)){
+		   this.indState = 8;
+		}
+		
 		this.gGame.setEnabledJump(false);
 		this.gGame.setEnabledDraw(false);
 		this.gGame.setHandEnable(false);
 		
-		//Computer Play
-		this.gGame.setEnabledPlayPC(true);
+		if(this.player1.noMoreDominos()){
+			
+			this.indState = 10;
+			
+			this.gGame.setEnabledPlayPC(false);
+			this.gGame.setMessage("You win!!!!");
+
+		}else{
+			//Computer Play
+			this.gGame.setEnabledPlayPC(true);		
+		}
 		
     }
 	 
@@ -233,10 +287,12 @@ public class Game implements InterfaceGame
 	public void playerDraw()
 	{ 
 		if(this.stock.isEmpty()){
+			
 			this.indState = 9;
 			this.computerPlay();
-		}
-		else{
+			
+		}else{
+			
 			this.player1.addDomino(this.stock.draw());
 			this.gGame.addDominoInHand(this.stock.draw());
 			this.indState = 8;
@@ -262,7 +318,7 @@ public class Game implements InterfaceGame
   	 {
   	 //we look for a double n in the computer's hand
   	 //If yes, the computer plays else the player is asked to play the double domino (n-1)
-  	 case 6: case 5: case 4: case 3: case 2: case 1: 
+  	 case 1: case 2: case 3: case 4: case 5: case 6: 
   		 
   		 	i = this.pc.searchForDouble(indState); 
   		 	if(i != -1){
@@ -270,18 +326,21 @@ public class Game implements InterfaceGame
   		 		this.table.initialPlay(this.pc.getDomino(i));
   		 		this.gGame.putDominoOnTable(this.pc.getDomino(i));
   		 		this.pc.removeDomino(i);
+  		 		
   		 		this.indState = 8;
+  		 		
+  		 		this.gGame.setEnabledJump(false); 
   		 		this.gGame.setEnabledPlayPC(false);
   		 		this.gGame.setHandEnable(true);
-  		 		this.gGame.setEnabledJump(false); 
   		 		this.gGame.setEnabledDraw(true);
   	  		 		
-  		 	}
-  		 	else{
+  		 	}else{
+  		 		
   		 		this.indState--;
 
-  		 		this.gGame.setMessage( "Please click on double "+this.indState+" or jump");
+  		 		this.gGame.setMessage( "The PC does not have the double. Please click on double "+this.indState+" or jump");
   		 		this.gGame.setEnabledPlayPC(false);
+  		 		this.gGame.setEnabledDraw(false);
   		 		this.gGame.setHandEnable(true);
   		 		this.gGame.setEnabledJump(true);
   		 	}
@@ -297,23 +356,31 @@ public class Game implements InterfaceGame
 	 		this.table.initialPlay(this.pc.getDomino(i));
 	 		this.gGame.putDominoOnTable(this.pc.getDomino(i));
 	 		this.pc.removeDomino(i);
+	 		
 		 	this.indState = 8;
+
+		 	this.gGame.setEnabledJump(false); 
 		 	this.gGame.setEnabledPlayPC(false);
 		 	this.gGame.setHandEnable(true);
-		 	this.gGame.setEnabledJump(false); 
 		 	this.gGame.setEnabledDraw(true);	 		
   		 		
 	 	}else{
+	 		
 		 	this.indState = 12;
-
+		 	
+		 	this.gGame.setMessage( "Please click on any domino.");
+		 	
 		 	this.gGame.setEnabledPlayPC(false);
+		 	this.gGame.setEnabledJump(false);
+		 	this.gGame.setEnabledDraw(false);
 		 	this.gGame.setHandEnable(true);
-		 	this.gGame.setEnabledJump(true);	 	
+
 		}
+	 	
   		break;
   		
   	 case 7:
-  		 	this.gGame.setMessage("The Computer is blocked! Play again ");
+  		 	this.gGame.setMessage("The Computer is blocked! Play again.");
 		 	this.gGame.setEnabledPlayPC(false);
 		 	this.gGame.setHandEnable(true);
 		 	this.gGame.setEnabledJump(false); 
@@ -322,32 +389,85 @@ public class Game implements InterfaceGame
   		
   	 //If n=8 or 9  normal game managing the stock and the empty stock.
   	 case 8:case 9:
+  		 
   		i=0;
   		while(!this.table.canPlay(this.pc.getDomino(i))){
   			i++;
   			if(i>=this.pc.hand.size()){
   				
   				if(this.stock.isEmpty()){
+  					if(this.indState == 9){
+  						this.indState = 11;
+  	  					this.gGame.setMessage("The Stock is empty, the PC cannot play. It's a DRAW!"); 						
+  						break;
+  					}
+  					this.indState = 7;
+  					this.gGame.setMessage("The Stock is empty and the PC cannot play. Select a domino!");
   					break;
   				}
   				this.pc.addDomino( this.stock.draw() );
   	  		}
   		}
+  		  		
+  		if (this.indState == 11){
+  			this.gGame.setHandEnable(false);
+  		 	this.gGame.setEnabledDraw(false);
+  		 	this.gGame.setEnabledPlayPC(false);
+  		 	this.gGame.setEnabledJump(false); 
+  		 	break;
+  		}
   		
-		this.table.play(this.pc.getDomino(i));
+  		if (this.indState == 7){
+  		 	this.gGame.setEnabledDraw(false);
+  		 	this.gGame.setEnabledPlayPC(false);
+  		 	this.gGame.setEnabledJump(false);
+  			this.gGame.setHandEnable(true);
+  		 	break;
+  		}  		
+		
+  		this.table.play(this.pc.getDomino(i));
 		this.gGame.putDominoOnTable(this.pc.getDomino(i));
- 		this.pc.removeDomino(i);
- 		
-	 	this.gGame.setEnabledPlayPC(false);
-	 	this.gGame.setHandEnable(true);
-	 	this.gGame.setEnabledJump(false); 
-	 	this.gGame.setEnabledDraw(true);
+	 	this.pc.removeDomino(i);
+	 		 	
+	 	if(this.pc.noMoreDominos()){
+			
+			this.indState = 10;
+			
+		 	this.gGame.setEnabledPlayPC(false);
+		 	this.gGame.setEnabledJump(false); 
+	  		this.gGame.setHandEnable(false);
+	  		this.gGame.setEnabledDraw(false);
+	  		
+			this.gGame.setMessage("PC wins!!!!");
+
+		}else{
+			
+		 	this.gGame.setEnabledPlayPC(false);
+	  		this.gGame.setHandEnable(true);
+	  		
+	  		if(this.stock.isEmpty()){
+
+	  			this.indState = 8;
+
+	  			this.gGame.setEnabledJump(true); 
+		  		this.gGame.setEnabledDraw(false);
+				this.gGame.setMessage("Stock empty. "+this.player1.getName()+" choose a domino or JUMP.");
+
+
+	  		}else{
+	  			this.gGame.setEnabledJump(false); 
+		  		this.gGame.setEnabledDraw(true);
+				this.gGame.setMessage(this.player1.getName()+" choose a domino or DRAW from the Stock.");
+
+	  		}
+	  		
+
+		 		
+		}
 	 	
 		break;
   	
-  	 //If n=11 blocked game.	 
-  	 case 11: 
-  		 
+  	 case 11:   		 
   		 break;
   		 
 	default: System.out.println("state no valid");
