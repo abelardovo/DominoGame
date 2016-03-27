@@ -79,6 +79,7 @@ public class Game implements InterfaceGame
    public void receivedMessage(int val)
    {
 	   System.out.println( "\nAn event has been produced. Event: "+ val +", for state: "+indState);
+	   
 	   switch (val)
 	   {
 	   case GGame.DATA_NAME:
@@ -89,18 +90,18 @@ public class Game implements InterfaceGame
 
 		   switch (indState)
 		   {
-		   case 0: case 1: case 2: case 3: case 4: case 5: case 6:
+		   //Treating the double cases
+		   case 0: case 1: case 2: case 3: case 4: case 5: case 6:		   
 			   this.treatDoubleAnswer((Domino) this.gGame.getDomino());
 			   break;
-			   
-		   case 7: case 8:
-			   
+			
+		   //Treating the cases blockedComputer and play
+		   case 7: case 8:			   
 			   this.treatAnswer((Domino) this.gGame.getDomino());
 			   break; 
-			   
-			  
-		   case 12:
-			   
+		   
+		   //Treating the case noDoubleFirstDomino
+		   case 12:	   
 			   this.table.setValue((Domino) this.gGame.getDomino());
 			   this.treatAnswer((Domino) this.gGame.getDomino());
 			   break;
@@ -108,30 +109,26 @@ public class Game implements InterfaceGame
 		   
 		   break;
 		   
+	   case GGame.JUMP:
 		   
-
-	   case GGame.JUMP:	
 		   switch (indState)
 		   {
-		   
-		   case 0: case 1: case 2: case 3: case 4: case 5: case 6:
-			   
-			   this.treatJumpAnswer();
-			   
+		   //Treating the double cases		   
+		   case 0: case 1: case 2: case 3: case 4: case 5: case 6:		   
+			   this.treatJumpAnswer();		   
 			   break;
-			   
-		   case 8:
-			   
+	
+		   //Treating the case play when the stock is empty and the player wants to jump.
+		   case 8:		   
 			   if(!this.player1.searchDomino(this.table.getLeftValue(), this.table.getRightValue())){
-				   
 				   this.indState = 9;
 			   }
 			   
 			   this.gGame.setEnabledJump(false);
 			   this.gGame.setEnabledPlayPC(true);
-			   
 			   break;
 		   }
+		   
 		   break;
 		   
 	   case GGame.DRAW:
@@ -140,9 +137,10 @@ public class Game implements InterfaceGame
 		   
 		   switch (indState)
 		   {
-
+		   //Treating the case play when the player wants to DRAW from the Stock
 		   case 8: 
 			   
+			   //If the Stock is empty, the player have to choose a Domino from his hand or jump.
 			   if (this.stock.isEmpty()){
 				   
 				   this.gGame.setMessage("The Stock is empty. Please choose a domino or jump. ");
@@ -154,6 +152,7 @@ public class Game implements InterfaceGame
 				   break;
 			   }
 			   
+			   //Otherwise, the player can take a Domino from the Stock
 			   d = this.stock.draw();
 			   this.player1.addDomino(d);
 			   this.gGame.addDominoInHand(d);
@@ -165,17 +164,16 @@ public class Game implements InterfaceGame
 	   case GGame.VALIDPCPLAY:
 		   this.computerPlay();
 		   break;
-
 	   }
 	   
-	   
+	   //Prints by console the State of the board, the PC's hand and the Dominos that are on the table.
 	   System.out.print(this.table.printState());	   
 	   System.out.print(this.pc.toString());
 	   System.out.print("TABLE: "+this.table.toString()+"\n");	   
    }
    
    /**
-    * Create a stock, a board, two players (player and computer), initialise the 
+    * Create a stock, a board, two players (player and computer), initialize the 
     * graphical interface : hand, button and send it the first message.
     * @param name The name of the player
     */
@@ -395,7 +393,7 @@ public class Game implements InterfaceGame
   		i=0;
   		while(!this.table.canPlay(this.pc.getDomino(i))){
   			i++;
-  			if(i>=this.pc.hand.size()){
+  			if(i>=this.pc.getHandSize()){
   				
   				if(this.stock.isEmpty()){
   					if(this.indState == 9){
