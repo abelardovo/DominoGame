@@ -132,31 +132,12 @@ public class Game implements InterfaceGame
 		   break;
 		   
 	   case GGame.DRAW:
-		   
-		   Domino d;
-		   
+		   		   
 		   switch (indState)
 		   {
 		   //Treating the case play when the player wants to DRAW from the Stock
 		   case 8: 
-			   
-			   //If the Stock is empty, the player have to choose a Domino from his hand or jump.
-			   if (this.stock.isEmpty()){
-				   
-				   this.gGame.setMessage("The Stock is empty. Please choose a domino or jump. ");
-				   
-				   this.gGame.setEnabledJump(true);
-				   this.gGame.setHandEnable(true);
-				   this.gGame.setEnabledDraw(false);
-				   this.gGame.setEnabledPlayPC(false);
-				   break;
-			   }
-			   
-			   //Otherwise, the player can take a Domino from the Stock
-			   d = this.stock.draw();
-			   this.player1.addDomino(d);
-			   this.gGame.addDominoInHand(d);
-			   
+			   this.playerDraw();
 			   break;
 		   }
 		   break;		   
@@ -195,6 +176,7 @@ public class Game implements InterfaceGame
 	   
 	   System.out.print("name of the player: "+ this.player1.getName()+"\n");
 	   
+	   //Enabled the Jump button and the player's hand.
 	   this.gGame.setEnabledJump(true);
 	   this.gGame.setHandEnable(true);
 	   this.gGame.setEnabledDraw(false);
@@ -204,16 +186,16 @@ public class Game implements InterfaceGame
 	
    }
    
-   /**
+   /*
     * 
     * @param side The side to be considered : 1 or 2 (1: left, 2: right)
     * @return The extremity value of the domino on the considered side the table
     */
-   public int getEnd(int side)
-   {
+   //public int getEnd(int side)
+   //{
   	 //TO DO 
-	   return 0;
-   }
+	 //  return 0;
+   //}
    
    /**
     * Take the selected domino, verify if it is the right one.
@@ -222,7 +204,7 @@ public class Game implements InterfaceGame
     */
    public void treatDoubleAnswer(Domino d)
    {
-
+	   //If the selected Domino is not the double needed.
 	   if ((d.getLeftValue() != this.indState) || (d.getRightValue() != this.indState)){
 		   this.gGame.setMessage("This it is not the double "+this.indState);
 		   return;			   
@@ -230,6 +212,7 @@ public class Game implements InterfaceGame
 	   
 	   this.indState = 8;
 	   
+	   //Set the right and left value of the Table.
 	   this.table.setValue(d);
 	   this.treatAnswer(d);
 	   
@@ -244,25 +227,32 @@ public class Game implements InterfaceGame
     */
     public void treatAnswer(Domino d)
     {
+    	//Verify if the Domino cannot be played.
     	if(!this.table.canPlay(d)){
     		this.gGame.setMessage("Can not play this Domino! ");
 			return;
 		 }
     	
+    	//Otherwise, we put the Domino on the table and remove it from the player's hand.
     	System.out.println("The player played: "+d.toString());
     	this.table.play(d);
 		this.gGame.putDominoOnTable(d);
 		this.player1.removeDomino(d);
 		this.gGame.removeDominoFromHand(d);
 		
+		//If the state of the game was NoDoubleFirstDomino or BlockedComputer
+		//we change the state of the game to Play.
 		if((this.indState == 12)||(this.indState == 7)){
 		   this.indState = 8;
 		}
 		
+		//We turn off the Jump, Draw buttons and disable the Graphical Hand
 		this.gGame.setEnabledJump(false);
 		this.gGame.setEnabledDraw(false);
 		this.gGame.setHandEnable(false);
 		
+		//Verifying if the player wins the game.
+		//It depends on if he has more Dominos in his hand or not.
 		if(this.player1.noMoreDominos()){
 			
 			this.indState = 10;
@@ -279,25 +269,30 @@ public class Game implements InterfaceGame
     }
 	 
 	/**
-	* The player draw. If the stock is empty, the computer plays (state 9) 
-	* otherwise the drawn domino is added to the hand and the graphic hand
-        * and, then, the computer plays (state 8).
+	* The player draw. If the stock is empty, the player has to choose a 
+	* Domino from his hand or Jump. 
+	* otherwise the player can draw a Domino from the Stock until he can play.
 	*
 	*/
 	public void playerDraw()
 	{ 
-		if(this.stock.isEmpty()){
-			
-			this.indState = 9;
-			this.computerPlay();
-			
-		}else{
-			
-			this.player1.addDomino(this.stock.draw());
-			this.gGame.addDominoInHand(this.stock.draw());
-			this.indState = 8;
-			this.computerPlay();
-		}
+		//If the Stock is empty, the player has to choose a Domino from his hand or jump.
+		if (this.stock.isEmpty()){
+			   
+			this.gGame.setMessage("The Stock is empty. Please choose a domino or jump. ");
+			   
+			this.gGame.setEnabledJump(true);
+			this.gGame.setHandEnable(true);
+			this.gGame.setEnabledDraw(false);
+			this.gGame.setEnabledPlayPC(false);
+			return;
+		   }
+		
+		//Otherwise, the player can take a Domino from the Stock
+		Domino d = this.stock.draw();
+		this.player1.addDomino(d);
+		this.gGame.addDominoInHand(d);
+		
 	}
 	 
 	/**
@@ -320,7 +315,8 @@ public class Game implements InterfaceGame
   	 //If yes, the computer plays else the player is asked to play the double domino (n-1)
   	 case 1: case 2: case 3: case 4: case 5: case 6: 
   		 
-  		 	i = this.pc.searchForDouble(indState); 
+  		 	i = this.pc.searchForDouble(indState);
+  		 	//If the computer has the Double requested, he plays it.
   		 	if(i != -1){
   		
   		 		this.table.initialPlay(this.pc.getDomino(i));
@@ -333,7 +329,8 @@ public class Game implements InterfaceGame
   		 		this.gGame.setEnabledPlayPC(false);
   		 		this.gGame.setHandEnable(true);
   		 		this.gGame.setEnabledDraw(true);
-  	  		 		
+  	  		 
+  		 	//Otherwise, he changes the state of the game to look for the next double. 	
   		 	}else{
   		 		
   		 		this.indState--;
@@ -344,13 +341,15 @@ public class Game implements InterfaceGame
   		 		this.gGame.setHandEnable(true);
   		 		this.gGame.setEnabledJump(true);
   		 	}
-  		 		
   		 	
   		 	break;
+ 
   	 //If n=0 we look for a double 0 in the computer's hand.
-  	 //If yes, the computer plays, otherwise the player is asked to play any other domino.
+  	 //If true, the computer plays, otherwise the player is asked to play any other domino.
   	 case 0:
   	 	i = this.pc.searchForDouble(indState); 
+		 
+  	 	//If the computer has the Double 0, he plays it.
 	 	if(i != -1){
 	 		
 	 		this.table.initialPlay(this.pc.getDomino(i));
@@ -363,7 +362,8 @@ public class Game implements InterfaceGame
 		 	this.gGame.setEnabledPlayPC(false);
 		 	this.gGame.setHandEnable(true);
 		 	this.gGame.setEnabledDraw(true);	 		
-  		 		
+  		 
+		//Otherwise, the computer changes the state of the game to NoDoubleFirstDomino.
 	 	}else{
 	 		
 		 	this.indState = 12;
@@ -378,7 +378,8 @@ public class Game implements InterfaceGame
 		}
 	 	
   		break;
-  		
+  	
+  	 //Case if the Computer is blocked.
   	 case 7:
   		 	this.gGame.setMessage("The Computer is blocked! Play again.");
 		 	this.gGame.setEnabledPlayPC(false);
@@ -391,24 +392,37 @@ public class Game implements InterfaceGame
   	 case 8:case 9:
   		 
   		i=0;
+  		
+  		//Verifying which Domino can play the computer.
   		while(!this.table.canPlay(this.pc.getDomino(i))){
   			i++;
-  			if(i>=this.pc.getHandSize()){
+  			
+  			//If the verification reaches the last Domino in the Computer's hand
+  			if(i>= this.pc.getHandSize()){
   				
+  				//We check if the Stock is empty. If true, it means that the PC cannot Draw more Dominos.
   				if(this.stock.isEmpty()){
+  					
+  					//If the state of the game was BlockedPlayer and the PC cannot play any Domino, it's a DRAW!
   					if(this.indState == 9){
   						this.indState = 11;
   	  					this.gGame.setMessage("The Stock is empty, the PC cannot play. It's a DRAW!"); 						
   						break;
   					}
+  					
+  					//Otherwise, the state of the game changes to BlockedComputer
   					this.indState = 7;
   					this.gGame.setMessage("The Stock is empty and the PC cannot play. Select a domino!");
   					break;
   				}
+  				
+  				//Otherwise, the Computer can draw a Domino from the Stock.
   				this.pc.addDomino( this.stock.draw() );
   	  		}
   		}
-  		  		
+  		
+  		//If the state of the game changes to BlockedGame, the game is over so we disable all the
+  		//buttons and the player's hand.
   		if (this.indState == 11){
   			this.gGame.setHandEnable(false);
   		 	this.gGame.setEnabledDraw(false);
@@ -417,6 +431,8 @@ public class Game implements InterfaceGame
   		 	break;
   		}
   		
+  		//If the state of the game changes to BlockedComputer, 
+  		//we disable all the buttons and enable the playe's hand.
   		if (this.indState == 7){
   		 	this.gGame.setEnabledDraw(false);
   		 	this.gGame.setEnabledPlayPC(false);
@@ -425,12 +441,14 @@ public class Game implements InterfaceGame
   		 	break;
   		}  		
 		
+  		//If the state of the game remains the same, the Computer plays the next available Domino. 
   		d = this.pc.getDomino(i);
   		this.table.play(d);
   		System.out.println("The computer has played: "+ d.toString() );
 		this.gGame.putDominoOnTable(d);
 	 	this.pc.removeDomino(i);
-	 		 	
+	 	
+	 	//If the Computer doesn't have any Domino left, it means that it wins.
 	 	if(this.pc.noMoreDominos()){
 			
 			this.indState = 10;
@@ -442,11 +460,13 @@ public class Game implements InterfaceGame
 	  		
 			this.gGame.setMessage("PC wins!!!!");
 
+		//Otherwise, the game continues.
 		}else{
 			
 		 	this.gGame.setEnabledPlayPC(false);
 	  		this.gGame.setHandEnable(true);
 	  		
+	  		//If the Stock is empty, we disable the Draw button.
 	  		if(this.stock.isEmpty()){
 
 	  			this.indState = 8;
@@ -455,7 +475,7 @@ public class Game implements InterfaceGame
 		  		this.gGame.setEnabledDraw(false);
 				this.gGame.setMessage("Stock empty. "+this.player1.getName()+" choose a domino or JUMP.");
 
-
+			//Otherwise, we activate the Draw button and the Player's hand.
 	  		}else{
 	  			this.gGame.setEnabledJump(false); 
 		  		this.gGame.setEnabledDraw(true);
@@ -468,15 +488,12 @@ public class Game implements InterfaceGame
 		}
 	 	
 		break;
-  	
-  	 case 11:   		 
-  		 break;
   		 
 	default: System.out.println("state no valid");
 					
-  	 } 
-		    	
+  	 } 	    	
    }
+   	
 	/**
 	 * To verify that the player does not cheat with the double.
 	 * 
@@ -486,6 +503,8 @@ public class Game implements InterfaceGame
 	   switch (indState)
   	 {
 	   case 0: case 1: case 2: case 3: case 4: case 5: case 6:
+		   
+		 //If the Player does not have the double requested, it's the PC's turn.
   		 if (this.player1.searchForDouble(indState) == -1){
   			 
   			 this.gGame.setHandEnable(false);
@@ -494,17 +513,19 @@ public class Game implements InterfaceGame
   			 this.gGame.setEnabledPlayPC(true);
   			 this.gGame.setMessage("Click on Play PC, for the PC to play.");
   			 
+  		//Otherwise, the player must play the requested Domino.
   		 }else{
-  			 
   			 this.gGame.setMessage("Liar! You have the double "+ this.indState+" in your hand! You have to play it ");
-  		 
   		 }
   		 
   		 break;
-  	 		
   	 }
-   }	
+   }
    
+	/**
+	 * The main starts the game.
+	 * 
+	 */  
    public static void main(String [] args)
    {
 	   
@@ -513,6 +534,7 @@ public class Game implements InterfaceGame
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		System.out.print("An exception occurred! ");
 	}       
    }
 }
