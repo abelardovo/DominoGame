@@ -2,3 +2,13 @@
 Game/.DS_Store
 
 *.class
+
+Game/bin/softwareGame/Domino.class
+
+Game/bin/softwareGame/Game.class
+
+Game/bin/softwareGame/Player.class
+
+Game/bin/softwareGame/Stock.class
+
+Game/bin/softwareGame/Table.class

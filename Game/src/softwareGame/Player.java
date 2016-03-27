@@ -14,8 +14,8 @@ import java.util.List;
 
 public class Player {
 	
-	String name;
-	List<Domino> hand;
+	private String name;
+	private List<Domino> hand;
 	
 	/**
 	 * The constructor to be called by the user application when creating the user's player.
@@ -43,6 +43,14 @@ public class Player {
 	 */
 	public String getName(){
 		return this.name;
+	}
+	
+	/**
+	 * Method to obtain the size of the List "hand"
+	 * @return The number of Dominos in the player's hand
+	 */
+	public int getHandSize(){
+		return this.hand.size();
 	}
 
 	/**

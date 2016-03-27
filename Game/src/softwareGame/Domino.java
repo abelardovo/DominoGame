@@ -11,8 +11,8 @@ import graphicInterface.InterfaceDomino;
  */
 public class Domino implements InterfaceDomino{
 	
-	int right;
-	int left;
+	private int right;
+	private int left;
 	
 	/**
 	 * The constructor to be call by the Stock constructor to create all the Dominos.

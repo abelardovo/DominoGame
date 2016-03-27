@@ -17,6 +17,29 @@ public class PlayerTest {
 		assertNotEquals(s2, p.getName());
 	
 	}
+	
+	@Test
+	public void testGetHandSize() {
+		
+		Player p = new Player("Name");
+		
+		Domino d1 = new Domino(6,1);
+		Domino d2 = new Domino(0,5);
+		Domino d3 = new Domino(2,4);
+		
+		p.addDomino(d1);
+		p.addDomino(d2);
+		p.addDomino(d3);
+		
+		assertEquals(3, p.getHandSize());
+		assertNotEquals(0, p.getHandSize());
+		
+		p.removeDomino(d1);
+		
+		assertEquals(2, p.getHandSize());
+		assertNotEquals(3, p.getHandSize());
+
+	}	
 
 	@Test
 	public void testGetDomino() {
@@ -31,9 +54,9 @@ public class PlayerTest {
 		Domino d5 = new Domino(0,0);
 		Domino d6 = new Domino(1,4);
 		
-		p.hand.add(d1);
-		p.hand.add(d2);
-		p.hand.add(d3);
+		p.addDomino(d1);
+		p.addDomino(d2);
+		p.addDomino(d3);
 		
 		assertEquals(d4.getLeftValue(), p.getDomino(0).getLeftValue());
 		assertEquals(d4.getRightValue(), p.getDomino(0).getRightValue());
