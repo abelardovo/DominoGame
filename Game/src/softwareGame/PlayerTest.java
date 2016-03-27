@@ -10,9 +10,12 @@ public class PlayerTest {
 	public void testGetName() {
 		
 		Player p = new Player("Name");
-		String s = "Name";
+		String s1 = "Name";
+		String s2 = "Not Name";
 		
-		assertEquals(s, p.getName());
+		assertEquals(s1, p.getName());
+		assertNotEquals(s2, p.getName());
+	
 	}
 
 	@Test
@@ -42,7 +45,8 @@ public class PlayerTest {
 		assertEquals(d6.getRightValue(), p.getDomino(2).getRightValue());
 
 		assertNotEquals(d4.getLeftValue(), p.getDomino(1).getLeftValue());
-		
+		assertNotEquals(d4.getRightValue(), p.getDomino(1).getRightValue());		
+	
 	}
 
 	@Test
@@ -72,6 +76,7 @@ public class PlayerTest {
 		assertEquals(d6.getRightValue(), p.getDomino(2).getRightValue());
 
 		assertNotEquals(d4.getLeftValue(), p.getDomino(1).getLeftValue());
+		assertNotEquals(d4.getRightValue(), p.getDomino(1).getRightValue());		
 	
 	}
 
@@ -155,9 +160,11 @@ public class PlayerTest {
 
 		assertEquals(true, p.searchDomino(6, 6));
 		assertEquals(true, p.searchDomino(1, 4));
+		assertEquals(true, p.searchDomino(4, 1));
 		assertEquals(true, p.searchDomino(0, 0));
 		
 		assertEquals(false, p.searchDomino(0, 6));
+		assertEquals(false, p.searchDomino(-6, 6));
 		
 	}
 
