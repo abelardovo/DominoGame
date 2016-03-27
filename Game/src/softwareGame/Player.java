@@ -46,7 +46,7 @@ public class Player {
 	}
 	
 	/**
-	 * Method to obtain the size of the List "hand"
+	 * Method to obtain the size of the List "hand".
 	 * @return The number of Dominos in the player's hand
 	 */
 	public int getHandSize(){
