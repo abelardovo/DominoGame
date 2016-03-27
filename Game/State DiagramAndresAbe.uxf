@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="11.3">
+  <zoom_level>6</zoom_level>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>606</x>
+      <y>48</y>
+      <w>72</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Name
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>0</x>
+      <y>156</y>
+      <w>144</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>State 6
+--
+Searching for double 6 in hand.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>264</x>
+      <y>156</y>
+      <w>144</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>State 5
+--
+Searching for double 5 in hand.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>528</x>
+      <y>156</y>
+      <w>144</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>State 4
+--
+Searching for double 4 in hand.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>798</x>
+      <y>156</y>
+      <w>138</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>State 3
+--
+Searching for double 3 in hand.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>1062</x>
+      <y>156</y>
+      <w>144</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>State 2
+--
+Searching for double 2 in hand.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>1326</x>
+      <y>156</y>
+      <w>150</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>State 1
+--
+Searching for double 1 in hand.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>1602</x>
+      <y>156</y>
+      <w>150</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>State 0
+--
+Searching for double 0 in hand.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>1596</x>
+      <y>306</y>
+      <w>168</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>State 12
+--
+No doubles in hand of the players.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>480</x>
+      <y>366</y>
+      <w>180</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>State 8
+--
+Regular playing.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>576</x>
+      <y>510</y>
+      <w>180</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>State 7
+--
+Stock is empty and computer cannot play.
+Computer blocked.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>888</x>
+      <y>504</y>
+      <w>168</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>State 9
+--
+Stock is empty and player cannot play.
+Player blocked.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>492</x>
+      <y>654</y>
+      <w>180</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>State 10
+--
+A player won the game.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>864</x>
+      <y>660</y>
+      <w>186</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>State 11
+--
+Stock is empty. Neither player can play.
+Game blocked.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>606</x>
+      <y>0</y>
+      <w>72</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>*START*
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>618</x>
+      <y>798</y>
+      <w>72</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>*END*
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>594</x>
+      <y>6</y>
+      <w>88</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+Game started
+</panel_attributes>
+    <additional_attributes>48;42;48;18</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>48</x>
+      <y>54</y>
+      <w>606</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+User entered a name</panel_attributes>
+    <additional_attributes>18;102;594;18</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>360</x>
+      <y>318</y>
+      <w>150</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+Player played a Domino</panel_attributes>
+    <additional_attributes>138;60;132;30;66;30;66;84;120;84</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>630</x>
+      <y>390</y>
+      <w>324</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+.
+.
+.
+                 Player is not able to play or to draw.</panel_attributes>
+    <additional_attributes>312;120;18;18</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>642</x>
+      <y>378</y>
+      <w>366</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+Player played a Domino.</panel_attributes>
+    <additional_attributes>18;18;354;126</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>120</x>
+      <y>144</y>
+      <w>156</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+Double 6 not found
+in hand of the players</panel_attributes>
+    <additional_attributes>144;30;18;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>510</x>
+      <y>408</y>
+      <w>164</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+.
+PC is not able to play or to draw.</panel_attributes>
+    <additional_attributes>102;114;72;18</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>510</x>
+      <y>276</y>
+      <w>126</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+Player played a double</panel_attributes>
+    <additional_attributes>66;90;66;18</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>630</x>
+      <y>324</y>
+      <w>1008</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+Player played a Domino chip</panel_attributes>
+    <additional_attributes>18;54;996;18</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1620</x>
+      <y>180</y>
+      <w>120</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+No double was found
+in hands of a players</panel_attributes>
+    <additional_attributes>66;126;66;18</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>384</x>
+      <y>144</y>
+      <w>156</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+Double 5 not found
+in hand of the players</panel_attributes>
+    <additional_attributes>144;30;18;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>918</x>
+      <y>144</y>
+      <w>156</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+Double 3 not found
+in hand of the players</panel_attributes>
+    <additional_attributes>144;30;18;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1182</x>
+      <y>144</y>
+      <w>156</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+Double 2 not found
+in hand of the players</panel_attributes>
+    <additional_attributes>144;30;18;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>654</x>
+      <y>144</y>
+      <w>156</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+Double 4 not found
+in hand of the players</panel_attributes>
+    <additional_attributes>144;30;18;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1458</x>
+      <y>144</y>
+      <w>156</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+Double 1 not found
+in hand of the players</panel_attributes>
+    <additional_attributes>144;30;18;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>42</x>
+      <y>276</y>
+      <w>1482</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>18;18;1470;18</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>0</x>
+      <y>180</y>
+      <w>110</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Found double 6
+in hand of a player</panel_attributes>
+    <additional_attributes>60;18;60;114</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>270</x>
+      <y>180</y>
+      <w>110</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Found double 5
+in hand of a player</panel_attributes>
+    <additional_attributes>60;18;60;114</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>804</x>
+      <y>180</y>
+      <w>110</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Found double 3
+in hand of a player</panel_attributes>
+    <additional_attributes>60;18;60;114</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>540</x>
+      <y>180</y>
+      <w>110</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Found double 4
+in hand of a player</panel_attributes>
+    <additional_attributes>60;18;60;114</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1344</x>
+      <y>180</y>
+      <w>114</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Found double 1
+in hand of a player</panel_attributes>
+    <additional_attributes>60;18;60;114</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1074</x>
+      <y>180</y>
+      <w>114</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Found double 2
+in hand of a player</panel_attributes>
+    <additional_attributes>60;18;60;114</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1494</x>
+      <y>174</y>
+      <w>144</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>Found double 0
+in hand of a player</panel_attributes>
+    <additional_attributes>132;18;18;120</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>576</x>
+      <y>402</y>
+      <w>116</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+PC played a Domino.</panel_attributes>
+    <additional_attributes>48;18;78;108</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>720</x>
+      <y>540</y>
+      <w>204</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+.
+.
+.
+     Player cannot play a Domino from his hand.</panel_attributes>
+    <additional_attributes>192;120;18;18</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>516</x>
+      <y>546</y>
+      <w>166</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+User played last Domino in hand.</panel_attributes>
+    <additional_attributes>66;108;102;18</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>912</x>
+      <y>540</y>
+      <w>194</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+PC cannot play a Domino from his hand.</panel_attributes>
+    <additional_attributes>96;120;102;18</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>636</x>
+      <y>528</y>
+      <w>282</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+PC played last Domino in hand.</panel_attributes>
+    <additional_attributes>18;138;270;18</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>528</x>
+      <y>696</y>
+      <w>134</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+Game ended succesfully.</panel_attributes>
+    <additional_attributes>90;108;54;18</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>666</x>
+      <y>696</y>
+      <w>306</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+Game ended in DRAW.</panel_attributes>
+    <additional_attributes>18;108;294;18</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>414</x>
+      <y>402</y>
+      <w>130</w>
+      <h>276</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+Player played a Domino</panel_attributes>
+    <additional_attributes>102;264;66;144;96;18</additional_attributes>
+  </element>
+</diagram>
