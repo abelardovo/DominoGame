@@ -89,18 +89,15 @@ public class Game implements InterfaceGame
 
 		   switch (indState)
 		   {
-		   case 0: case 1: case 2: case 3: case 4: case 5: case 6:
+		   case 0: case 1: case 2: case 3: case 4: case 5: case 6:		   
 			   this.treatDoubleAnswer((Domino) this.gGame.getDomino());
 			   break;
 			   
-		   case 7: case 8:
-			   
+		   case 7: case 8:			   
 			   this.treatAnswer((Domino) this.gGame.getDomino());
 			   break; 
-			   
 			  
-		   case 12:
-			   
+		   case 12:	   
 			   this.table.setValue((Domino) this.gGame.getDomino());
 			   this.treatAnswer((Domino) this.gGame.getDomino());
 			   break;
@@ -108,30 +105,24 @@ public class Game implements InterfaceGame
 		   
 		   break;
 		   
+	   case GGame.JUMP:
 		   
-
-	   case GGame.JUMP:	
 		   switch (indState)
 		   {
-		   
-		   case 0: case 1: case 2: case 3: case 4: case 5: case 6:
-			   
-			   this.treatJumpAnswer();
-			   
+		   case 0: case 1: case 2: case 3: case 4: case 5: case 6:		   
+			   this.treatJumpAnswer();		   
 			   break;
 			   
-		   case 8:
-			   
+		   case 8:		   
 			   if(!this.player1.searchDomino(this.table.getLeftValue(), this.table.getRightValue())){
-				   
 				   this.indState = 9;
 			   }
 			   
 			   this.gGame.setEnabledJump(false);
 			   this.gGame.setEnabledPlayPC(true);
-			   
 			   break;
 		   }
+		   
 		   break;
 		   
 	   case GGame.DRAW:
@@ -140,7 +131,6 @@ public class Game implements InterfaceGame
 		   
 		   switch (indState)
 		   {
-
 		   case 8: 
 			   
 			   if (this.stock.isEmpty()){
@@ -165,17 +155,15 @@ public class Game implements InterfaceGame
 	   case GGame.VALIDPCPLAY:
 		   this.computerPlay();
 		   break;
-
 	   }
-	   
-	   
+	      
 	   System.out.print(this.table.printState());	   
 	   System.out.print(this.pc.toString());
 	   System.out.print("TABLE: "+this.table.toString()+"\n");	   
    }
    
    /**
-    * Create a stock, a board, two players (player and computer), initialise the 
+    * Create a stock, a board, two players (player and computer), initialize the 
     * graphical interface : hand, button and send it the first message.
     * @param name The name of the player
     */
