@@ -105,8 +105,8 @@ public class Player {
 		
 		for(int n=0; n<this.hand.size(); n++){
 			
-			if( (right == this.getDomino(n).getLeftValue()) || (right == this.getDomino(n).getRightValue()) ||
-				(left == this.getDomino(n).getLeftValue())  || (left == this.getDomino(n).getRightValue())){
+			if( (right == this.getDomino(n).getLeftValue()) && (left == this.getDomino(n).getRightValue()) || 
+				(right == this.getDomino(n).getRightValue()) && (left == this.getDomino(n).getLeftValue()) ){
 					
 				return true;	
 			}
