@@ -121,7 +121,7 @@ No doubles in hand of the players.</panel_attributes>
     </coordinates>
     <panel_attributes>State 8
 --
-Regular playing.</panel_attributes>
+Regular play.</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -208,8 +208,8 @@ Game blocked.</panel_attributes>
     <coordinates>
       <x>14</x>
       <y>7</y>
-      <w>147</w>
-      <h>91</h>
+      <w>142</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 User entered his name</panel_attributes>
@@ -254,15 +254,15 @@ PC played a Domino</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>0</x>
+      <x>7</x>
       <y>112</y>
-      <w>168</w>
-      <h>126</h>
+      <w>160</w>
+      <h>125</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 Double 6 not found
 in the hands of the players</panel_attributes>
-    <additional_attributes>91;112;91;21</additional_attributes>
+    <additional_attributes>84;112;84;21</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -319,28 +319,28 @@ which is NOT a double</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>0</x>
+      <x>7</x>
       <y>252</y>
-      <w>168</w>
-      <h>126</h>
+      <w>160</w>
+      <h>125</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 Double 5 not found
 in the hands of the players</panel_attributes>
-    <additional_attributes>91;112;91;21</additional_attributes>
+    <additional_attributes>84;112;84;21</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>0</x>
+      <x>7</x>
       <y>532</y>
-      <w>168</w>
-      <h>126</h>
+      <w>160</w>
+      <h>125</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 Double 3 not found
 in the hands of the players</panel_attributes>
-    <additional_attributes>91;112;91;21</additional_attributes>
+    <additional_attributes>84;112;84;21</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -358,15 +358,15 @@ in the hands of the players</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>0</x>
+      <x>7</x>
       <y>392</y>
-      <w>168</w>
-      <h>126</h>
+      <w>160</w>
+      <h>125</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 Double 4 not found
 in the hands of the players</panel_attributes>
-    <additional_attributes>91;112;91;21</additional_attributes>
+    <additional_attributes>84;112;84;21</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -397,8 +397,8 @@ in the hands of the players</panel_attributes>
     <coordinates>
       <x>154</x>
       <y>70</y>
-      <w>266</w>
-      <h>63</h>
+      <w>265</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>Found double 6
 in the hand of a player</panel_attributes>
