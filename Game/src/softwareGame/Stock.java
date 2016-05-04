@@ -11,7 +11,8 @@ import java.util.*;
  */
 public class Stock {
 
-	List<Domino> pile;
+	protected static Stock sto = null;
+	protected List<Domino> pile = null;
 	
 	/**
 	 * The constructor to be call by the user application. 
@@ -20,13 +21,20 @@ public class Stock {
 	public Stock(){
 		
 		this.pile = new ArrayList<Domino>();
-		
 		//Creates a total of 28 Dominos. SUM(x)from 1 to 7 
 		for (int i=6; i>=0; i--){
 			for (int j=i;j>=0;j--){
 				this.addDomino(new Domino(i,j));
 			}
+		}
+		System.out.print(this.pile.size()+"\n");
+	}
+	
+	public static Stock getStock(){
+		if(sto == null){
+			sto = new Stock();
 		}	
+		return sto;		
 	}
 	
 	/**
@@ -61,6 +69,7 @@ public class Stock {
 	 * @return A random Domino from the Stock.
 	 */
 	public Domino draw(){
+		
 		Random rand = new Random();
 		int  n = rand.nextInt(this.pile.size());
 		
