@@ -12,3 +12,5 @@ Game/bin/softwareGame/Player.class
 Game/bin/softwareGame/Stock.class
 
 Game/bin/softwareGame/Table.class
+
+*.class
