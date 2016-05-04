@@ -18,7 +18,7 @@ public class Stock {
 	 * The constructor to be call by the user application. 
 	 * It creates all the Dominos of the game and add them to the Stock.  
 	 */			
-	public Stock(){
+	private Stock(){
 		
 		this.pile = new ArrayList<Domino>();
 		//Creates a total of 28 Dominos. SUM(x)from 1 to 7 

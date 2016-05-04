@@ -23,7 +23,7 @@ public class Table {
 	/**
 	 * The constructor to be called by the user application when creating the table in which to play.
 	 */
-	protected Table(){
+	private Table(){
 		this.right = -1;
 		this.left = -1;
 		this.board = new ArrayList<Domino>();

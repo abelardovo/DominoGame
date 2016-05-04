@@ -160,8 +160,8 @@ public class Game implements InterfaceGame
     */
    public void initialize(String name)
    {
-	   this.stock = new Stock();
-	   this.table = new Table();
+	   this.stock = Stock.getStock();
+	   this.table = Table.getTable();
 	   this.player1 = new Player(name);
 	   this.pc = new Player();
 	   Domino d;
