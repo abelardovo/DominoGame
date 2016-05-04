@@ -16,7 +16,7 @@ import java.util.List;
 public class Table {
 	
    	protected static Table tab = null;
-	public List<Domino> board = null;
+	protected List<Domino> board = null;
 	private int right;
 	private int left;
 
@@ -37,10 +37,9 @@ public class Table {
 		if(tab == null){
 			tab = new Table();
 		}	
-		return tab;
-
-			
+		return tab;		
 	}
+	
 	/**
 	 * Method to obtain the right value of the table, which is one of the two possible values a Domino must have in order to be played.
 	 * @return Right value of the table.

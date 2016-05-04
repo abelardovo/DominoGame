@@ -14,23 +14,28 @@ import org.junit.Test;
  */
 public class StockTest {
 
+	@SuppressWarnings("static-access")
 	@Test
 	public void testIsEmpty() {
-		Stock s = new Stock();
-		Domino d;
+		
+		Stock s = Stock.getStock();
 		
 		assertFalse(s.isEmpty());
-		
+
 		for(int i=0;i<28;i++){
-			d = s.draw();
+			s.draw();
+			
 		}
 		
 		assertTrue(s.isEmpty());
+	
+		s.sto = null;
 	}
 
+	@SuppressWarnings("static-access")
 	@Test
 	public void testDraw() {
-		Stock s = new Stock();
+		Stock s = Stock.getStock();
 		Domino d;
 		int i =0;
 		boolean b = false;
@@ -52,6 +57,7 @@ public class StockTest {
 
 		assertFalse(b);
 
-	}
+		s.sto = null;
 
+	}
 }
