@@ -14,38 +14,42 @@ import org.junit.Test;
  */
 public class TableTest {
 
+	@SuppressWarnings("static-access")
 	@Test
 	public void testGetRightValue() {
-		
-		Table t = new Table();
+	
+		Table t = Table.getTable();
 		
 		assertEquals(-1, t.getRightValue());
 		assertNotEquals(1, t.getRightValue());
 		
-		t.right = 1;
-		
+		t.setRight(1);
 		assertEquals(1, t.getRightValue());
 		
+		t.tab=null;
 	}
 
+	@SuppressWarnings("static-access")
 	@Test
 	public void testGetLeftValue() {
-	
-		Table t = new Table();
+		
+		Table t = Table.getTable();
 		
 		assertEquals(-1, t.getLeftValue());
 		assertNotEquals(1, t.getLeftValue());
 		
-		t.left = 1;
+		t.setLeft(1);
 		
 		assertEquals(1, t.getLeftValue());
 		
+		t.tab=null;
 	}
 
+	@SuppressWarnings("static-access")
 	@Test
 	public void testSetValue() {
 
-		Table t = new Table();
+		Table t = Table.getTable();
 		Domino d = new Domino(0,6);
 		
 		assertEquals(-1, t.getLeftValue());
@@ -60,13 +64,14 @@ public class TableTest {
 
 		assertNotEquals(-1, t.getLeftValue());
 
-		
+		t.tab=null;
 	}
 
+	@SuppressWarnings("static-access")
 	@Test
 	public void testCanPlay() {
 
-		Table t = new Table();
+		Table t = Table.getTable();
 		Domino d1 = new Domino(0,6);
 		Domino d2 = new Domino(1,4);
 		Domino d3 = new Domino(0,4);
@@ -80,12 +85,14 @@ public class TableTest {
 		
 		assertEquals(false, t.canPlay(d2));
 
+		t.tab=null;
 	}
 
+	@SuppressWarnings("static-access")
 	@Test
 	public void testInitialPlay() {
 
-		Table t = new Table();
+		Table t = Table.getTable();
 		Domino d1 = new Domino(0,6);
 		
 		t.initialPlay(d1);
@@ -100,22 +107,37 @@ public class TableTest {
 		
 		assertNotEquals(1,t.getLeftValue());
 		
+		t.tab=null;
 	}
 
 	@Test
 	public void testPlay() {
 
-		Table t = new Table();
+		Table t = Table.getTable();
+		
+		System.out.println("First singletonA:  " + t);
+		System.out.println("First singletonA data value =   " +t.getLeftValue());
+		System.out.println("First singletonA data value =   " +t.getRightValue());
+		
 		Domino d1 = new Domino(0,6);
 		Domino d2 = new Domino(0,1);
 
 		t.setValue(d1);
-		t.play(d1);
+		
+		System.out.println("AfterSetValue:\nFirst singletonA:  " + t);
+		System.out.println("First singletonA left value =   " +t.getLeftValue());
+		System.out.println("First singletonA right value =   " +t.getRightValue());
+		
+		t.initialPlay(d1);
+
+		System.out.println("AfterInitialPlay:\nFirst singletonA:  " + t);
+		System.out.println("First singletonA data value =   " +t.getLeftValue());
+		System.out.println("First singletonA data value =   " +t.getRightValue());
 		
 		assertEquals(6, t.board.get(0).getLeftValue());
 		assertEquals(0, t.board.get(0).getRightValue());
 		
-		assertNotEquals(1,t.board.get(0).getLeftValue());
+		assertNotEquals(1,t.board.get(0).getLeftValue());		
 		
 		assertEquals(6, t.getLeftValue());
 		assertEquals(0, t.getRightValue());
@@ -124,10 +146,9 @@ public class TableTest {
 		
 		t.play(d2);
 
-		assertEquals(6, t.board.get(0).getLeftValue());
-		assertEquals(1, t.board.get(0).getRightValue());
-		
-		assertNotEquals(4,t.board.get(0).getLeftValue());
+		System.out.println("AfterSetValue:\nFirst singletonA:  " + t);
+		System.out.println("First singletonA left value =   " +t.getLeftValue());
+		System.out.println("First singletonA right value =   " +t.getRightValue());
 		
 		assertEquals(6, t.getLeftValue());
 		assertEquals(1, t.getRightValue());

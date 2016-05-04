@@ -3,6 +3,7 @@ package softwareGame;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * CLASS TABLE
  * 
@@ -14,25 +15,38 @@ import java.util.List;
 
 public class Table {
 	
-	List<Domino> board;
-	int right;
-	int left;
+   	protected static Table tab = null;
+	public List<Domino> board = null;
+	private int right;
+	private int left;
 
 	/**
 	 * The constructor to be called by the user application when creating the table in which to play.
 	 */
-	public Table(){
-		this.board = new ArrayList<Domino>();
+	protected Table(){
 		this.right = -1;
 		this.left = -1;
+		this.board = new ArrayList<Domino>();
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public static Table getTable(){
+		if(tab == null){
+			tab = new Table();
+		}	
+		return tab;
+
+			
+	}
 	/**
 	 * Method to obtain the right value of the table, which is one of the two possible values a Domino must have in order to be played.
 	 * @return Right value of the table.
 	 */
 	public int getRightValue(){
-		return this.right;
+		return this.getRight();
 	}
 	
 	/**
@@ -48,7 +62,7 @@ public class Table {
 	 * @param d Domino that is going to be added to the table, which values are extracted so it will be an acceptable Domino.
 	 */
 	public void setValue(Domino d){
-		this.right = d.getRightValue();
+		this.setRight(d.getRightValue());
 		this.left = d.getLeftValue();
 	}
 	
@@ -59,7 +73,7 @@ public class Table {
 	 */
 	public boolean canPlay(Domino d){
 		
-		if( (this.right == d.getLeftValue()) || (this.right == d.getRightValue()) ||
+		if( (this.getRight() == d.getLeftValue()) || (this.getRight() == d.getRightValue()) ||
 			(this.left == d.getLeftValue())  || (this.left == d.getRightValue())){
 			return true;
 		}
@@ -75,7 +89,7 @@ public class Table {
 		
 		this.board.add(d);
 		this.left = d.getLeftValue();
-		this.right = d.getRightValue();
+		this.setRight(d.getRightValue());
 	
 	}
 	
@@ -85,6 +99,7 @@ public class Table {
 	 */
 	public void play(Domino d){
 		// Checking if values of Domino match the left value of the table. 
+		
 		if(this.left == d.getRightValue()){
 			this.board.add(0,d);
 			this.left = d.getLeftValue();
@@ -98,15 +113,15 @@ public class Table {
 		}
 
 		// Checking if values of Domino match the right value of the table. 
-		if(this.right == d.getRightValue()){
+		if(this.getRight() == d.getRightValue()){
 			this.board.add(d);
-			this.right = d.getLeftValue();
+			this.setRight(d.getLeftValue());
 			return;
 		}
 		
-		if(this.right == d.getLeftValue()){
+		if(this.getRight() == d.getLeftValue()){
 			this.board.add(d);
-			this.right = d.getRightValue();
+			this.setRight(d.getRightValue());
 			return;
 		}		
 		
@@ -128,5 +143,33 @@ public class Table {
 	public String toString(){
 		return this.board.toString();
 	}
-		
+
+	/**
+	 * @return the right
+	 */
+	public int getRight() {
+		return this.right;
+	}
+
+	/**
+	 * @param right the right to set
+	 */
+	public void setRight(int right) {
+		this.right = right;
+	}
+	
+	/**
+	 * @return the right
+	 */
+	public int getLeft() {
+		return this.left;
+	}
+
+	/**
+	 * @param right the right to set
+	 */
+	public void setLeft(int left) {
+		this.left = left;
+	}
+	
 }
