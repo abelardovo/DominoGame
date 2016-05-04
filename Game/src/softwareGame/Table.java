@@ -171,5 +171,6 @@ public class Table {
 	public void setLeft(int left) {
 		this.left = left;
 	}
+
 	
 }

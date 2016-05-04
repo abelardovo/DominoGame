@@ -14,7 +14,7 @@ import org.junit.Test;
  */
 public class TableTest {
 
-	@SuppressWarnings("static-access")
+	@SuppressWarnings("static-access")	
 	@Test
 	public void testGetRightValue() {
 	
