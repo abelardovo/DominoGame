@@ -9,17 +9,17 @@ import graphicInterface.InterfaceDomino;
  * @version     1.0                 (current version number of program)
  * @since       2016-03-26          (the version of the package this class was first added to)
  */
-public class Domino implements InterfaceDomino{
+public class Domino <T> implements InterfaceDomino <T>{
 	
-	private int right;
-	private int left;
+	private T right;
+	private T left;
 	
 	/**
 	 * The constructor to be call by the Stock constructor to create all the Dominos.
 	 * @param r The right value of the Domino.
 	 * @param l The left value of the Domino. 
 	 */		
-	public Domino(int r, int l){
+	public Domino(T r, T l){
 		this.right = r;
 		this.left = l;
 	}
@@ -28,7 +28,7 @@ public class Domino implements InterfaceDomino{
 	 * Method to obtain the right value of a Domino.
 	 * @return the right value of the Domino.
 	 */		
-	public int getRightValue(){
+	public T getRightValue(){
 		return this.right;
 	}
 	
@@ -36,7 +36,7 @@ public class Domino implements InterfaceDomino{
 	 * Method to obtain the left value of a Domino.
 	 * @return Returns the left value of the Domino.
 	 */	
-	public int getLeftValue(){
+	public T getLeftValue(){
 		return this.left;
 	}	
 	
@@ -45,7 +45,7 @@ public class Domino implements InterfaceDomino{
 	 * @return true if the left and right value of a Domino are equal, otherwise false.
 	 */		
 	public boolean isThereDouble(){
-		if(this.getLeftValue() == this.getRightValue())
+		if(this.getLeftValue().equals(this.getRightValue()))
 			return true;
 		return false;
 	}
@@ -55,6 +55,8 @@ public class Domino implements InterfaceDomino{
 	 * @return String representation of the Domino.
 	 */
 	public String toString(){
-		return Integer.toString(this.left)+":"+Integer.toString(this.right);
+		if(this.left instanceof Integer && this.right instanceof Integer)
+			return Integer.toString((Integer) this.left)+":"+Integer.toString((Integer) this.right);
+		return this.left.toString() +":"+this.right.toString();
 	}
 }

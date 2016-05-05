@@ -9,13 +9,14 @@ import java.util.List;
  * @author      Abelardo Valino <abelardo.valino_ovalle@telecom-sudparis.eu>
  * @author		Andres Gonzalez <andres.gonzalez_arria@telecom-sudparis.eu>
  * @version     1.0                 (current version number of program)
+ * @param <T>
  * @since       2016-03-26          (the version of the package this class was first added to)
  */
 
-public class Player {
+public class Player<T> {
 	
 	private String name;
-	private List<Domino> hand;
+	private List<Domino<T>> hand;
 	
 	/**
 	 * The constructor to be called by the user application when creating the user's player.
@@ -24,7 +25,7 @@ public class Player {
 	public Player(String n){
 		
 		this.name = n;
-		this.hand = new ArrayList<Domino>();
+		this.hand = new ArrayList<Domino<T>>();
 		
 	}
 	
@@ -34,7 +35,7 @@ public class Player {
 	public Player(){
 		
 		this.name = "Computer";
-		this.hand = new ArrayList<Domino>();
+		this.hand = new ArrayList<Domino<T>>();
 	}
 	
 	/**
@@ -58,7 +59,7 @@ public class Player {
 	 * @param n Index number that refers to the wanted Domino in the player's hand.
 	 * @return The Domino in the player's hand, which index is input.
 	 */
-	public Domino getDomino(int n){
+	public Domino<T> getDomino(int n){
 		return this.hand.get(n);
 	}
 	
@@ -66,7 +67,7 @@ public class Player {
 	 * Method to add a given Domino to the player's hand.
 	 * @param d Domino to add to the the hand of the player.
 	 */
-	public void addDomino(Domino d){
+	public void addDomino(Domino<T> d){
 		this.hand.add(d);
 	}	
 	
@@ -82,7 +83,7 @@ public class Player {
 	 * Method to remove a Domino from the player's hand, using the Domino the caller want to remove.
 	 * @param d Domino that is to be removed from the player's hand.
 	 */
-	public void removeDomino(Domino d){
+	public void removeDomino(Domino<T> d){
 		
 		for(int n=0; n<this.hand.size(); n++){
 			if(this.getDomino(n) == d){
@@ -109,12 +110,12 @@ public class Player {
 	 * @param right Right value of the Domino being searched.
 	 * @return true if the Domino given in the input is in the player's hand, otherwise false.
 	 */
-	public boolean searchDomino(int left,int right){
+	public boolean searchDomino(T left,T right){
 		
 		for(int n=0; n<this.hand.size(); n++){
 			
-			if( (right == this.getDomino(n).getLeftValue()) && (left == this.getDomino(n).getRightValue()) || 
-				(right == this.getDomino(n).getRightValue()) && (left == this.getDomino(n).getLeftValue()) ){
+			if( (this.getDomino(n).getLeftValue().equals(right)) && (this.getDomino(n).getRightValue().equals(left)) || 
+				(this.getDomino(n).getRightValue().equals(right)) && (this.getDomino(n).getLeftValue().equals(left)) ){
 					
 				return true;	
 			}
@@ -127,13 +128,13 @@ public class Player {
 	 * @param i Value of the Domino being searched.
 	 * @return If it is found, returns the index number "n" in the player's hand, of the Domino being searched, otherwise -1.
 	 */
-	public int searchForDouble(int i){
+	public int searchForDouble(T i){
 		
 		for(int n=0; n<this.hand.size(); n++){
 			
 			if(this.getDomino(n).isThereDouble()){
 	
-				if(this.getDomino(n).getLeftValue() == i)
+				if(this.getDomino(n).getLeftValue().equals(i))
 					return n;
 			}
 			
