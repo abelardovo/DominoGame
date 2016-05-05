@@ -60,6 +60,7 @@ public class Game<T> implements InterfaceGame
 			 "double5","double6","blockedComputer","play","blockedPlayer",
 			 "win","blockedGame","NoDoubleFirstDomino"};
 	 int indState = 6;
+	 boolean playright = false;
 	
    /**
     * Constructor for 2 players.Create a graphical interface and send it a message to enter the player's name.
@@ -88,8 +89,10 @@ public class Game<T> implements InterfaceGame
 		   this.initialize(this.gGame.getPlayerName());
 		   break;
 		   		   
-	   case GGame.PLAY:
-
+	   
+	   case GGame.PLAYRIGHT:
+		   playright = true;
+	   case GGame.PLAY: 
 		   switch (indState)
 		   {
 		   //Treating the double cases
@@ -203,10 +206,9 @@ public class Game<T> implements InterfaceGame
     * If it is ok, call treatAnswer method otherwise send a message.
     * @param d The selected domino.
     */
-   public void treatDoubleAnswer(Domino d)
+   public void treatDoubleAnswer(Domino<T> d)
    {
 	   
-	   System.out.print("HOLA\n");
 	   //If the selected Domino is not the double needed.
 	   if (!(d.getLeftValue().equals(this.indState)) || !(d.getRightValue().equals(this.indState))){
 		   this.gGame.setMessage("This it is not the double "+this.indState);
@@ -238,7 +240,14 @@ public class Game<T> implements InterfaceGame
     	
     	//Otherwise, we put the Domino on the table and remove it from the player's hand.
     	System.out.println("The player played: "+d.toString());
-    	this.table.play(d);
+    	
+    	if(playright && this.table.canPlayRight(d)){
+    		this.table.playRight(d);
+    		playright = false;
+    	    
+    	}else
+    		this.table.play(d);
+    	
 		this.gGame.putDominoOnTable(d);
 		this.player1.removeDomino(d);
 		this.gGame.removeDominoFromHand(d);

@@ -69,6 +69,15 @@ public class Table<T> implements InterfaceTable<T>{
 		this.left = d.getLeftValue();
 	}
 	
+	public boolean canPlayRight(Domino<T> d){
+		
+		if( (d.getLeftValue().equals(this.getRight())) || (d.getRightValue().equals(this.getRight()))){
+			return true;	
+		}
+			
+		return false;	
+	}
+	
 	/**
 	 * Method that checks if a given Domino can be played in the Table. One of its values match with the left or the right value of the table.
 	 * @param d Domino that is being verified to confirm it can be played.
@@ -94,6 +103,23 @@ public class Table<T> implements InterfaceTable<T>{
 		this.left = d.getLeftValue();
 		this.setRight(d.getRightValue());
 	
+	}
+	
+	public void playRight(Domino<T> d){
+
+		// Checking if values of Domino match the right value of the table. 
+		if(this.getRight() == d.getRightValue()){
+			this.board.add(d);
+			this.setRight(d.getLeftValue());
+			return;
+		}
+		
+		if(this.getRight() == d.getLeftValue()){
+			this.board.add(d);
+			this.setRight(d.getRightValue());
+			return;
+		}		
+		
 	}
 	
 	/**
