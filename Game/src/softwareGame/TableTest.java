@@ -20,7 +20,7 @@ public class TableTest {
 	
 		Table t = Table.getTable();
 		
-		assertEquals(-1, t.getRightValue());
+		assertEquals(null, t.getRightValue());
 		assertNotEquals(1, t.getRightValue());
 		
 		t.setRight(1);
@@ -35,7 +35,8 @@ public class TableTest {
 		
 		Table t = Table.getTable();
 		
-		assertEquals(-1, t.getLeftValue());
+		
+		assertEquals(null, t.getLeftValue());
 		assertNotEquals(1, t.getLeftValue());
 		
 		t.setLeft(1);
@@ -52,8 +53,8 @@ public class TableTest {
 		Table t = Table.getTable();
 		Domino d = new Domino(0,6);
 		
-		assertEquals(-1, t.getLeftValue());
-		assertEquals(-1, t.getRightValue());
+		assertEquals(null, t.getLeftValue());
+		assertEquals(null, t.getRightValue());
 		assertNotEquals(1, t.getLeftValue());
 		
 		
@@ -97,10 +98,10 @@ public class TableTest {
 		
 		t.initialPlay(d1);
 		
-		assertEquals(6, t.board.get(0).getLeftValue());
-		assertEquals(0, t.board.get(0).getRightValue());
+		assertEquals(6, ((Domino) t.board.get(0)).getLeftValue());
+		assertEquals(0, ((Domino) t.board.get(0)).getRightValue());
 		
-		assertNotEquals(1,t.board.get(0).getLeftValue());
+		assertNotEquals(1,((Domino) t.board.get(0)).getLeftValue());
 		
 		assertEquals(6, t.getLeftValue());
 		assertEquals(0, t.getRightValue());
@@ -134,10 +135,10 @@ public class TableTest {
 		System.out.println("First singletonA data value =   " +t.getLeftValue());
 		System.out.println("First singletonA data value =   " +t.getRightValue());
 		
-		assertEquals(6, t.board.get(0).getLeftValue());
-		assertEquals(0, t.board.get(0).getRightValue());
+		assertEquals(6, ((Domino) t.board.get(0)).getLeftValue());
+		assertEquals(0, ((Domino) t.board.get(0)).getRightValue());
 		
-		assertNotEquals(1,t.board.get(0).getLeftValue());		
+		assertNotEquals(1,((Domino) t.board.get(0)).getLeftValue());		
 		
 		assertEquals(6, t.getLeftValue());
 		assertEquals(0, t.getRightValue());
