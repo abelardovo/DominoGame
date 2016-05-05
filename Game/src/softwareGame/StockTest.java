@@ -48,8 +48,8 @@ public class StockTest {
 		assertFalse(s.pile.contains(d));
 		
 		while(i<s.pile.size()){
-			if((d.getLeftValue() == s.pile.get(i).getLeftValue() && d.getRightValue() == s.pile.get(i).getRightValue())
-				|| (d.getLeftValue() == s.pile.get(i).getRightValue() && d.getRightValue() == s.pile.get(i).getLeftValue())){
+			if((d.getLeftValue().equals(((Domino) s.pile.get(i)).getLeftValue()) && d.getRightValue().equals(((Domino) s.pile.get(i)).getRightValue()))
+				|| (d.getLeftValue().equals(((Domino) s.pile.get(i)).getRightValue()) && d.getRightValue().equals(((Domino) s.pile.get(i)).getLeftValue()))){
 				b = true;
 			}
 			i++;
