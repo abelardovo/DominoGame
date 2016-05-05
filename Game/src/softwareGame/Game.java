@@ -68,11 +68,12 @@ public class Game<T> implements InterfaceGame
     * @param name2 The name of the second player.
     * @throws IOException 
     */
-   public Game() throws IOException
+   public Game(String name, GGame g) throws IOException
    {	   
-	   this.gGame = new GGame(this);
-       gGame.setVisible(true);
-       this.gGame.setMessage("Please enter your name(and return): ");
+	   this.gGame = g;
+//       gGame.setVisible(true);
+	   this.player1 = new Player(name);
+	   this.gGame.setName(name);
     }
    
    /**
@@ -167,7 +168,7 @@ public class Game<T> implements InterfaceGame
    {
 	   this.stock = Stock.getStock();
 	   this.table = Table.getTable();
-	   this.player1 = new Player(name);
+//	   this.player1 = new Player(name);
 	   this.pc = new Player();
 	   Domino<T> d;
 
@@ -538,15 +539,16 @@ public class Game<T> implements InterfaceGame
 	 * The main starts the game.
 	 * 
 	 */  
+   /*
    public static void main(String [] args)
    {
 	   
-   	try {
-		Game<Integer> game = new Game<Integer>();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		System.out.print("An exception occurred! ");
-	}       
-   }
+   		try {
+   			Game<Integer> game = new Game<Integer>();
+   		} catch (IOException e) {
+   			// TODO Auto-generated catch block
+   			e.printStackTrace();
+   			System.out.print("An exception occurred! ");
+   		}       
+   }*/
 }
