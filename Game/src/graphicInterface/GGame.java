@@ -20,14 +20,14 @@ import javax.swing.JFrame;
  * on which side the domino is put on the table.
  *
  */
-public class GGame extends JFrame
+public class GGame<T> extends JFrame
 {	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3953940062126575231L;
 	private GMessageBar stateBar;	
-	private GameZone gameZone;
+	private GameZone<T> gameZone;
 	private GHand gHand;
 	private InterfaceGame game;
 	private final static int HIGHT = 1000;
@@ -37,7 +37,7 @@ public class GGame extends JFrame
 	/**
 	 * The last domino selected. When the player clicks on a domino, this attribute is updated.
 	 */
-	public InterfaceDomino dominoChoiced = null;
+	public InterfaceDomino<T> dominoChoiced = null;
 	
 	/**
 	 * Indicate the player has entered his name.
@@ -94,7 +94,7 @@ public class GGame extends JFrame
 	 * Add a domino into the graphical hand of the player.
 	 */
 	
-	public void addDominoInHand(InterfaceDomino d)
+	public void addDominoInHand(InterfaceDomino<T> d)
     {
 		String imageName = "imagesDominos/"+d.getLeftValue()+"-"+
 							d.getRightValue()+".jpg";
@@ -105,7 +105,7 @@ public class GGame extends JFrame
 	 /**
 	  * Return the last domino selected.
 	  */
-	public InterfaceDomino getDomino()
+	public InterfaceDomino<T> getDomino()
 	{
 		return dominoChoiced;
 	}
@@ -125,7 +125,7 @@ public class GGame extends JFrame
 	{
 		// build components
 	    stateBar = new GMessageBar(this);
-	    gameZone = new GameZone(this);
+	    gameZone = new GameZone<T>(this);
 	    
 	    gHand = new GHand();
 	    
@@ -150,10 +150,10 @@ public class GGame extends JFrame
 	 * @param d Domino to put on the table. 
 	 * 
 	 */
-	public void   putDominoOnTable (InterfaceDomino d)
+	public void   putDominoOnTable (InterfaceDomino<T> d)
 	{
-		int leftEnd=gameZone.getValueLeftTable();	
-		int rightEnd=gameZone.getValueRightTable();	
+		T leftEnd=(T) gameZone.getValueLeftTable();	
+		T rightEnd=(T) gameZone.getValueRightTable();	
 			 
 		if (gameZone.noDomino()) // no domino on the table
 			{
@@ -163,7 +163,7 @@ public class GGame extends JFrame
 				gameZone.addFirstDomino(image,d.getLeftValue(),d.getRightValue());
 				
 			}
-		else if(d.getLeftValue()==leftEnd)
+		else if(d.getLeftValue().equals(leftEnd))
 	    	{
 	    		String nomImage = "imagesDominos/"+d.getRightValue()+"-"+d.getLeftValue()+".jpg";
 	    		ImageDomino image = new ImageDomino(nomImage);
@@ -171,14 +171,14 @@ public class GGame extends JFrame
 	    		gameZone.addDominoLeft(image,d.getRightValue());
 	    			
 	    	}
-	    else if(d.getLeftValue()==rightEnd)
+	    else if(d.getLeftValue().equals(rightEnd))
 	    	{
 	    		String nomImage = "imagesDominos/"+d.getLeftValue()+"-"+d.getRightValue()+".jpg";
 	    		ImageDomino image = new ImageDomino(nomImage);
 	    		
 	    		gameZone.addDominoRight(image,d.getRightValue());
 	    	}
-	    else if(d.getRightValue()==leftEnd)
+	    else if(d.getRightValue().equals(leftEnd))
 	    	{
 	    		String nomImage = "imagesDominos/"+d.getLeftValue()+"-"+d.getRightValue()+".jpg";
 	    		ImageDomino image = new ImageDomino(nomImage);
@@ -203,11 +203,11 @@ public class GGame extends JFrame
 	 * @param d Domino to put on the table. 
 	 * @throws BadMatchException if Domino does not match with table left side.
 	 */
-	public void   putDominoOnLeftTable (InterfaceDomino d) throws BadMatchException
+	public void   putDominoOnLeftTable (InterfaceDomino<T> d) throws BadMatchException
 	{
 		
 		
-		int leftEnd=gameZone.getValueLeftTable();
+		T leftEnd=(T) gameZone.getValueLeftTable();
 		
 		if (gameZone.noDomino()) // no domino on the table
 		{
@@ -217,7 +217,7 @@ public class GGame extends JFrame
 			gameZone.addFirstDomino(image,d.getLeftValue(),d.getRightValue());
 			
 		}
-		else if(d.getLeftValue()==leftEnd)
+		else if(d.getLeftValue().equals(leftEnd))
     	{
     		String imageName = "imagesDominos/"+d.getRightValue()+"-"+d.getLeftValue()+".jpg";
     		ImageDomino image = new ImageDomino(imageName);
@@ -225,7 +225,7 @@ public class GGame extends JFrame
     		gameZone.addDominoLeft(image,d.getRightValue());
     	}
     	else 
-    	if(d.getRightValue()==leftEnd)
+    	if(d.getRightValue().equals(leftEnd))
         {
         	String imageName = "imagesDominos/"+d.getLeftValue()+"-"+d.getRightValue()+".jpg";
         	ImageDomino image = new ImageDomino(imageName);
@@ -243,9 +243,9 @@ public class GGame extends JFrame
 	 * @param d Domino to put on the table. 
 	 * @throws BadMatchException if Domino does not match with table right side.
 	 */
-	public void   putDominoOnRightTable (InterfaceDomino d) throws BadMatchException
+	public void   putDominoOnRightTable (InterfaceDomino<T> d) throws BadMatchException
 	{
-		int rightEnd=gameZone.getValueRightTable();	
+		T rightEnd= (T) gameZone.getValueRightTable();	
 	
 		if (gameZone.noDomino()) // no domino on the table
 		{
@@ -256,7 +256,7 @@ public class GGame extends JFrame
 			
 		}
 		
-    	else if(d.getLeftValue()==rightEnd)
+    	else if(d.getLeftValue().equals(rightEnd))
     	{
     		String imageName = "imagesDominos/"+d.getLeftValue()+"-"+d.getRightValue()+".jpg";
     		ImageDomino image = new ImageDomino(imageName);
@@ -264,7 +264,7 @@ public class GGame extends JFrame
     		gameZone.addDominoRight(image,d.getRightValue());
     	}
     	
-    	else  if(d.getRightValue()==rightEnd)
+    	else  if(d.getRightValue().equals(rightEnd))
     	{
     		String imageName = "imagesDominos/"+d.getRightValue()+"-"+d.getLeftValue()+".jpg";
     		ImageDomino image = new ImageDomino(imageName);
@@ -279,7 +279,7 @@ public class GGame extends JFrame
 	/**
 	 * Remove a domino from the graphical hand of the player.
 	 */
-	public void removeDominoFromHand(InterfaceDomino d)
+	public void removeDominoFromHand(InterfaceDomino<T> d)
 	{
 		String imageName = "imagesDominos/"+d.getLeftValue()+"-"+
 								d.getRightValue()+".jpg";
@@ -329,7 +329,7 @@ public class GGame extends JFrame
 	 * Store the choosen domino.
 	 * @param d
 	 */
-	void setDomino(InterfaceDomino d)
+	void setDomino(InterfaceDomino<T> d)
 	{
 		dominoChoiced = d;
 	}

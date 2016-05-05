@@ -12,26 +12,26 @@ import javax.swing.JPanel;
  * Describe all the zones in this graphical interface.
  */
 
-	 class GameZone  extends JPanel
+	 class GameZone<T>  extends JPanel
 	{
 		 private static final long serialVersionUID = -5554714719712248972L;
 
 		Dimension sizeGZ = new Dimension(1000,330);
 		
-		private GTable gTable;
+		private GTable<T> gTable;
 		private JButton gStock;
 		private JButton gDraw;
 		private JButton gPlayPC;
-		private GGame gGame;
+		private GGame<T> gGame;
 		
-		GameZone(GGame g)
+		GameZone(GGame<T> g)
 		{
 			gGame = g;
 			
 			setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 			Dimension d = new Dimension(sizeGZ.width/8,sizeGZ.height);
 			
-			gTable = new GTable();
+			gTable = new GTable<T>();
 			
 			
 		    gStock = new JButton("I DRAW");
@@ -84,7 +84,7 @@ import javax.swing.JPanel;
 		 * @param left the left value of the domino
 		 * @param right the right value of the domino
 		 */
-		 void addFirstDomino(ImageDomino image,int left, int right)
+		 void addFirstDomino(ImageDomino image,T left, T right)
 		{
 			gTable.addFirstDomino(image,left,right);
 			
@@ -94,7 +94,7 @@ import javax.swing.JPanel;
 		 * @param d the domino'image to added
 		 * @param val the new value of the left table. eg the right value of the domino.
 		 */
-		 void addDominoLeft(ImageDomino image,int val)
+		 void addDominoLeft(ImageDomino image,T val)
 		{
 			gTable.addDominoLeft(image,val);
 			
@@ -104,7 +104,7 @@ import javax.swing.JPanel;
 		 * @param d the domino'image to added
 		 * @param val the new value of the right table. e.g the left value of the domino.
 		 */
-		 void addDominoRight(ImageDomino image,int val)
+		 void addDominoRight(ImageDomino image,T val)
 		{
 			gTable.addDominoRight(image,val);
 			
@@ -128,17 +128,17 @@ import javax.swing.JPanel;
 		 * 
 		 * @return the left value of the table.
 		 */
-		 int getValueLeftTable()
+		 T getValueLeftTable()
 		{
-			return gTable.getValueLeftTable();
+			return (T) gTable.getValueLeftTable();
 		}
 		/**
 		 * 
 		 * @return the right value of the table.
 		 */
-		 int getValueRightTable()
+		 T getValueRightTable()
 		{
-			return gTable.getValueRightTable();
+			return (T) gTable.getValueRightTable();
 		}
 		
 		/**

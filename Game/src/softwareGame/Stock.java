@@ -1,4 +1,6 @@
 package softwareGame;
+import graphicInterface.InterfaceStock;
+
 import java.util.*;
 
 /**
@@ -7,12 +9,13 @@ import java.util.*;
  * @author      Abelardo Valino <abelardo.valino_ovalle@telecom-sudparis.eu>
  * @author		Andres Gonzalez <andres.gonzalez_arria@telecom-sudparis.eu>
  * @version     1.0                 (current version number of program)
+ * @param <T>
  * @since       2016-03-26          (the version of the package this class was first added to)
  */
-public class Stock {
+public class Stock<T> implements InterfaceStock<T> {
 
 	protected static Stock sto = null;
-	protected List<Domino> pile = null;
+	protected List<Domino<T>> pile = null;
 	
 	/**
 	 * The constructor to be call by the user application. 
@@ -20,7 +23,7 @@ public class Stock {
 	 */			
 	private Stock(){
 		
-		this.pile = new ArrayList<Domino>();
+		this.pile = new ArrayList<Domino<T>>();
 		//Creates a total of 28 Dominos. SUM(x)from 1 to 7 
 		for (int i=6; i>=0; i--){
 			for (int j=i;j>=0;j--){
@@ -30,6 +33,7 @@ public class Stock {
 		System.out.print(this.pile.size()+"\n");
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public static Stock getStock(){
 		if(sto == null){
 			sto = new Stock();
@@ -41,7 +45,7 @@ public class Stock {
 	 * Method to add the Domino d to the pile which is represented by a List of Dominos.
 	 * @param d The Domino to be added.
 	 */
-	private void addDomino(Domino d){
+	private void addDomino(Domino<T> d){
 		this.pile.add(d);
 	}
 	
@@ -68,12 +72,12 @@ public class Stock {
 	 * Method to obtain a random Domino from the Stock.
 	 * @return A random Domino from the Stock.
 	 */
-	public Domino draw(){
+	public Domino<T> draw(){
 		
 		Random rand = new Random();
 		int  n = rand.nextInt(this.pile.size());
 		
-		Domino d = this.pile.get(n);
+		Domino<T> d = this.pile.get(n);
 		this.removeDomino(n);
 		
 		return d;

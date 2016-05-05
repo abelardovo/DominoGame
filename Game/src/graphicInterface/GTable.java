@@ -4,14 +4,13 @@ package graphicInterface;
 
 
 import java.awt.Color;
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.Vector;
 
 import javax.swing.JPanel;
 
- class GTable extends JPanel
+ class GTable<T> extends JPanel
 {
     /**
 	 * 
@@ -20,7 +19,7 @@ import javax.swing.JPanel;
 	Dimension dimension = new Dimension(450,330);
     ImageDomino imageLeftDomino;
     ImageDomino imageRightDomino;
-    int valueLeft=-1, valueRight=-1;
+    T valueLeft=null, valueRight=null;
     Vector <ImageDomino> dominosList= new Vector <ImageDomino>();
     int indexLastElement= -1;
     public GTable ()
@@ -55,7 +54,7 @@ import javax.swing.JPanel;
 	 * @param left the left value of the domino
 	 * @param right the right value of the domino
 	 */
-	 void addFirstDomino(ImageDomino image, int left, int right) 
+	 void addFirstDomino(ImageDomino image, T left, T right) 
 	{
 		valueLeft = left;
 		valueRight = right;
@@ -73,7 +72,7 @@ import javax.swing.JPanel;
 	 * @param d the domino'image to added
 	 * @param val the new value of the left table. eg the right value of the domino.
 	 */
-	 void addDominoLeft(ImageDomino image,int val)
+	 void addDominoLeft(ImageDomino image,T val)
 	{
 		valueLeft = val;
 		indexLastElement++;
@@ -90,7 +89,7 @@ import javax.swing.JPanel;
 	 * @param d the domino'image to added
 	 * @param val the new value of the right table. eg the left value of the domino.
 	 */
-	 void addDominoRight(ImageDomino image,int val)
+	 void addDominoRight(ImageDomino image,T val)
 	{
 		valueRight = val;
 		indexLastElement++;
@@ -137,13 +136,13 @@ import javax.swing.JPanel;
 			return true;
 			else return false;
 	}
-	public int getValueLeftTable() 
+	public T getValueLeftTable() 
 	{
 		
 		return valueLeft;
 		
 	}
-	public int getValueRightTable() 
+	public T getValueRightTable() 
 	{
 		
 		return valueRight;

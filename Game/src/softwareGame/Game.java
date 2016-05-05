@@ -3,6 +3,7 @@ package softwareGame;
 
 import graphicInterface.GGame;
 import graphicInterface.InterfaceGame;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,9 +12,10 @@ import java.io.InputStreamReader;
 /**
 * Run the game between a player and the computer.
 * @version march 2016
+ * @param <T>
 *
 */
-public class Game implements InterfaceGame
+public class Game<T> implements InterfaceGame
 {
 	/**
 	 * The graphical interface.
@@ -23,12 +25,12 @@ public class Game implements InterfaceGame
 	/**
 	 * The stock
 	 */
-	 private Stock stock;
+	 private Stock<T> stock;
    
 	 /**
 	  * The board where dominos are put.
 	  */
-	 private Table table;
+	 private Table<T> table;
    
    /**
     * Player 1
@@ -164,7 +166,7 @@ public class Game implements InterfaceGame
 	   this.table = Table.getTable();
 	   this.player1 = new Player(name);
 	   this.pc = new Player();
-	   Domino d;
+	   Domino<T> d;
 
 	   //Each player takes there 6 chips
 	   for(int i=0;i<6;i++ ){
@@ -183,7 +185,6 @@ public class Game implements InterfaceGame
 	   this.gGame.setEnabledPlayPC(false);
 	   
 	   this.gGame.setMessage("Hello "+this.player1.getName()+" good luck.  Please click on double "+this.indState+" or jump");
-	
    }
    
    /*
@@ -204,8 +205,10 @@ public class Game implements InterfaceGame
     */
    public void treatDoubleAnswer(Domino d)
    {
+	   
+	   System.out.print("HOLA\n");
 	   //If the selected Domino is not the double needed.
-	   if ((d.getLeftValue() != this.indState) || (d.getRightValue() != this.indState)){
+	   if (!(d.getLeftValue().equals(this.indState)) || !(d.getRightValue().equals(this.indState))){
 		   this.gGame.setMessage("This it is not the double "+this.indState);
 		   return;			   
 	   }
@@ -225,7 +228,7 @@ public class Game implements InterfaceGame
     * and from the graphical hand. Then put d on the board and on the graphic board.
     * @param d The domino selected by the player.
     */
-    public void treatAnswer(Domino d)
+    public void treatAnswer(Domino<T> d)
     {
     	//Verify if the Domino cannot be played.
     	if(!this.table.canPlay(d)){
@@ -308,7 +311,7 @@ public class Game implements InterfaceGame
    	{
    		int i;
    		System.out.println("Computer tries to play, with state: "+indState);
-  	 	Domino d=null;
+  	 	Domino<T> d=null;
   	 switch (indState)
   	 {
   	 //we look for a double n in the computer's hand
@@ -530,7 +533,7 @@ public class Game implements InterfaceGame
    {
 	   
    	try {
-		Game game = new Game();
+		Game<Integer> game = new Game<Integer>();
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

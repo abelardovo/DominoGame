@@ -3,8 +3,8 @@ package graphicInterface;
  * Your domino must implement this interface to use graphical interface.
  * 
  */
-public interface InterfaceDomino 
+public interface InterfaceDomino <T>
 {
-	public int getLeftValue();
-	public int getRightValue();
+	public T getLeftValue();
+	public T getRightValue();
 }

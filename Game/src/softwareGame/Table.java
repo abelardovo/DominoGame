@@ -1,5 +1,7 @@
 package softwareGame;
 
+import graphicInterface.InterfaceTable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,29 +12,31 @@ import java.util.List;
  * @author      Abelardo Valino <abelardo.valino_ovalle@telecom-sudparis.eu>
  * @author		Andres Gonzalez <andres.gonzalez_arria@telecom-sudparis.eu>
  * @version     1.0                 (current version number of program)
+ * @param <T>
  * @since       2016-03-26          (the version of the package this class was first added to)
  */
 
-public class Table {
+public class Table<T> implements InterfaceTable<T>{
 	
    	protected static Table tab = null;
-	protected List<Domino> board = null;
-	private int right;
-	private int left;
+	protected List<Domino<T>> board = null;
+	private T right;
+	private T left;
 
 	/**
 	 * The constructor to be called by the user application when creating the table in which to play.
 	 */
 	private Table(){
-		this.right = -1;
-		this.left = -1;
-		this.board = new ArrayList<Domino>();
+		this.right = null;
+		this.left = null;
+		this.board = new ArrayList<Domino<T>>();
 	}
 	
 	/**
 	 * 
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	public static Table getTable(){
 		if(tab == null){
 			tab = new Table();
@@ -44,15 +48,15 @@ public class Table {
 	 * Method to obtain the right value of the table, which is one of the two possible values a Domino must have in order to be played.
 	 * @return Right value of the table.
 	 */
-	public int getRightValue(){
-		return this.getRight();
+	public T getRightValue(){
+		return this.right;
 	}
 	
 	/**
 	 * Method to obtain the left value of the table, which is one of the two possible values a Domino must have in order to be played.
 	 * @return Left value of the table.
 	 */
-	public int getLeftValue(){
+	public T getLeftValue(){
 		return this.left;
 	}
 	
@@ -60,7 +64,7 @@ public class Table {
 	 * Method to set initial values to the right and left variables of the table.
 	 * @param d Domino that is going to be added to the table, which values are extracted so it will be an acceptable Domino.
 	 */
-	public void setValue(Domino d){
+	public void setValue(Domino<T> d){
 		this.setRight(d.getRightValue());
 		this.left = d.getLeftValue();
 	}
@@ -70,10 +74,10 @@ public class Table {
 	 * @param d Domino that is being verified to confirm it can be played.
 	 * @return true if the Domino can be played, otherwise false.
 	 */
-	public boolean canPlay(Domino d){
+	public boolean canPlay(Domino<T> d){
 		
-		if( (this.getRight() == d.getLeftValue()) || (this.getRight() == d.getRightValue()) ||
-			(this.left == d.getLeftValue())  || (this.left == d.getRightValue())){
+		if( (d.getLeftValue().equals(this.getRight())) || (d.getRightValue().equals(this.getRight())) ||
+			(d.getLeftValue().equals(this.getLeft()))  || (d.getRightValue().equals(this.getLeft()))){
 			return true;
 		}
 		
@@ -84,7 +88,7 @@ public class Table {
 	 * Method to set the initial Domino in the table.
 	 * @param d Domino to be setted in the table.
 	 */
-	public void initialPlay(Domino d){
+	public void initialPlay(Domino<T> d){
 		
 		this.board.add(d);
 		this.left = d.getLeftValue();
@@ -96,18 +100,18 @@ public class Table {
 	 * Method that adds a given Domino to the table. By default, the given Domino will be added in the left side of the table.
 	 * @param d Domino to be added in the table.
 	 */
-	public void play(Domino d){
+	public void play(Domino<T> d){
 		// Checking if values of Domino match the left value of the table. 
 		
 		if(this.left == d.getRightValue()){
 			this.board.add(0,d);
-			this.left = d.getLeftValue();
+			this.setLeft(d.getLeftValue());
 			return;
 		}
 		
 		if(this.left == d.getLeftValue()){
 			this.board.add(0,d);
-			this.left = d.getRightValue();
+			this.setLeft(d.getRightValue());
 			return;
 		}
 
@@ -132,7 +136,9 @@ public class Table {
 	 * @return String representation of the table's state.
 	 */
 	public String printState(){
-		return "STATE TABLE: "+this.getLeftValue()+" : "+this.getRightValue()+"\n";
+		if(this.right == null || this.left == null)
+			return "STATE TABLE: -1 : -1\n";
+		return "STATE TABLE: "+this.getLeftValue().toString()+" : "+this.getRightValue().toString()+"\n";
 	}
 	
 	/**
@@ -146,28 +152,28 @@ public class Table {
 	/**
 	 * @return the right
 	 */
-	public int getRight() {
+	public T getRight() {
 		return this.right;
 	}
 
 	/**
-	 * @param right the right to set
+	 * @param t the right to set
 	 */
-	public void setRight(int right) {
-		this.right = right;
+	public void setRight(T t) {
+		this.right = t;
 	}
 	
 	/**
 	 * @return the right
 	 */
-	public int getLeft() {
+	public T getLeft() {
 		return this.left;
 	}
 
 	/**
 	 * @param right the right to set
 	 */
-	public void setLeft(int left) {
+	public void setLeft(T left) {
 		this.left = left;
 	}
 
