@@ -1,6 +1,7 @@
 
 package softwareGame;
 
+import graphicInterface.BadMatchException;
 import graphicInterface.GGame;
 import graphicInterface.InterfaceGame;
 
@@ -20,7 +21,7 @@ public class Game<T> implements InterfaceGame
 	/**
 	 * The graphical interface.
 	 */
-	GGame gGame;
+	GGame<T> gGame;
 	
 	/**
 	 * The stock
@@ -35,12 +36,12 @@ public class Game<T> implements InterfaceGame
    /**
     * Player 1
     */
-	 private Player player1;
+	 private Player<T> player1;
    
    /**
     * Computer
     */
-	 private Player pc;
+	 private Player<T> pc;
    
    /**States:
     * 0-6 search if double domino
@@ -242,14 +243,26 @@ public class Game<T> implements InterfaceGame
     	//Otherwise, we put the Domino on the table and remove it from the player's hand.
     	System.out.println("The player played: "+d.toString());
     	
-    	if(playright && this.table.canPlayRight(d)){
+    	if(playright && (this.table.canPlayRight(d))){
     		this.table.playRight(d);
     		playright = false;
+    		try {
+				this.gGame.putDominoOnRightTable(d);
+			} catch (BadMatchException e) {
+				this.table.play(d);
+				e.printStackTrace();
+			};
     	    
-    	}else
+    	}else{
     		this.table.play(d);
+    		try {
+				this.gGame.putDominoOnLeftTable(d);
+			} catch (BadMatchException e) {
+				e.printStackTrace();
+			};
+    	}
     	
-		this.gGame.putDominoOnTable(d);
+		//this.gGame.putDominoOnTable(d);
 		this.player1.removeDomino(d);
 		this.gGame.removeDominoFromHand(d);
 		

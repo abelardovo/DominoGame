@@ -138,10 +138,10 @@ public class Player<T> {
 	
 	/**
 	 * Method that searches the player's hand, to determine if a given Domino, that has double value, is in the player's hand.	 
-	 * @param i Value of the Domino being searched.
+	 * @param indState Value of the Domino being searched.
 	 * @return If it is found, returns the index number "n" in the player's hand, of the Domino being searched, otherwise -1.
 	 */
-	public int searchForDouble(T i){
+	public int searchForDouble(int indState){
 		
 		Iterator<Domino<T>> handIterator = this.hand.iterator();
 		Domino<T> d; 
@@ -152,7 +152,7 @@ public class Player<T> {
 			d = handIterator.next();
 		
 			if(d.isThereDouble())
-				if(d.getLeftValue().equals(i))
+				if(d.getLeftValue().equals(indState))
 					return n;
 			
 			
