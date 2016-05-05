@@ -38,13 +38,18 @@ import javax.swing.JTextField;
 			
 			String name = tex.substring(text.length(), tex.length());
 			setText("");
-			setEditable(false);
+			//setEditable(false);
 			
 			game.setPlayerName(name);
 			game.sendMessage(GGame.DATA_NAME);
 		
 			
 		}	
+	}
+	
+	public void stopInput(){
+		setEditable(false);
+		
 	}
 	
 	 void setTexte(String s)
