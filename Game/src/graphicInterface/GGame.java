@@ -318,6 +318,7 @@ public class GGame<T> extends JFrame
 	{
 		stateBar.setTexte(s);
 	}
+
 	/**
 	 * Set the editing graphical zone  enabled if the boolean is true, and not enabled if false.
 	 */
@@ -325,6 +326,7 @@ public class GGame<T> extends JFrame
 	{
 		stateBar.setEnabled(b);
 	}
+	
 	/**
 	 * Store the choosen domino.
 	 * @param d
