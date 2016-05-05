@@ -1,6 +1,7 @@
 package softwareGame;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -23,10 +24,8 @@ public class Player<T> {
 	 * @param n Name of the user's player.
 	 */
 	public Player(String n){
-		
 		this.name = n;
 		this.hand = new ArrayList<Domino<T>>();
-		
 	}
 	
 	/**
@@ -111,34 +110,65 @@ public class Player<T> {
 	 * @return true if the Domino given in the input is in the player's hand, otherwise false.
 	 */
 	public boolean searchDomino(T left,T right){
-		
-		for(int n=0; n<this.hand.size(); n++){
+				
+		Iterator<Domino<T>> handIterator = this.hand.iterator();
+		Domino<T> d; 
+		while (handIterator.hasNext()){
 			
-			if( (this.getDomino(n).getLeftValue().equals(right)) && (this.getDomino(n).getRightValue().equals(left)) || 
-				(this.getDomino(n).getRightValue().equals(right)) && (this.getDomino(n).getLeftValue().equals(left)) ){
-					
-				return true;	
-			}
+			d = handIterator.next();
+			
+			if( (d.getLeftValue().equals(right)) && (d.getRightValue().equals(left)) || 
+				(d.getRightValue().equals(right)) && (d.getLeftValue().equals(left)) ){
+						
+					return true;		
+			}			
 		}
+		
+//		for(int n=0; n<this.hand.size(); n++){
+//			
+//			if( (this.getDomino(n).getLeftValue().equals(right)) && (this.getDomino(n).getRightValue().equals(left)) || 
+//				(this.getDomino(n).getRightValue().equals(right)) && (this.getDomino(n).getLeftValue().equals(left)) ){
+//					
+//				return true;	
+//			}
+//		}
+		
 		return false;
 	}
 	
 	/**
 	 * Method that searches the player's hand, to determine if a given Domino, that has double value, is in the player's hand.	 
-	 * @param i Value of the Domino being searched.
+	 * @param indState Value of the Domino being searched.
 	 * @return If it is found, returns the index number "n" in the player's hand, of the Domino being searched, otherwise -1.
 	 */
-	public int searchForDouble(T i){
+	public int searchForDouble(int indState){
 		
-		for(int n=0; n<this.hand.size(); n++){
+		Iterator<Domino<T>> handIterator = this.hand.iterator();
+		Domino<T> d; 
+		int n = 0;
+		
+		while (handIterator.hasNext()){
 			
-			if(this.getDomino(n).isThereDouble()){
-	
-				if(this.getDomino(n).getLeftValue().equals(i))
+			d = handIterator.next();
+		
+			if(d.isThereDouble())
+				if(d.getLeftValue().equals(indState))
 					return n;
-			}
 			
+			
+			n++;
 		}
+			
+			
+//		for(int n=0; n<this.hand.size(); n++){
+//			
+//			if(this.getDomino(n).isThereDouble()){
+//	
+//				if(this.getDomino(n).getLeftValue().equals(i))
+//					return n;
+//			}
+//			
+//		}
 		return -1;
 	}
 
@@ -148,9 +178,15 @@ public class Player<T> {
 	 */
 	public String toString(){
 		String s = this.name + " hand: ";
-		for (int i=0; i<this.hand.size();i++){
-			s = s + this.hand.get(i).toString() + " / ";
+		Iterator<Domino<T>> handIterator = this.hand.iterator();
+		
+		while (handIterator.hasNext()){
+			s = s + handIterator.next().toString() + " / ";
 		}
+		
+//		for (int i=0; i<this.hand.size();i++){
+//			s = s + this.hand.get(i).toString() + " / ";
+//		}
 		
 		s = s + "\n";
 

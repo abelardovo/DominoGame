@@ -55,31 +55,25 @@ public class GGame<T> extends JFrame
 	/**
 	 * The player has clicked on the jump button.
 	 */
-	
 	public static final int JUMP = 2;
 	/**
 	 * The player has clicked on the draw button.
 	 */
-	
 	public static final int DRAW = 3;
 	/**
 	 * The player has clicked on the playPC button.
 	 */
-	
 	public static final int VALIDPCPLAY = 4;
 	/**
 	 * The player has clicked on the new game menu.
 	 */
-	
 	public static final int NEWGAME = 5;
-	
 	Container contentPane ;
 	
 	public void stopInput(){
 		this.stateBar.stopInput();
 	}
-	
-	/**	
+	/**
 	 * The constructor to be call by the user application.
 	 * @param game The  class of the user application which are going to receive the 
 	 * messages from this interface. This user's class must implements InterfaceGame interface.
@@ -328,7 +322,6 @@ public class GGame<T> extends JFrame
 	{
 		stateBar.setTexte(s);
 	}
-
 	/**
 	 * Set the editing graphical zone  enabled if the boolean is true, and not enabled if false.
 	 */
@@ -336,7 +329,6 @@ public class GGame<T> extends JFrame
 	{
 		stateBar.setEnabled(b);
 	}
-	
 	/**
 	 * Store the choosen domino.
 	 * @param d
