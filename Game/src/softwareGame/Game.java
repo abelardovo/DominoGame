@@ -546,22 +546,5 @@ public class Game<T> implements InterfaceGame
   		 
   		 break;
   	 }
-   }
-   
-	/**
-	 * The main starts the game.
-	 * 
-	 */  
-   /*
-   public static void main(String [] args)
-   {
-	   
-   		try {
-   			Game<Integer> game = new Game<Integer>();
-   		} catch (IOException e) {
-   			// TODO Auto-generated catch block
-   			e.printStackTrace();
-   			System.out.print("An exception occurred! ");
-   		}       
-   }*/
+   }   
 }

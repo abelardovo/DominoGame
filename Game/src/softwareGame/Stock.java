@@ -12,6 +12,7 @@ import java.util.*;
  * @param <T>
  * @since       2016-03-26          (the version of the package this class was first added to)
  */
+
 public class Stock<T> implements InterfaceStock<T> {
 
 	protected static Stock sto = null;

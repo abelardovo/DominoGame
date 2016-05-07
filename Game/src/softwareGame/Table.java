@@ -5,7 +5,6 @@ import graphicInterface.InterfaceTable;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * CLASS TABLE
  * 
