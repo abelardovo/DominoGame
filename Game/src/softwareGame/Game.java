@@ -392,108 +392,111 @@ public class Game<T> implements InterfaceGame
 		 	this.gGame.setEnabledDraw(true);	  		 
 		 	break;
   		
-  	 //If n=8 or 9  normal game managing the stock and the empty stock.
-  	 case 8:case 9:
-  		 
-  		i=0;
+	  	 //If n=8 or 9  normal game managing the stock and the empty stock.
+	  	 case 8:case 9:
+	  		 i=0;
   		
-  		//Verifying which Domino can play the computer.
-  		while(!this.table.canPlay(this.pc.getDomino(i))){
-  			i++;
+	  		 //Verifying which Domino can play the computer.
+	  		 while(!this.table.canPlay(this.pc.getDomino(i)))
+	  		 {
+	  			 i++;
   			
-  			//If the verification reaches the last Domino in the Computer's hand
-  			if(i>= this.pc.getHandSize()){
-  				
-  				//We check if the Stock is empty. If true, it means that the PC cannot Draw more Dominos.
-  				if(this.stock.isEmpty()){
+	  			 //If the verification reaches the last Domino in the Computer's hand
+	  			 if(i>= this.pc.getHandSize())
+	  			 {
+	  				 //We check if the Stock is empty. If true, it means that the PC cannot Draw more Dominos.
+	  				 if(this.stock.isEmpty())
+	  				 {
+	  					 //If the state of the game was BlockedPlayer and the PC cannot play any Domino, it's a DRAW!
+	  					 if(this.indState == 9)
+	  					 {
+	  						 this.indState = 11;
+	  						 this.gGame.setMessage("The Stock is empty, the PC cannot play. It's a DRAW!"); 						
+	  						 break;
+	  					 }
   					
-  					//If the state of the game was BlockedPlayer and the PC cannot play any Domino, it's a DRAW!
-  					if(this.indState == 9){
-  						this.indState = 11;
-  	  					this.gGame.setMessage("The Stock is empty, the PC cannot play. It's a DRAW!"); 						
-  						break;
-  					}
-  					
-  					//Otherwise, the state of the game changes to BlockedComputer
-  					this.indState = 7;
-  					this.gGame.setMessage("The Stock is empty and the PC cannot play. Select a domino!");
-  					break;
-  				}
+	  					 //Otherwise, the state of the game changes to BlockedComputer
+	  					 this.indState = 7;
+	  					 this.gGame.setMessage("The Stock is empty and the PC cannot play. Select a domino!");
+	  					 break;
+	  				 }
   				
-  				//Otherwise, the Computer can draw a Domino from the Stock.
-  				this.pc.addDomino( this.stock.draw() );
-  	  		}
-  		}
+	  				 //Otherwise, the Computer can draw a Domino from the Stock.
+	  				 this.pc.addDomino( this.stock.draw() );
+	  			 }
+	  		 }
   		
-  		//If the state of the game changes to BlockedGame, the game is over so we disable all the
-  		//buttons and the player's hand.
-  		if (this.indState == 11){
-  			this.gGame.setHandEnable(false);
-  		 	this.gGame.setEnabledDraw(false);
-  		 	this.gGame.setEnabledPlayPC(false);
-  		 	this.gGame.setEnabledJump(false); 
-  		 	break;
-  		}
+	  		//If the state of the game changes to BlockedGame, the game is over so we disable all the
+	  		//buttons and the player's hand.
+	  		if (this.indState == 11)
+	  		{
+	  			this.gGame.setHandEnable(false);
+	  		 	this.gGame.setEnabledDraw(false);
+	  		 	this.gGame.setEnabledPlayPC(false);
+	  		 	this.gGame.setEnabledJump(false); 
+	  		 	break;
+	  		}
   		
-  		//If the state of the game changes to BlockedComputer, 
-  		//we disable all the buttons and enable the playe's hand.
-  		if (this.indState == 7){
-  		 	this.gGame.setEnabledDraw(false);
-  		 	this.gGame.setEnabledPlayPC(false);
-  		 	this.gGame.setEnabledJump(false);
-  			this.gGame.setHandEnable(true);
-  		 	break;
-  		}  		
+	  		//If the state of the game changes to BlockedComputer, 
+	  		//we disable all the buttons and enable the playe's hand.
+	  		if (this.indState == 7)
+	  		{
+	  		 	this.gGame.setEnabledDraw(false);
+	  		 	this.gGame.setEnabledPlayPC(false);
+	  		 	this.gGame.setEnabledJump(false);
+	  			this.gGame.setHandEnable(true);
+	  		 	break;
+	  		}  		
 		
-  		//If the state of the game remains the same, the Computer plays the next available Domino. 
-  		d = this.pc.getDomino(i);
-  		this.table.play(d);
-  		System.out.println("The computer has played: "+ d.toString() );
-		this.gGame.putDominoOnTable(d);
-	 	this.pc.removeDomino(i);
-	 	
-	 	//If the Computer doesn't have any Domino left, it means that it wins.
-	 	if(this.pc.noMoreDominos()){
-			
-			this.indState = 10;
-			
-		 	this.gGame.setEnabledPlayPC(false);
-		 	this.gGame.setEnabledJump(false); 
-	  		this.gGame.setHandEnable(false);
-	  		this.gGame.setEnabledDraw(false);
-	  		
-			this.gGame.setMessage("PC wins!!!!");
-
-		//Otherwise, the game continues.
-		}else{
-			
-		 	this.gGame.setEnabledPlayPC(false);
-	  		this.gGame.setHandEnable(true);
-	  		
-	  		//If the Stock is empty, we disable the Draw button.
-	  		if(this.stock.isEmpty()){
-
-	  			this.indState = 8;
-
-	  			this.gGame.setEnabledJump(true); 
+	  		//If the state of the game remains the same, the Computer plays the next available Domino. 
+	  		d = this.pc.getDomino(i);
+	  		this.table.play(d);
+	  		System.out.println("The computer has played: "+ d.toString() );
+			this.gGame.putDominoOnTable(d);
+		 	this.pc.removeDomino(i);
+		 	
+		 	//If the Computer doesn't have any Domino left, it means that it wins.
+		 	if(this.pc.noMoreDominos())
+		 	{
+				this.indState = 10;
+				
+			 	this.gGame.setEnabledPlayPC(false);
+			 	this.gGame.setEnabledJump(false); 
+		  		this.gGame.setHandEnable(false);
 		  		this.gGame.setEnabledDraw(false);
-				this.gGame.setMessage("Stock empty. "+this.player1.getName()+" choose a domino or JUMP.");
+		  		
+				this.gGame.setMessage("PC wins!!!!");
+	
+			//Otherwise, the game continues.
+			}else{
+			 	this.gGame.setEnabledPlayPC(false);
+		  		this.gGame.setHandEnable(true);
+	  		
+		  		//If the Stock is empty, we disable the Draw button.
+		  		if(this.stock.isEmpty())
+		  		{
+	
+		  			this.indState = 8;
+	
+		  			this.gGame.setEnabledJump(true); 
+			  		this.gGame.setEnabledDraw(false);
+					this.gGame.setMessage("Stock empty. "+this.player1.getName()+" choose a domino or JUMP.");
+	
+				//Otherwise, we activate the Draw button and the Player's hand.
+		  		}else{
+		  			this.gGame.setEnabledJump(false); 
+			  		this.gGame.setEnabledDraw(true);
+					this.gGame.setMessage("The PC played "+d.toString()+".\n"+this.player1.getName()+" choose a domino or DRAW from the Stock.");
 
-			//Otherwise, we activate the Draw button and the Player's hand.
-	  		}else{
-	  			this.gGame.setEnabledJump(false); 
-		  		this.gGame.setEnabledDraw(true);
-				this.gGame.setMessage("The PC played "+d.toString()+".\n"+this.player1.getName()+" choose a domino or DRAW from the Stock.");
-
-	  		}		 		
-		}
+		  		}		 		
+			}
 	 	
 		break;
   		 
 	default: 
 		System.out.println("state no valid");			
   	 } 	    	
-   }
+}
    	
 	/**
 	 * To verify that the player does not cheat with the double.
