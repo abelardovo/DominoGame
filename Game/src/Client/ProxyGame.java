@@ -11,7 +11,8 @@ public class ProxyGame implements InterfaceGame {
 	protected GGame gGame;
 	private InterfaceGame pg;
 	private static List<String> validUsers;
-	private static String passwd;
+	private static int userNumber;
+	private static List<String> passwd;
 	private boolean gameStarted = false;
 	Game<Integer> game = null;
 	
@@ -23,7 +24,13 @@ public class ProxyGame implements InterfaceGame {
 		ProxyGame.validUsers.add("Andres");
 		ProxyGame.validUsers.add("Abe");
 		ProxyGame.validUsers.add("Paul");
-		ProxyGame.passwd = "a";
+		ProxyGame.userNumber=-1;
+		
+		ProxyGame.passwd = new ArrayList<String>();
+		ProxyGame.passwd.add("a");
+		ProxyGame.passwd.add("b");
+		ProxyGame.passwd.add("c");
+		
 		this.gGame = new GGame(this);
 		gGame.setVisible(true);
 		this.gGame.setMessage("Please enter your user: ");
@@ -76,13 +83,12 @@ public class ProxyGame implements InterfaceGame {
 	
 	private boolean checkPasswd(String s, ProxyGame pg){
 		
-		if(s.equals(ProxyGame.passwd)){
-			
+		if(s.equals(ProxyGame.passwd.get(ProxyGame.userNumber))){
 			this.gGame.setMessage("Welcome!!! Please click on Enter, to start playing.\n");
 			return true;
 		}
-		
-		System.out.print("\n----"+s+", and password is: "+ProxyGame.passwd+"\n");
+
+		System.out.print("\n----"+s+", and password is: "+ProxyGame.passwd.get(ProxyGame.userNumber)+"\n");
 		return false;
 		
 	}
@@ -90,14 +96,17 @@ public class ProxyGame implements InterfaceGame {
 	private boolean checkUser(String s, ProxyGame pg){
 		
 		for(String temp : ProxyGame.validUsers){
-			if(s.equals(temp)){
-				
+			ProxyGame.userNumber++;
+		
+			if(s.equals(temp))
+			{
 				this.gGame.setMessage("Welcome "+temp+"!!! Please enter your password to start playing.\n");
 				System.out.println("Welcome "+temp+"!!! Please enter your password to start playing.\n");
 				this.correctUser = true;
 				return true;
 			}
 		}
+		ProxyGame.userNumber = -1;
 		System.out.println("Wrong user. "+s );
 		return false;
 
