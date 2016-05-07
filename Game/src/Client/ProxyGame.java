@@ -5,11 +5,13 @@ import java.util.*;
 import graphicInterface.GGame;
 import graphicInterface.InterfaceGame;
 import softwareGame.Game;
+import softwareGame.Princesses;
 
-public class ProxyGame implements InterfaceGame {
+public class ProxyGame<T> implements InterfaceGame {
+
 
 	@SuppressWarnings("rawtypes")
-	protected GGame gGame;
+	protected GGame<T> gGame;
 	
 	private static List<String> validUsers;
 	private boolean correctUser = false;
@@ -17,7 +19,7 @@ public class ProxyGame implements InterfaceGame {
 	
 	private static List<String> passwd;
 	private boolean gameStarted = false;
-	Game<Integer> game = null;
+	Game<T> game = null;
 	
 	/**
 	 * Contructor for the Proxy Game class. It initializes a list of valid users to be able to play the game and their corresponding passwords.
@@ -76,7 +78,7 @@ public class ProxyGame implements InterfaceGame {
 			{
 				try 
 				{
-					game = new Game<Integer>(s, this.gGame);
+					game = new Game<T>(s, this.gGame,1);
 					this.gameStarted=true;
 				}catch (IOException e){}
 				gGame.stopInput();

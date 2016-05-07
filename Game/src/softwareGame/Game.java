@@ -57,6 +57,7 @@ public class Game<T> implements InterfaceGame
 	
 	 int indState = 6;
 	 boolean playright = false;
+	 int GameType = 0;
 	
    /**
     * Constructor for 2 players.Create a graphical interface and send it a message to enter the player's name.
@@ -64,11 +65,12 @@ public class Game<T> implements InterfaceGame
     * @param name2 The name of the second player.
     * @throws IOException 
     */
-   public Game(String name, GGame g) throws IOException
+   public Game(String name, GGame g, int GameType) throws IOException
    {	   
 	   this.gGame = g;
 	   this.player1 = new Player(name);
 	   this.gGame.setName(name);
+	   this.GameType = GameType;
     }
    
    /**
@@ -81,6 +83,7 @@ public class Game<T> implements InterfaceGame
 	   
 	   switch (val)
 	   {
+
 		   case GGame.DATA_NAME:
 			   this.initialize(this.gGame.getPlayerName());
 			   break;   		   
@@ -158,7 +161,7 @@ public class Game<T> implements InterfaceGame
     */
    public void initialize(String name)
    {
-	   this.stock = Stock.getStock();
+	   this.stock = Stock.getStock(this.GameType);
 	   this.table = Table.getTable();
 	   this.pc = new Player();
 	   Domino<T> d;
@@ -180,7 +183,11 @@ public class Game<T> implements InterfaceGame
 	   this.gGame.setEnabledDraw(false);
 	   this.gGame.setEnabledPlayPC(false);
 	   
-	   this.gGame.setMessage("Welcome! Good luck.  Please click on double "+this.indState+" or jump");
+	   if(this.GameType == 0)
+		   this.gGame.setMessage("Welcome! Good luck.  Please click on double "+this.indState+" or jump");
+	   else if (this.GameType == 1)
+		   this.gGame.setMessage("Welcome! Good luck. Please click on double "+Princesses.ObtainPrincess(this.indState)+" or jump");
+
    }
    
    /**
@@ -192,11 +199,17 @@ public class Game<T> implements InterfaceGame
    {
 	   
 	   //If the selected Domino is not the double needed.
-	   if (!(d.getLeftValue().equals(this.indState)) || !(d.getRightValue().equals(this.indState)))
-	   {
-		   this.gGame.setMessage("This it is not the double "+this.indState);
-		   return;			   
+	   if(this.GameType == 0){
+		   if (!(d.getLeftValue().equals(this.indState)) || !(d.getRightValue().equals(this.indState))){
+			   this.gGame.setMessage("This it is not the double "+this.indState);
+			   return;			   
+		   }
 	   }
+	   else if (this.GameType == 1)
+		   if (!(d.getLeftValue().toString().equals(Princesses.ObtainPrincess(this.indState))) || !(d.getRightValue().toString().equals(Princesses.ObtainPrincess((this.indState))))){
+			   this.gGame.setMessage("This it is not the double "+Princesses.ObtainPrincess(this.indState));
+			   return;			   
+		   }
 	   
 	   this.indState = 8;
 	   
@@ -227,21 +240,34 @@ public class Game<T> implements InterfaceGame
     	
     	if(playright && (this.table.canPlayRight(d)))
     	{
-    		this.table.playRight(d);
     		playright = false;
     		try {
 				this.gGame.putDominoOnRightTable(d);
+	    		this.table.playRight(d);
 			} catch (BadMatchException e) {
+				try {
+					this.gGame.putDominoOnLeftTable(d);
+				} catch (BadMatchException e1) {
+					e1.printStackTrace();
+				}
 				this.table.play(d);
-				e.printStackTrace();
-			};   
+			};
+
     	}else{
-    		this.table.play(d);
     		try {
 				this.gGame.putDominoOnLeftTable(d);
+	    		this.table.play(d);
+
 			} catch (BadMatchException e) {
-				e.printStackTrace();
+				try {
+					this.gGame.putDominoOnRightTable(d);
+				} catch (BadMatchException e1) {
+					e1.printStackTrace();
+				}
+	    		this.table.playRight(d);
+
 			};
+
     	}
     	
 		//this.gGame.putDominoOnTable(d);
@@ -318,35 +344,42 @@ public class Game<T> implements InterfaceGame
    		int i;
    		System.out.println("Computer tries to play, with state: "+indState);
   	 	Domino<T> d=null;
+
   	 	switch (indState)
   	 	{
-  	 		//we look for a double n in the computer's hand
-		  	//If yes, the computer plays else the player is asked to play the double domino (n-1)
-		  	case 1: case 2: case 3: case 4: case 5: case 6: 
+	  	 //we look for a double n in the computer's hand
+	  	 //If yes, the computer plays else the player is asked to play the double domino (n-1)
+  	 	case 1: case 2: case 3: case 4: case 5: case 6: 
 	  		 
-	  		 	i = this.pc.searchForDouble(indState);
-	  		 	//If the computer has the Double requested, he plays it.
-	  		 	if(i != -1)
-	  		 	{
-	  		 		this.table.initialPlay(this.pc.getDomino(i));
-	  		 		this.gGame.putDominoOnTable(this.pc.getDomino(i));
-	  		 		this.pc.removeDomino(i);
-	  		 		
-	  		 		this.indState = 8;
-	  		 		
-	  		 		this.gGame.setEnabledJump(false); 
-	  		 		this.gGame.setEnabledPlayPC(false);
-	  		 		this.gGame.setHandEnable(true);
-	  		 		this.gGame.setEnabledDraw(true);
+  	 		i = this.pc.searchForDouble(indState);
+  	 		//If the computer has the Double requested, he plays it.
+  	 		if(i != -1)
+  	 		{
+  	 			this.table.initialPlay(this.pc.getDomino(i));
+  	 			this.gGame.putDominoOnTable(this.pc.getDomino(i));
+				this.pc.removeDomino(i);
+				
+				this.indState = 8;
+				
+				this.gGame.setEnabledJump(false); 
+				this.gGame.setEnabledPlayPC(false);
+				this.gGame.setHandEnable(true);
+				this.gGame.setEnabledDraw(true);
+	  	  		 
 	  		 	//Otherwise, he changes the state of the game to look for the next double. 	
-	  		 	}else{	
-	  		 		this.indState--;
+  	 		}else{
+  	 			
+  	 			this.indState--;
 	
-	  		 		this.gGame.setMessage( "The PC does not have the double. Please click on double "+this.indState+" or jump");
-	  		 		this.gGame.setEnabledPlayPC(false);
-	  		 		this.gGame.setEnabledDraw(false);
-	  		 		this.gGame.setHandEnable(true);
-	  		 		this.gGame.setEnabledJump(true);
+  		 		if (this.GameType == 0)
+  		 			this.gGame.setMessage( "The PC does not have the double. Please click on double "+this.indState+" or jump");
+  		 		else if (this.GameType == 1)
+  		 			this.gGame.setMessage( "The PC does not have the double. Please click on double "+Princesses.ObtainPrincess(this.indState)+" or jump");  		 			
+  		 		
+  		 		this.gGame.setEnabledPlayPC(false);
+  		 		this.gGame.setEnabledDraw(false);
+  		 		this.gGame.setHandEnable(true);
+  		 		this.gGame.setEnabledJump(true);
 	  		 	}
 	  		 	
 	  		 	break;
@@ -505,22 +538,27 @@ public class Game<T> implements InterfaceGame
    public void treatJumpAnswer()
    {
 	   switch (indState)
-	   {
-	   		case 0: case 1: case 2: case 3: case 4: case 5: case 6:
-		 
-	   			//If the Player does not have the double requested, it's the PC's turn.
-	   			if (this.player1.searchForDouble(indState) == -1)
-	   			{
+  	 {
+  	 		case 0: case 1: case 2: case 3: case 4: case 5: case 6:
+		   
+				 //If the Player does not have the double requested, it's the PC's turn.
+		  		 if (this.player1.searchForDouble(indState) == -1)
+		  		 {	 
 		  			 this.gGame.setHandEnable(false);
 		  			 this.gGame.setEnabledJump(false);
 		  			 this.gGame.setEnabledDraw(false);
 		  			 this.gGame.setEnabledPlayPC(true);
 		  			 this.gGame.setMessage("Click on Play PC, for the PC to play.");
+		  			 
 		  		//Otherwise, the player must play the requested Domino.
-	   			}else{
-	   				this.gGame.setMessage("Liar! You have the double "+ this.indState+" in your hand! You have to play it ");
-	   			}
-	   		break;
+		  		 }else{
+		  			 if(this.GameType == 0)
+		  				 this.gGame.setMessage("Liar! You have the double "+ this.indState+" in your hand! You have to play it ");
+		  			 else if(this.GameType == 1)
+		  				 this.gGame.setMessage("Liar! You have the double "+ Princesses.ObtainPrincess(this.indState)+" in your hand! You have to play it ");
+		  		 }
+		  	
+		  	break;
   	 }
    }   
 

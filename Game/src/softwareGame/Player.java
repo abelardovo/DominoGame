@@ -127,7 +127,7 @@ public class Player<T>
 		while (handIterator.hasNext())
 		{	
 			d = handIterator.next();
-			
+			System.out.print("\n\n\n Player.searchDomino"+d.toString()+"\n\n\n");
 			if( (d.getLeftValue().equals(right)) && (d.getRightValue().equals(left)) || 
 				(d.getRightValue().equals(right)) && (d.getLeftValue().equals(left)) )
 			{			
@@ -153,13 +153,16 @@ public class Player<T>
 		while (handIterator.hasNext())
 		{	
 			d = handIterator.next();
-		
+
 			if(d.isThereDouble())
 			{
-				if(d.getLeftValue().equals(indState))
+				if( d.getLeftValue() instanceof Princesses)
 				{
+					if(d.getLeftValue().toString().equals(Princesses.ObtainPrincess(indState)))
+						return n;
+				}else if (d.getLeftValue() instanceof Integer)
+					if(d.getLeftValue().equals(indState))
 					return n;
-				}
 			}
 			n++;
 		}

@@ -12,6 +12,7 @@ public class Client
 	/**
 	 * The main starts the game.
 	 */  
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) 
 	{			
 		new ProxyGame();

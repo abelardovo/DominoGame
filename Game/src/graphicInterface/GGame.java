@@ -4,6 +4,8 @@ import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 
+import softwareGame.Princesses;
+
 
 /**
  * Graphical interface of the game. If you want to use this interface, you have to call 
@@ -104,8 +106,16 @@ public class GGame<T> extends JFrame
 	
 	public void addDominoInHand(InterfaceDomino<T> d)
     {
-		String imageName = "imagesDominos/"+d.getLeftValue()+"-"+
-							d.getRightValue()+".jpg";
+		String imageName=null;
+
+//		if(d.getRightValue() instanceof Princesses){
+//			imageName = "imagesDominos/"+d.getLeftValue().toString()+"-"+
+//							d.getRightValue()+".jpg";
+//		}else{
+		imageName = "imagesDominos/"+d.getLeftValue().toString()+"-"+
+					d.getRightValue().toString()+".jpg";
+		//}
+		
 		ImageDomino image = new ImageDomino(imageName,this,d);
 		gHand.addDomino(image);
     }
@@ -165,7 +175,9 @@ public class GGame<T> extends JFrame
 			 
 		if (gameZone.noDomino()) // no domino on the table
 			{
-				String nomImage = "imagesDominos/"+d.getLeftValue()+"-"+d.getRightValue()+".jpg";
+			
+				String nomImage = "imagesDominos/"+d.getLeftValue().toString()+"-"+d.getRightValue().toString()+".jpg";
+
 				ImageDomino image = new ImageDomino(nomImage);
 				
 				gameZone.addFirstDomino(image,d.getLeftValue(),d.getRightValue());
@@ -173,7 +185,7 @@ public class GGame<T> extends JFrame
 			}
 		else if(d.getLeftValue().equals(leftEnd))
 	    	{
-	    		String nomImage = "imagesDominos/"+d.getRightValue()+"-"+d.getLeftValue()+".jpg";
+	    		String nomImage = "imagesDominos/"+d.getRightValue().toString()+"-"+d.getLeftValue().toString()+".jpg";
 	    		ImageDomino image = new ImageDomino(nomImage);
 	    		
 	    		gameZone.addDominoLeft(image,d.getRightValue());
@@ -181,14 +193,14 @@ public class GGame<T> extends JFrame
 	    	}
 	    else if(d.getLeftValue().equals(rightEnd))
 	    	{
-	    		String nomImage = "imagesDominos/"+d.getLeftValue()+"-"+d.getRightValue()+".jpg";
+	    		String nomImage = "imagesDominos/"+d.getLeftValue().toString()+"-"+d.getRightValue().toString()+".jpg";
 	    		ImageDomino image = new ImageDomino(nomImage);
 	    		
 	    		gameZone.addDominoRight(image,d.getRightValue());
 	    	}
 	    else if(d.getRightValue().equals(leftEnd))
 	    	{
-	    		String nomImage = "imagesDominos/"+d.getLeftValue()+"-"+d.getRightValue()+".jpg";
+	    		String nomImage = "imagesDominos/"+d.getLeftValue().toString()+"-"+d.getRightValue().toString()+".jpg";
 	    		ImageDomino image = new ImageDomino(nomImage);
 	    		
 	    		gameZone.addDominoLeft(image,d.getLeftValue());
@@ -196,7 +208,7 @@ public class GGame<T> extends JFrame
 	    	}
 	    else 
 	    	{
-	    		String nomImage = "imagesDominos/"+d.getRightValue()+"-"+d.getLeftValue()+".jpg";
+	    		String nomImage = "imagesDominos/"+d.getRightValue().toString()+"-"+d.getLeftValue().toString()+".jpg";
 	    		ImageDomino image = new ImageDomino(nomImage);
 	    		
 	    		gameZone.addDominoRight(image,d.getLeftValue());
@@ -219,7 +231,7 @@ public class GGame<T> extends JFrame
 		
 		if (gameZone.noDomino()) // no domino on the table
 		{
-			String imageName = "imagesDominos/"+d.getLeftValue()+"-"+d.getRightValue()+".jpg";
+			String imageName = "imagesDominos/"+d.getLeftValue().toString()+"-"+d.getRightValue().toString()+".jpg";
 			ImageDomino image = new ImageDomino(imageName);
 			
 			gameZone.addFirstDomino(image,d.getLeftValue(),d.getRightValue());
@@ -227,7 +239,7 @@ public class GGame<T> extends JFrame
 		}
 		else if(d.getLeftValue().equals(leftEnd))
     	{
-    		String imageName = "imagesDominos/"+d.getRightValue()+"-"+d.getLeftValue()+".jpg";
+    		String imageName = "imagesDominos/"+d.getRightValue().toString()+"-"+d.getLeftValue().toString()+".jpg";
     		ImageDomino image = new ImageDomino(imageName);
     		
     		gameZone.addDominoLeft(image,d.getRightValue());
@@ -235,7 +247,7 @@ public class GGame<T> extends JFrame
     	else 
     	if(d.getRightValue().equals(leftEnd))
         {
-        	String imageName = "imagesDominos/"+d.getLeftValue()+"-"+d.getRightValue()+".jpg";
+        	String imageName = "imagesDominos/"+d.getLeftValue().toString()+"-"+d.getRightValue().toString()+".jpg";
         	ImageDomino image = new ImageDomino(imageName);
         	
         	gameZone.addDominoLeft(image,d.getLeftValue());
@@ -257,7 +269,7 @@ public class GGame<T> extends JFrame
 	
 		if (gameZone.noDomino()) // no domino on the table
 		{
-			String imageName = "imagesDominos/"+d.getLeftValue()+"-"+d.getRightValue()+".jpg";
+			String imageName = "imagesDominos/"+d.getLeftValue().toString()+"-"+d.getRightValue().toString()+".jpg";
 			ImageDomino image = new ImageDomino(imageName);
 			
 			gameZone.addFirstDomino(image,d.getLeftValue(),d.getRightValue());
@@ -266,7 +278,7 @@ public class GGame<T> extends JFrame
 		
     	else if(d.getLeftValue().equals(rightEnd))
     	{
-    		String imageName = "imagesDominos/"+d.getLeftValue()+"-"+d.getRightValue()+".jpg";
+    		String imageName = "imagesDominos/"+d.getLeftValue().toString()+"-"+d.getRightValue().toString()+".jpg";
     		ImageDomino image = new ImageDomino(imageName);
     		
     		gameZone.addDominoRight(image,d.getRightValue());
@@ -274,7 +286,7 @@ public class GGame<T> extends JFrame
     	
     	else  if(d.getRightValue().equals(rightEnd))
     	{
-    		String imageName = "imagesDominos/"+d.getRightValue()+"-"+d.getLeftValue()+".jpg";
+    		String imageName = "imagesDominos/"+d.getRightValue().toString()+"-"+d.getLeftValue().toString()+".jpg";
     		ImageDomino image = new ImageDomino(imageName);
     		gameZone.addDominoRight(image,d.getLeftValue());
     	}
@@ -289,8 +301,8 @@ public class GGame<T> extends JFrame
 	 */
 	public void removeDominoFromHand(InterfaceDomino<T> d)
 	{
-		String imageName = "imagesDominos/"+d.getLeftValue()+"-"+
-								d.getRightValue()+".jpg";
+		String imageName = "imagesDominos/"+d.getLeftValue().toString()+"-"+
+								d.getRightValue().toString()+".jpg";
 		ImageDomino image = new ImageDomino(imageName,this,d);
 		gHand.removeDomino(image);
 	}

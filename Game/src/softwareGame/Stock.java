@@ -23,14 +23,21 @@ public class Stock<T> implements InterfaceStock<T>
 	 * The constructor to be call by the Singleton getUniqueInstance method. 
 	 * It creates all the Dominos of the game and add them to the Stock.  
 	 */			
-	private Stock()
-	{	
+	private Stock(int t){
+		
 		this.pile = new ArrayList<Domino<T>>();
+		
 		//Creates a total of 28 Dominos. SUM(x)from 1 to 7 
 		for (int i=6; i>=0; i--)
 		{
 			for (int j=i;j>=0;j--)
 			{
+				if(t==1)
+				{
+					this.addDomino(new Domino(new Princesses(i) ,new Princesses(j)));
+					continue;
+				}
+
 				this.addDomino(new Domino(i,j));
 			}
 		}
@@ -42,11 +49,11 @@ public class Stock<T> implements InterfaceStock<T>
 	 * @return Singleton Stock instance.
 	 */
 	@SuppressWarnings("rawtypes")
-	public static Stock getStock()
-	{
+	public static Stock getStock(int i){
+		
 		if(sto == null)
 		{
-			sto = new Stock();
+			sto = new Stock(i);
 		}	
 		return sto;		
 	}
