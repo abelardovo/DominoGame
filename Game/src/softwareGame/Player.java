@@ -14,8 +14,8 @@ import java.util.List;
  * @since       2016-03-26          (the version of the package this class was first added to)
  */
 
-public class Player<T> {
-	
+public class Player<T> 
+{	
 	private String name;
 	private List<Domino<T>> hand;
 	
@@ -23,7 +23,8 @@ public class Player<T> {
 	 * The constructor to be called by the user application when creating the user's player.
 	 * @param n Name of the user's player.
 	 */
-	public Player(String n){
+	public Player(String n)
+	{
 		this.name = n;
 		this.hand = new ArrayList<Domino<T>>();
 	}
@@ -31,8 +32,8 @@ public class Player<T> {
 	/**
 	 * The constructor to be called by the user application when creating the PC.
 	 */
-	public Player(){
-		
+	public Player()
+	{	
 		this.name = "Computer";
 		this.hand = new ArrayList<Domino<T>>();
 	}
@@ -41,7 +42,8 @@ public class Player<T> {
 	 * Method to obtain name of the player. 
 	 * @return The name of the player.
 	 */
-	public String getName(){
+	public String getName()
+	{
 		return this.name;
 	}
 	
@@ -49,7 +51,8 @@ public class Player<T> {
 	 * Method to obtain the size of the List "hand".
 	 * @return The number of Dominos in the player's hand
 	 */
-	public int getHandSize(){
+	public int getHandSize()
+	{
 		return this.hand.size();
 	}
 
@@ -58,7 +61,8 @@ public class Player<T> {
 	 * @param n Index number that refers to the wanted Domino in the player's hand.
 	 * @return The Domino in the player's hand, which index is input.
 	 */
-	public Domino<T> getDomino(int n){
+	public Domino<T> getDomino(int n)
+	{
 		return this.hand.get(n);
 	}
 	
@@ -66,7 +70,8 @@ public class Player<T> {
 	 * Method to add a given Domino to the player's hand.
 	 * @param d Domino to add to the the hand of the player.
 	 */
-	public void addDomino(Domino<T> d){
+	public void addDomino(Domino<T> d)
+	{
 		this.hand.add(d);
 	}	
 	
@@ -74,7 +79,8 @@ public class Player<T> {
 	 * Method to remove a Domino from the player's hand, using an index number.
 	 * @param n Index number that refers to the wanted Domino in the player's hand.
 	 */
-	public void removeDomino(int n){
+	public void removeDomino(int n)
+	{
 		this.hand.remove(n);
 	}
 	
@@ -82,10 +88,12 @@ public class Player<T> {
 	 * Method to remove a Domino from the player's hand, using the Domino the caller want to remove.
 	 * @param d Domino that is to be removed from the player's hand.
 	 */
-	public void removeDomino(Domino<T> d){
-		
-		for(int n=0; n<this.hand.size(); n++){
-			if(this.getDomino(n) == d){
+	public void removeDomino(Domino<T> d)
+	{	
+		for(int n=0; n<this.hand.size(); n++)
+		{
+			if(this.getDomino(n) == d)
+			{
 				this.removeDomino(n);
 			}		
 		}
@@ -95,9 +103,10 @@ public class Player<T> {
 	 * Method to determine if the last Domino chip has been played.
 	 * @return true if the player's hand has no Dominos left, otherwise false.
 	 */
-	public boolean noMoreDominos(){
-		
-		if(this.hand.isEmpty()){
+	public boolean noMoreDominos()
+	{	
+		if(this.hand.isEmpty())
+		{
 			return true;
 		}
 		return false;
@@ -109,29 +118,22 @@ public class Player<T> {
 	 * @param right Right value of the Domino being searched.
 	 * @return true if the Domino given in the input is in the player's hand, otherwise false.
 	 */
-	public boolean searchDomino(T left,T right){
-				
+	public boolean searchDomino(T left,T right)
+	{		
+		// Iterator for the player's hand.
 		Iterator<Domino<T>> handIterator = this.hand.iterator();
 		Domino<T> d; 
-		while (handIterator.hasNext()){
-			
+		
+		while (handIterator.hasNext())
+		{	
 			d = handIterator.next();
 			System.out.print("\n\n\n Player.searchDomino"+d.toString()+"\n\n\n");
 			if( (d.getLeftValue().equals(right)) && (d.getRightValue().equals(left)) || 
-				(d.getRightValue().equals(right)) && (d.getLeftValue().equals(left)) ){
-						
+				(d.getRightValue().equals(right)) && (d.getLeftValue().equals(left)) )
+			{			
 					return true;		
 			}			
 		}
-		
-//		for(int n=0; n<this.hand.size(); n++){
-//			
-//			if( (this.getDomino(n).getLeftValue().equals(right)) && (this.getDomino(n).getRightValue().equals(left)) || 
-//				(this.getDomino(n).getRightValue().equals(right)) && (this.getDomino(n).getLeftValue().equals(left)) ){
-//					
-//				return true;	
-//			}
-//		}
 		
 		return false;
 	}
@@ -141,32 +143,30 @@ public class Player<T> {
 	 * @param indState Value of the Domino being searched.
 	 * @return If it is found, returns the index number "n" in the player's hand, of the Domino being searched, otherwise -1.
 	 */
-	public int searchForDouble(int indState){
-		
+	public int searchForDouble(int indState)
+	{	
+		// Iterator for the player's hand.
 		Iterator<Domino<T>> handIterator = this.hand.iterator();
 		Domino<T> d; 
 		int n = 0;
 		
-		while (handIterator.hasNext()){
-			
+		while (handIterator.hasNext())
+		{	
 			d = handIterator.next();
 
-			if(d.isThereDouble()){
-				
-				if( d.getLeftValue() instanceof Princesses){
+			if(d.isThereDouble())
+			{
+				if( d.getLeftValue() instanceof Princesses)
+				{
 					if(d.getLeftValue().toString().equals(Princesses.ObtainPrincess(indState)))
 						return n;
 				}else if (d.getLeftValue() instanceof Integer)
 					if(d.getLeftValue().equals(indState))
 					return n;
 			}
-			
-			
 			n++;
 		}
-			
-			
-
+		
 		return -1;
 	}
 
@@ -174,17 +174,17 @@ public class Player<T> {
 	 * Method to obtain the String representation of a player's hand.
 	 * @return String representation of the player's hand.
 	 */
-	public String toString(){
+	public String toString()
+	{
 		String s = this.name + " hand: ";
+		
+		// Iterator for the player's hand.
 		Iterator<Domino<T>> handIterator = this.hand.iterator();
 		
-		while (handIterator.hasNext()){
+		while (handIterator.hasNext())
+		{
 			s = s + handIterator.next().toString() + " / ";
 		}
-		
-//		for (int i=0; i<this.hand.size();i++){
-//			s = s + this.hand.get(i).toString() + " / ";
-//		}
 		
 		s = s + "\n";
 

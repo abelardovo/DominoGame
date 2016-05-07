@@ -28,7 +28,10 @@ public class GGame<T> extends JFrame
 	 * 
 	 */
 	private static final long serialVersionUID = 3953940062126575231L;
-	private GMessageBar stateBar;	
+	
+	//private GMessageBar stateBar;	
+	public GMessageBar stateBar;	
+	
 	private GameZone<T> gameZone;
 	private GHand gHand;
 	private InterfaceGame game;
@@ -72,7 +75,8 @@ public class GGame<T> extends JFrame
 	public static final int NEWGAME = 5;
 	Container contentPane ;
 	
-	public void stopInput(){
+	public void stopInput()
+	{
 		this.stateBar.stopInput();
 	}
 	/**
@@ -370,7 +374,5 @@ public class GGame<T> extends JFrame
 	{
 		gameZone.setEnabledPlayPC(b);		
 	}
-	
-	
 
 }

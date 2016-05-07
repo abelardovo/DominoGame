@@ -9,16 +9,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
- class GMessageBar  extends JTextField implements ActionListener
+//protected********************
+ public class GMessageBar  extends JTextField implements ActionListener
 {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4051317654380140690L;
 	Dimension dimension = new Dimension(550,50);
-	String text="";
-
+	String text="";	
 	GGame game;
+
 	public GMessageBar (GGame game) 
 	{
 		this.game = game;
@@ -41,15 +42,15 @@ import javax.swing.JTextField;
 			//setEditable(false);
 			
 			game.setPlayerName(name);
-			game.sendMessage(GGame.DATA_NAME);
-		
+			game.sendMessage(10);		
 			
 		}	
 	}
 	
 	public void stopInput(){
 		setEditable(false);
-		
+		game.sendMessage(GGame.DATA_NAME);		
+
 	}
 	
 	 void setTexte(String s)

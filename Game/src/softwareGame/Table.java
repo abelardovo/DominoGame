@@ -5,7 +5,6 @@ import graphicInterface.InterfaceTable;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * CLASS TABLE
  * 
@@ -16,29 +15,34 @@ import java.util.List;
  * @since       2016-03-26          (the version of the package this class was first added to)
  */
 
-public class Table<T> implements InterfaceTable<T>{
+public class Table<T> implements InterfaceTable<T>
+{
 	
-   	protected static Table tab = null;
+   	@SuppressWarnings("rawtypes")
+	protected static Table tab = null;
 	protected List<Domino<T>> board = null;
 	private T right;
 	private T left;
 
 	/**
-	 * The constructor to be called by the user application when creating the table in which to play.
+	 * The constructor to be called by the Singleton getUniqueInstance method, when creating the table in which to play.
 	 */
 	private Table(){
+		
 		this.right = null;
 		this.left = null;
 		this.board = new ArrayList<Domino<T>>();
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * The constructor to be called by the user application, when creating the singleton table in which to play.
+	 * @return Singleton Table instance.
 	 */
 	@SuppressWarnings("rawtypes")
 	public static Table getTable(){
-		if(tab == null){
+		
+		if(tab == null)
+		{
 			tab = new Table();
 		}	
 		return tab;		
@@ -49,6 +53,7 @@ public class Table<T> implements InterfaceTable<T>{
 	 * @return Right value of the table.
 	 */
 	public T getRightValue(){
+		
 		return this.right;
 	}
 	
@@ -57,6 +62,7 @@ public class Table<T> implements InterfaceTable<T>{
 	 * @return Left value of the table.
 	 */
 	public T getLeftValue(){
+		
 		return this.left;
 	}
 	
@@ -65,6 +71,7 @@ public class Table<T> implements InterfaceTable<T>{
 	 * @param d Domino that is going to be added to the table, which values are extracted so it will be an acceptable Domino.
 	 */
 	public void setValue(Domino<T> d){
+		
 		this.setRight(d.getRightValue());
 		this.left = d.getLeftValue();
 	}
@@ -73,8 +80,8 @@ public class Table<T> implements InterfaceTable<T>{
 		
 		if( (d.getLeftValue().equals(this.getRight())) || (d.getRightValue().equals(this.getRight()))){
 			return true;	
-		}
-			
+		}		
+		
 		return false;	
 	}
 	
@@ -88,7 +95,7 @@ public class Table<T> implements InterfaceTable<T>{
 		if( (d.getLeftValue().equals(this.getRight())) || (d.getRightValue().equals(this.getRight())) ||
 			(d.getLeftValue().equals(this.getLeft()))  || (d.getRightValue().equals(this.getLeft()))){
 			return true;
-		}
+		}	
 		
 		return false;	
 	}
@@ -102,19 +109,20 @@ public class Table<T> implements InterfaceTable<T>{
 		this.board.add(d);
 		this.left = d.getLeftValue();
 		this.setRight(d.getRightValue());
-	
 	}
 	
 	public void playRight(Domino<T> d){
-
+		
 		// Checking if values of Domino match the right value of the table. 
-		if(this.getRight().equals(d.getRightValue())){
+		if(this.getRight().equals(d.getRightValue()))
+		{
 			this.board.add(d);
 			this.setRight(d.getLeftValue());
 			return;
 		}
 		
-		if(this.getRight().equals(d.getLeftValue())){
+		if(this.getRight().equals(d.getLeftValue()))
+		{
 			this.board.add(d);
 			this.setRight(d.getRightValue());
 			return;
@@ -130,32 +138,34 @@ public class Table<T> implements InterfaceTable<T>{
 	public void play(Domino<T> d){
 		// Checking if values of Domino match the left value of the table. 
 		
-		if(this.getLeft().equals(d.getRightValue())){
+		if(this.getLeft().equals(d.getRightValue()))
+		{
 			this.board.add(0,d);
 			this.setLeft(d.getLeftValue());
 			return;
 		}
 		
-		if(this.getLeft().equals(d.getLeftValue())){
+		if(this.getLeft().equals(d.getLeftValue()))
+		{
 			this.board.add(0,d);
 			this.setLeft(d.getRightValue());
 			return;
 		}
 
 		// Checking if values of Domino match the right value of the table. 
-		if(this.getRight().equals(d.getRightValue())){
+		if(this.getRight().equals(d.getRightValue()))
+		{
 			this.board.add(d);
 			this.setRight(d.getLeftValue());
 			return;
 		}
 		
-		if(this.getRight().equals(d.getLeftValue())){
+		if(this.getRight().equals(d.getLeftValue()))
+		{
 			this.board.add(d);
 			this.setRight(d.getRightValue());
 			return;
 		}		
-		
-		
 	}
 	
 	/**
@@ -163,6 +173,7 @@ public class Table<T> implements InterfaceTable<T>{
 	 * @return String representation of the table's state.
 	 */
 	public String printState(){
+		
 		if(this.right == null || this.left == null)
 			return "STATE TABLE: -1 : -1\n";
 		return "STATE TABLE: "+this.getLeftValue().toString()+" : "+this.getRightValue().toString()+"\n";
@@ -173,36 +184,43 @@ public class Table<T> implements InterfaceTable<T>{
 	 * @return String representation of the Dominos in the table.
 	 */
 	public String toString(){
+		
 		return this.board.toString();
 	}
 
 	/**
+	 * Returns the table's right value.
 	 * @return the right
 	 */
-	public T getRight() {
+	public T getRight(){
+		
 		return this.right;
 	}
 
 	/**
+	 * Sets a value to the right attribute of the table.
 	 * @param t the right to set
 	 */
-	public void setRight(T t) {
+	public void setRight(T t){
+		
 		this.right = t;
 	}
 	
 	/**
+	 * Returns the table's left value.
 	 * @return the right
 	 */
-	public T getLeft() {
+	public T getLeft(){
+		
 		return this.left;
 	}
 
 	/**
+	 * Sets a value to the right attribute of the table.
 	 * @param right the right to set
 	 */
 	public void setLeft(T left) {
 		this.left = left;
 	}
-
 	
 }
