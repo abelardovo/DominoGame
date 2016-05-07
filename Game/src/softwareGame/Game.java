@@ -10,11 +10,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
-* Run the game between a player and the computer.
-* @version march 2016
- * @param <T>
-*
-*/
+ * CLASS GAME
+ * 
+ * @author      Abelardo Valino <abelardo.valino_ovalle@telecom-sudparis.eu>
+ * @author		Andres Gonzalez <andres.gonzalez_arria@telecom-sudparis.eu>
+ * @version     2.0                 (current version number of program)
+ * @since       2016-03-26          (the version of the package this class was first added to)
+ */
 public class Game<T> implements InterfaceGame
 {
 	/**
