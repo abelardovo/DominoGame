@@ -34,7 +34,7 @@ public class Stock<T> implements InterfaceStock<T>
 			{
 				if(t==1)
 				{
-					this.addDomino(new Domino(new Princesses(i) ,new Princesses(j)));
+					this.addDomino(new Domino(new Princess(i) ,new Princess(j)));
 					continue;
 				}
 
