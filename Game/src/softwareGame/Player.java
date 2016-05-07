@@ -126,7 +126,6 @@ public class Player<T>
 		while (handIterator.hasNext())
 		{	
 			d = handIterator.next();
-			System.out.print("\n\n\n Player.searchDomino"+d.toString()+"\n\n\n");
 			if( (d.getLeftValue().equals(right)) && (d.getRightValue().equals(left)) || 
 				(d.getRightValue().equals(right)) && (d.getLeftValue().equals(left)) )
 			{			
