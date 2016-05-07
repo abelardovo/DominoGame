@@ -14,8 +14,6 @@ public class Client {
 	public static void main(String[] args) {
 				
 		ProxyGame p = new ProxyGame();
-
-//		p.receivedMessage(x) ;
 				
 	}
 

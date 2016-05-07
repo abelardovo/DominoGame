@@ -189,7 +189,7 @@ public class Game<T> implements InterfaceGame
 	   this.gGame.setEnabledDraw(false);
 	   this.gGame.setEnabledPlayPC(false);
 	   
-	   this.gGame.setMessage("Hello "+this.player1.getName()+" good luck.  Please click on double "+this.indState+" or jump");
+	   this.gGame.setMessage("Welcome! Good luck.  Please click on double "+this.indState+" or jump");
    }
    
    /*
