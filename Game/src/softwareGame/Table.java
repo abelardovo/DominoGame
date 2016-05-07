@@ -108,19 +108,20 @@ public class Table<T> implements InterfaceTable<T>{
 	public void playRight(Domino<T> d){
 
 		// Checking if values of Domino match the right value of the table. 
-		if(this.getRight() == d.getRightValue()){
+		if(this.getRight().equals(d.getRightValue())){
 			this.board.add(d);
 			this.setRight(d.getLeftValue());
 			return;
 		}
 		
-		if(this.getRight() == d.getLeftValue()){
+		if(this.getRight().equals(d.getLeftValue())){
 			this.board.add(d);
 			this.setRight(d.getRightValue());
 			return;
 		}		
 		
 	}
+
 	
 	/**
 	 * Method that adds a given Domino to the table. By default, the given Domino will be added in the left side of the table.
@@ -129,26 +130,26 @@ public class Table<T> implements InterfaceTable<T>{
 	public void play(Domino<T> d){
 		// Checking if values of Domino match the left value of the table. 
 		
-		if(this.left == d.getRightValue()){
+		if(this.getLeft().equals(d.getRightValue())){
 			this.board.add(0,d);
 			this.setLeft(d.getLeftValue());
 			return;
 		}
 		
-		if(this.left == d.getLeftValue()){
+		if(this.getLeft().equals(d.getLeftValue())){
 			this.board.add(0,d);
 			this.setLeft(d.getRightValue());
 			return;
 		}
 
 		// Checking if values of Domino match the right value of the table. 
-		if(this.getRight() == d.getRightValue()){
+		if(this.getRight().equals(d.getRightValue())){
 			this.board.add(d);
 			this.setRight(d.getLeftValue());
 			return;
 		}
 		
-		if(this.getRight() == d.getLeftValue()){
+		if(this.getRight().equals(d.getLeftValue())){
 			this.board.add(d);
 			this.setRight(d.getRightValue());
 			return;

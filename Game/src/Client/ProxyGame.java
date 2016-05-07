@@ -6,14 +6,15 @@ import java.util.Scanner;
 import graphicInterface.GGame;
 import graphicInterface.InterfaceGame;
 import softwareGame.Game;
+import softwareGame.Princesses;
 
-public class ProxyGame implements InterfaceGame {
+public class ProxyGame<T> implements InterfaceGame {
 
-	protected GGame gGame;
+	protected GGame<T> gGame;
 	private InterfaceGame pg;
 	private static String passwd;
 	private boolean gameStarted = false;
-	Game<Integer> game = null;
+	Game<T> game = null;
 	
 	public ProxyGame(){
 		
@@ -36,7 +37,7 @@ public class ProxyGame implements InterfaceGame {
 		
 		if(checkPasswd(s, this)){
 			try {
-				game = new Game<Integer>(s, this.gGame);
+				game = new Game<T>(s, this.gGame,1);
 				this.gameStarted=true;
 			} catch (IOException e){}
 			gGame.stopInput();
