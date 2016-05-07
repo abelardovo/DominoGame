@@ -18,8 +18,12 @@ public class ProxyGame<T> implements InterfaceGame {
 	private static int userIndex;
 	
 	private static List<String> passwd;
+	private boolean correctPasswd = false;
+	
 	private boolean gameStarted = false;
 	Game<T> game = null;
+	
+	private static int gameType=0;
 	
 	/**
 	 * Contructor for the Proxy Game class. It initializes a list of valid users to be able to play the game and their corresponding passwords.
@@ -74,11 +78,17 @@ public class ProxyGame<T> implements InterfaceGame {
 		
 		if(correctUser)
 		{
-			if(checkPasswd(s))
+			if(checkPasswd(s) || this.correctPasswd)
 			{
+				if(!this.correctPasswd){
+					this.correctPasswd = true;
+					this.gGame.setMessage("Would you like regular dominoes (enter 0) or princess dominoes (enter 1). Regular dominoes are the default.");
+					return;
+				}
+				this.checkGameType(s);
 				try 
 				{
-					game = new Game<T>(s, this.gGame,1);
+					game = new Game<T>(s, this.gGame,this.gameType);
 					this.gameStarted=true;
 				}catch (IOException e){}
 				gGame.stopInput();
@@ -142,5 +152,21 @@ public class ProxyGame<T> implements InterfaceGame {
 		System.out.println("Wrong user. "+s );
 		return false;
 	}
-
+	
+	/**
+	 * Verifies what version of the game the user wants to play.
+	 * @param s Version of the game which the user wants to play.
+	 */
+	private void checkGameType(String s)
+	{
+		int i = 0;
+		try{
+		i=Integer.parseInt(s);
+		}catch(NumberFormatException e1){
+		}
+		if(i==1){
+			ProxyGame.gameType=1;
+		}
+	}
+	
 }
