@@ -7,13 +7,13 @@ package Client;
  * @since 17-04-16
  */
 
-public class Client {
-
+public class Client 
+{
 	/**
 	 * The main starts the game.
 	 */  
-	public static void main(String[] args) {
-				
+	public static void main(String[] args) 
+	{			
 		new ProxyGame();
 				
 	}

@@ -73,7 +73,8 @@ public class GGame<T> extends JFrame
 	public static final int NEWGAME = 5;
 	Container contentPane ;
 	
-	public void stopInput(){
+	public void stopInput()
+	{
 		this.stateBar.stopInput();
 	}
 	/**
