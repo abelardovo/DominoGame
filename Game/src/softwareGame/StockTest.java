@@ -18,7 +18,7 @@ public class StockTest {
 	@Test
 	public void testIsEmpty() {
 		
-		Stock s = Stock.getStock();
+		Stock s = Stock.getStock(0);
 		
 		assertFalse(s.isEmpty());
 
@@ -35,7 +35,7 @@ public class StockTest {
 	@SuppressWarnings("static-access")
 	@Test
 	public void testDraw() {
-		Stock s = Stock.getStock();
+		Stock s = Stock.getStock(0);
 		Domino d;
 		int i =0;
 		boolean b = false;
