@@ -8,8 +8,7 @@ import java.util.*;
  * 
  * @author      Abelardo Valino <abelardo.valino_ovalle@telecom-sudparis.eu>
  * @author		Andres Gonzalez <andres.gonzalez_arria@telecom-sudparis.eu>
- * @version     1.0                 (current version number of program)
- * @param <T>
+ * @version     2.0                 (current version number of program)
  * @since       2016-03-26          (the version of the package this class was first added to)
  */
 
