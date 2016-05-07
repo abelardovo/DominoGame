@@ -186,7 +186,7 @@ public class Game<T> implements InterfaceGame
 	   if(this.GameType == 0)
 		   this.gGame.setMessage("Welcome! Good luck.  Please click on double "+this.indState+" or jump");
 	   else if (this.GameType == 1)
-		   this.gGame.setMessage("Welcome! Good luck. Please click on double "+Princesses.ObtainPrincess(this.indState)+" or jump");
+		   this.gGame.setMessage("Welcome! Good luck. Please click on double "+Princess.ObtainPrincess(this.indState)+" or jump");
 
    }
    
@@ -206,8 +206,8 @@ public class Game<T> implements InterfaceGame
 		   }
 	   }
 	   else if (this.GameType == 1)
-		   if (!(d.getLeftValue().toString().equals(Princesses.ObtainPrincess(this.indState))) || !(d.getRightValue().toString().equals(Princesses.ObtainPrincess((this.indState))))){
-			   this.gGame.setMessage("This it is not the double "+Princesses.ObtainPrincess(this.indState));
+		   if (!(d.getLeftValue().toString().equals(Princess.ObtainPrincess(this.indState))) || !(d.getRightValue().toString().equals(Princess.ObtainPrincess((this.indState))))){
+			   this.gGame.setMessage("This it is not the double "+Princess.ObtainPrincess(this.indState));
 			   return;			   
 		   }
 	   
@@ -374,7 +374,7 @@ public class Game<T> implements InterfaceGame
   		 		if (this.GameType == 0)
   		 			this.gGame.setMessage( "The PC does not have the double. Please click on double "+this.indState+" or jump");
   		 		else if (this.GameType == 1)
-  		 			this.gGame.setMessage( "The PC does not have the double. Please click on double "+Princesses.ObtainPrincess(this.indState)+" or jump");  		 			
+  		 			this.gGame.setMessage( "The PC does not have the double. Please click on double "+Princess.ObtainPrincess(this.indState)+" or jump");  		 			
   		 		
   		 		this.gGame.setEnabledPlayPC(false);
   		 		this.gGame.setEnabledDraw(false);
@@ -555,7 +555,7 @@ public class Game<T> implements InterfaceGame
 		  			 if(this.GameType == 0)
 		  				 this.gGame.setMessage("Liar! You have the double "+ this.indState+" in your hand! You have to play it ");
 		  			 else if(this.GameType == 1)
-		  				 this.gGame.setMessage("Liar! You have the double "+ Princesses.ObtainPrincess(this.indState)+" in your hand! You have to play it ");
+		  				 this.gGame.setMessage("Liar! You have the double "+ Princess.ObtainPrincess(this.indState)+" in your hand! You have to play it ");
 		  		 }
 		  	
 		  	break;

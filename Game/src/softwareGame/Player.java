@@ -156,9 +156,9 @@ public class Player<T>
 
 			if(d.isThereDouble())
 			{
-				if( d.getLeftValue() instanceof Princesses)
+				if( d.getLeftValue() instanceof Princess)
 				{
-					if(d.getLeftValue().toString().equals(Princesses.ObtainPrincess(indState)))
+					if(d.getLeftValue().toString().equals(Princess.ObtainPrincess(indState)))
 						return n;
 				}else if (d.getLeftValue() instanceof Integer)
 					if(d.getLeftValue().equals(indState))

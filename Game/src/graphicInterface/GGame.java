@@ -4,7 +4,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 
-import softwareGame.Princesses;
+import softwareGame.Princess;
 
 
 /**

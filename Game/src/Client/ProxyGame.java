@@ -5,7 +5,7 @@ import java.util.*;
 import graphicInterface.GGame;
 import graphicInterface.InterfaceGame;
 import softwareGame.Game;
-import softwareGame.Princesses;
+import softwareGame.Princess;
 
 public class ProxyGame<T> implements InterfaceGame {
 
