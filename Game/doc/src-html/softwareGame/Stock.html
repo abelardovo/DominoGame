@@ -7,85 +7,119 @@
 <body>
 <div class="sourceContainer">
 <pre><span class="sourceLineNo">001</span>package softwareGame;<a name="line.1"></a>
-<span class="sourceLineNo">002</span>import java.util.*;<a name="line.2"></a>
+<span class="sourceLineNo">002</span>import graphicInterface.InterfaceStock;<a name="line.2"></a>
 <span class="sourceLineNo">003</span><a name="line.3"></a>
-<span class="sourceLineNo">004</span>/**<a name="line.4"></a>
-<span class="sourceLineNo">005</span> * CLASS STOCK<a name="line.5"></a>
-<span class="sourceLineNo">006</span> * <a name="line.6"></a>
-<span class="sourceLineNo">007</span> * @author      Abelardo Valino &lt;abelardo.valino_ovalle@telecom-sudparis.eu&gt;<a name="line.7"></a>
-<span class="sourceLineNo">008</span> * @author              Andres Gonzalez &lt;andres.gonzalez_arria@telecom-sudparis.eu&gt;<a name="line.8"></a>
-<span class="sourceLineNo">009</span> * @version     1.0                 (current version number of program)<a name="line.9"></a>
-<span class="sourceLineNo">010</span> * @since       2016-03-26          (the version of the package this class was first added to)<a name="line.10"></a>
-<span class="sourceLineNo">011</span> */<a name="line.11"></a>
-<span class="sourceLineNo">012</span>public class Stock {<a name="line.12"></a>
-<span class="sourceLineNo">013</span><a name="line.13"></a>
-<span class="sourceLineNo">014</span>        List&lt;Domino&gt; pile;<a name="line.14"></a>
-<span class="sourceLineNo">015</span>        <a name="line.15"></a>
-<span class="sourceLineNo">016</span>        /**<a name="line.16"></a>
-<span class="sourceLineNo">017</span>         * The constructor to be call by the user application. <a name="line.17"></a>
-<span class="sourceLineNo">018</span>         * It creates all the Dominos of the game and add them to the Stock.  <a name="line.18"></a>
-<span class="sourceLineNo">019</span>         */                     <a name="line.19"></a>
-<span class="sourceLineNo">020</span>        public Stock(){<a name="line.20"></a>
-<span class="sourceLineNo">021</span>                <a name="line.21"></a>
-<span class="sourceLineNo">022</span>                this.pile = new ArrayList&lt;Domino&gt;();<a name="line.22"></a>
-<span class="sourceLineNo">023</span>                <a name="line.23"></a>
-<span class="sourceLineNo">024</span>                //Creates a total of 28 Dominos. SUM(x)from 1 to 7 <a name="line.24"></a>
-<span class="sourceLineNo">025</span>                for (int i=6; i&gt;=0; i--){<a name="line.25"></a>
-<span class="sourceLineNo">026</span>                        for (int j=i;j&gt;=0;j--){<a name="line.26"></a>
-<span class="sourceLineNo">027</span>                                this.addDomino(new Domino(i,j));<a name="line.27"></a>
-<span class="sourceLineNo">028</span>                        }<a name="line.28"></a>
-<span class="sourceLineNo">029</span>                }       <a name="line.29"></a>
-<span class="sourceLineNo">030</span>        }<a name="line.30"></a>
-<span class="sourceLineNo">031</span>        <a name="line.31"></a>
-<span class="sourceLineNo">032</span>        /**<a name="line.32"></a>
-<span class="sourceLineNo">033</span>         * Method to add the Domino d to the pile which is represented by a List of Dominos.<a name="line.33"></a>
-<span class="sourceLineNo">034</span>         * @param d The Domino to be added.<a name="line.34"></a>
-<span class="sourceLineNo">035</span>         */<a name="line.35"></a>
-<span class="sourceLineNo">036</span>        private void addDomino(Domino d){<a name="line.36"></a>
-<span class="sourceLineNo">037</span>                this.pile.add(d);<a name="line.37"></a>
-<span class="sourceLineNo">038</span>        }<a name="line.38"></a>
-<span class="sourceLineNo">039</span>        <a name="line.39"></a>
-<span class="sourceLineNo">040</span>        /**<a name="line.40"></a>
-<span class="sourceLineNo">041</span>         * Method to remove from the Stock the Domino that is in the List "pile" at the position n.<a name="line.41"></a>
-<span class="sourceLineNo">042</span>         * @param n The index number of the Domino to be removed.<a name="line.42"></a>
-<span class="sourceLineNo">043</span>         */<a name="line.43"></a>
-<span class="sourceLineNo">044</span>        private void removeDomino(int n){<a name="line.44"></a>
-<span class="sourceLineNo">045</span>                this.pile.remove(n);<a name="line.45"></a>
-<span class="sourceLineNo">046</span>        }<a name="line.46"></a>
-<span class="sourceLineNo">047</span>        <a name="line.47"></a>
-<span class="sourceLineNo">048</span>        /**<a name="line.48"></a>
-<span class="sourceLineNo">049</span>         * Method to obtain true or false if the Stock is empty or not.<a name="line.49"></a>
-<span class="sourceLineNo">050</span>         * @return True if the pile is empty, otherwise false.<a name="line.50"></a>
-<span class="sourceLineNo">051</span>         */<a name="line.51"></a>
-<span class="sourceLineNo">052</span>        public boolean isEmpty(){<a name="line.52"></a>
-<span class="sourceLineNo">053</span>                if(this.pile.isEmpty()){<a name="line.53"></a>
-<span class="sourceLineNo">054</span>                        return true;<a name="line.54"></a>
-<span class="sourceLineNo">055</span>                }<a name="line.55"></a>
-<span class="sourceLineNo">056</span>                return false;<a name="line.56"></a>
-<span class="sourceLineNo">057</span>        }<a name="line.57"></a>
-<span class="sourceLineNo">058</span>        <a name="line.58"></a>
-<span class="sourceLineNo">059</span>        /**<a name="line.59"></a>
-<span class="sourceLineNo">060</span>         * Method to obtain a random Domino from the Stock.<a name="line.60"></a>
-<span class="sourceLineNo">061</span>         * @return A random Domino from the Stock.<a name="line.61"></a>
-<span class="sourceLineNo">062</span>         */<a name="line.62"></a>
-<span class="sourceLineNo">063</span>        public Domino draw(){<a name="line.63"></a>
-<span class="sourceLineNo">064</span>                Random rand = new Random();<a name="line.64"></a>
-<span class="sourceLineNo">065</span>                int  n = rand.nextInt(this.pile.size());<a name="line.65"></a>
-<span class="sourceLineNo">066</span>                <a name="line.66"></a>
-<span class="sourceLineNo">067</span>                Domino d = this.pile.get(n);<a name="line.67"></a>
-<span class="sourceLineNo">068</span>                this.removeDomino(n);<a name="line.68"></a>
-<span class="sourceLineNo">069</span>                <a name="line.69"></a>
-<span class="sourceLineNo">070</span>                return d;<a name="line.70"></a>
-<span class="sourceLineNo">071</span>        }<a name="line.71"></a>
-<span class="sourceLineNo">072</span>        <a name="line.72"></a>
-<span class="sourceLineNo">073</span>        /**<a name="line.73"></a>
-<span class="sourceLineNo">074</span>         * Method to obtain the String representation of the Stock.<a name="line.74"></a>
-<span class="sourceLineNo">075</span>         * @return String representation of the Stock.<a name="line.75"></a>
-<span class="sourceLineNo">076</span>         */     <a name="line.76"></a>
-<span class="sourceLineNo">077</span>        public String toString(){<a name="line.77"></a>
-<span class="sourceLineNo">078</span>                return this.pile.toString();<a name="line.78"></a>
-<span class="sourceLineNo">079</span>        }<a name="line.79"></a>
-<span class="sourceLineNo">080</span>}<a name="line.80"></a>
+<span class="sourceLineNo">004</span>import java.util.*;<a name="line.4"></a>
+<span class="sourceLineNo">005</span><a name="line.5"></a>
+<span class="sourceLineNo">006</span>/**<a name="line.6"></a>
+<span class="sourceLineNo">007</span> * CLASS STOCK<a name="line.7"></a>
+<span class="sourceLineNo">008</span> * <a name="line.8"></a>
+<span class="sourceLineNo">009</span> * @author      Abelardo Valino &lt;abelardo.valino_ovalle@telecom-sudparis.eu&gt;<a name="line.9"></a>
+<span class="sourceLineNo">010</span> * @author              Andres Gonzalez &lt;andres.gonzalez_arria@telecom-sudparis.eu&gt;<a name="line.10"></a>
+<span class="sourceLineNo">011</span> * @version     2.0                 (current version number of program)<a name="line.11"></a>
+<span class="sourceLineNo">012</span> * @since       2016-03-26          (the version of the package this class was first added to)<a name="line.12"></a>
+<span class="sourceLineNo">013</span> */<a name="line.13"></a>
+<span class="sourceLineNo">014</span><a name="line.14"></a>
+<span class="sourceLineNo">015</span>public class Stock&lt;T&gt; implements InterfaceStock&lt;T&gt; <a name="line.15"></a>
+<span class="sourceLineNo">016</span>{<a name="line.16"></a>
+<span class="sourceLineNo">017</span>        @SuppressWarnings("rawtypes")<a name="line.17"></a>
+<span class="sourceLineNo">018</span>        protected static Stock sto = null;<a name="line.18"></a>
+<span class="sourceLineNo">019</span>        protected List&lt;Domino&lt;T&gt;&gt; pile = null;<a name="line.19"></a>
+<span class="sourceLineNo">020</span>        <a name="line.20"></a>
+<span class="sourceLineNo">021</span>        /**<a name="line.21"></a>
+<span class="sourceLineNo">022</span>         * The constructor to be call by the Singleton getUniqueInstance method. <a name="line.22"></a>
+<span class="sourceLineNo">023</span>         * It creates all the Dominos of the game and add them to the Stock.  <a name="line.23"></a>
+<span class="sourceLineNo">024</span>         */                     <a name="line.24"></a>
+<span class="sourceLineNo">025</span>        private Stock(int t){<a name="line.25"></a>
+<span class="sourceLineNo">026</span>                <a name="line.26"></a>
+<span class="sourceLineNo">027</span>                this.pile = new ArrayList&lt;Domino&lt;T&gt;&gt;();<a name="line.27"></a>
+<span class="sourceLineNo">028</span>                <a name="line.28"></a>
+<span class="sourceLineNo">029</span>                //Creates a total of 28 Dominos. SUM(x)from 1 to 7 <a name="line.29"></a>
+<span class="sourceLineNo">030</span>                for (int i=6; i&gt;=0; i--)<a name="line.30"></a>
+<span class="sourceLineNo">031</span>                {<a name="line.31"></a>
+<span class="sourceLineNo">032</span>                        for (int j=i;j&gt;=0;j--)<a name="line.32"></a>
+<span class="sourceLineNo">033</span>                        {<a name="line.33"></a>
+<span class="sourceLineNo">034</span>                                if(t==1)<a name="line.34"></a>
+<span class="sourceLineNo">035</span>                                {<a name="line.35"></a>
+<span class="sourceLineNo">036</span>                                        this.addDomino(new Domino(new Princess(i) ,new Princess(j)));<a name="line.36"></a>
+<span class="sourceLineNo">037</span>                                        continue;<a name="line.37"></a>
+<span class="sourceLineNo">038</span>                                }<a name="line.38"></a>
+<span class="sourceLineNo">039</span><a name="line.39"></a>
+<span class="sourceLineNo">040</span>                                this.addDomino(new Domino(i,j));<a name="line.40"></a>
+<span class="sourceLineNo">041</span>                        }<a name="line.41"></a>
+<span class="sourceLineNo">042</span>                }<a name="line.42"></a>
+<span class="sourceLineNo">043</span>                System.out.print(this.pile.size()+"\n");<a name="line.43"></a>
+<span class="sourceLineNo">044</span>        }<a name="line.44"></a>
+<span class="sourceLineNo">045</span>        <a name="line.45"></a>
+<span class="sourceLineNo">046</span>        /**<a name="line.46"></a>
+<span class="sourceLineNo">047</span>         * The constructor to be call by the user application to create the singleton stock.<a name="line.47"></a>
+<span class="sourceLineNo">048</span>         * @return Singleton Stock instance.<a name="line.48"></a>
+<span class="sourceLineNo">049</span>         */<a name="line.49"></a>
+<span class="sourceLineNo">050</span>        @SuppressWarnings("rawtypes")<a name="line.50"></a>
+<span class="sourceLineNo">051</span>        public static Stock getStock(int i){<a name="line.51"></a>
+<span class="sourceLineNo">052</span>                <a name="line.52"></a>
+<span class="sourceLineNo">053</span>                if(sto == null)<a name="line.53"></a>
+<span class="sourceLineNo">054</span>                {<a name="line.54"></a>
+<span class="sourceLineNo">055</span>                        sto = new Stock(i);<a name="line.55"></a>
+<span class="sourceLineNo">056</span>                }       <a name="line.56"></a>
+<span class="sourceLineNo">057</span>                return sto;             <a name="line.57"></a>
+<span class="sourceLineNo">058</span>        }<a name="line.58"></a>
+<span class="sourceLineNo">059</span>        <a name="line.59"></a>
+<span class="sourceLineNo">060</span>        /**<a name="line.60"></a>
+<span class="sourceLineNo">061</span>         * Method to add the Domino d to the pile which is represented by a List of Dominos.<a name="line.61"></a>
+<span class="sourceLineNo">062</span>         * @param d The Domino to be added.<a name="line.62"></a>
+<span class="sourceLineNo">063</span>         */<a name="line.63"></a>
+<span class="sourceLineNo">064</span>        private void addDomino(Domino&lt;T&gt; d)<a name="line.64"></a>
+<span class="sourceLineNo">065</span>        {<a name="line.65"></a>
+<span class="sourceLineNo">066</span>                this.pile.add(d);<a name="line.66"></a>
+<span class="sourceLineNo">067</span>        }<a name="line.67"></a>
+<span class="sourceLineNo">068</span>        <a name="line.68"></a>
+<span class="sourceLineNo">069</span>        /**<a name="line.69"></a>
+<span class="sourceLineNo">070</span>         * Method to remove from the Stock the Domino that is in the List "pile" at the position n.<a name="line.70"></a>
+<span class="sourceLineNo">071</span>         * @param n The index number of the Domino to be removed.<a name="line.71"></a>
+<span class="sourceLineNo">072</span>         */<a name="line.72"></a>
+<span class="sourceLineNo">073</span>        private void removeDomino(int n)<a name="line.73"></a>
+<span class="sourceLineNo">074</span>        {<a name="line.74"></a>
+<span class="sourceLineNo">075</span>                this.pile.remove(n);<a name="line.75"></a>
+<span class="sourceLineNo">076</span>        }<a name="line.76"></a>
+<span class="sourceLineNo">077</span>        <a name="line.77"></a>
+<span class="sourceLineNo">078</span>        /**<a name="line.78"></a>
+<span class="sourceLineNo">079</span>         * Method to obtain true or false if the Stock is empty or not.<a name="line.79"></a>
+<span class="sourceLineNo">080</span>         * @return True if the pile is empty, otherwise false.<a name="line.80"></a>
+<span class="sourceLineNo">081</span>         */<a name="line.81"></a>
+<span class="sourceLineNo">082</span>        public boolean isEmpty()<a name="line.82"></a>
+<span class="sourceLineNo">083</span>        {<a name="line.83"></a>
+<span class="sourceLineNo">084</span>                if(this.pile.isEmpty())<a name="line.84"></a>
+<span class="sourceLineNo">085</span>                {<a name="line.85"></a>
+<span class="sourceLineNo">086</span>                        return true;<a name="line.86"></a>
+<span class="sourceLineNo">087</span>                }<a name="line.87"></a>
+<span class="sourceLineNo">088</span>                return false;<a name="line.88"></a>
+<span class="sourceLineNo">089</span>        }<a name="line.89"></a>
+<span class="sourceLineNo">090</span>        <a name="line.90"></a>
+<span class="sourceLineNo">091</span>        /**<a name="line.91"></a>
+<span class="sourceLineNo">092</span>         * Method to obtain a random Domino from the Stock.<a name="line.92"></a>
+<span class="sourceLineNo">093</span>         * @return A random Domino from the Stock.<a name="line.93"></a>
+<span class="sourceLineNo">094</span>         */<a name="line.94"></a>
+<span class="sourceLineNo">095</span>        public Domino&lt;T&gt; draw()<a name="line.95"></a>
+<span class="sourceLineNo">096</span>        {       <a name="line.96"></a>
+<span class="sourceLineNo">097</span>                Random rand = new Random();<a name="line.97"></a>
+<span class="sourceLineNo">098</span>                int  n = rand.nextInt(this.pile.size());<a name="line.98"></a>
+<span class="sourceLineNo">099</span>                <a name="line.99"></a>
+<span class="sourceLineNo">100</span>                Domino&lt;T&gt; d = this.pile.get(n);<a name="line.100"></a>
+<span class="sourceLineNo">101</span>                this.removeDomino(n);<a name="line.101"></a>
+<span class="sourceLineNo">102</span>                <a name="line.102"></a>
+<span class="sourceLineNo">103</span>                return d;<a name="line.103"></a>
+<span class="sourceLineNo">104</span>        }<a name="line.104"></a>
+<span class="sourceLineNo">105</span>        <a name="line.105"></a>
+<span class="sourceLineNo">106</span>        /**<a name="line.106"></a>
+<span class="sourceLineNo">107</span>         * Method to obtain the String representation of the Stock.<a name="line.107"></a>
+<span class="sourceLineNo">108</span>         * @return String representation of the Stock.<a name="line.108"></a>
+<span class="sourceLineNo">109</span>         */     <a name="line.109"></a>
+<span class="sourceLineNo">110</span>        public String toString()<a name="line.110"></a>
+<span class="sourceLineNo">111</span>        {<a name="line.111"></a>
+<span class="sourceLineNo">112</span>                return this.pile.toString();<a name="line.112"></a>
+<span class="sourceLineNo">113</span>        }<a name="line.113"></a>
+<span class="sourceLineNo">114</span>}<a name="line.114"></a>
 
 
 
