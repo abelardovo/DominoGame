@@ -172,10 +172,12 @@ public class Table<T> implements InterfaceTable<T>
 	 * @return String representation of the table's state.
 	 */
 	public String printState(){
-		
-		if(this.right == null || this.left == null)
+
+		try{
+			return "STATE TABLE: "+this.getLeftValue().toString()+" : "+this.getRightValue().toString()+"\n";
+		}catch (NullPointerException e){
 			return "STATE TABLE: -1 : -1\n";
-		return "STATE TABLE: "+this.getLeftValue().toString()+" : "+this.getRightValue().toString()+"\n";
+		}
 	}
 	
 	/**
